@@ -41,6 +41,7 @@ module.exports = {
         sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
         mono: ['var(--font-mono)', 'monospace'],
         display: ['var(--font-display)', 'system-ui', 'sans-serif'],
+        script: ['var(--font-script)', 'cursive'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out forwards',

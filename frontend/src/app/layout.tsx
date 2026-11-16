@@ -1,7 +1,26 @@
 import type { Metadata } from 'next';
+import { Inter, Oswald, Caveat } from 'next/font/google';
 import './globals.css';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
+const oswald = Oswald({
+  subsets: ['latin'],
+  variable: '--font-display',
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+});
+
+const caveat = Caveat({
+  subsets: ['latin'],
+  variable: '--font-script',
+  weight: ['400', '600', '700'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3063'),
@@ -48,13 +67,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col antialiased selection:bg-emerald-500 selection:text-black">
-        <Navbar />
-        <main className="flex-grow pt-20">
-          {children}
-        </main>
-        <Footer />
+    <html lang="en" className={`${inter.variable} ${oswald.variable} ${caveat.variable}`}>
+      <body className="min-h-screen bg-[#F5F1E8] text-[#1C1917] font-sans antialiased selection:bg-[#1C1917] selection:text-[#F5F1E8]">
+        {children}
       </body>
     </html>
   );
