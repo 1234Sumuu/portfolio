@@ -250,7 +250,7 @@ export default function HomePage() {
       {/* BENTO GRID MAIN BODY */}
       {/* ========================================================= */}
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 space-y-8">
-        
+
         {/* ROW 1: WHO AM I & QUALIFICATIONS */}
         <div id="about" className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* WHO AM I CARD */}

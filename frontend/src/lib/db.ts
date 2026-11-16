@@ -3,8 +3,12 @@ import path from 'path';
 import fs from 'fs';
 
 const DB_DIR = path.join(process.cwd(), 'data');
-if (!fs.existsSync(DB_DIR)) {
-  fs.mkdirSync(DB_DIR, { recursive: true });
+try {
+  if (!fs.existsSync(DB_DIR)) {
+    fs.mkdirSync(DB_DIR, { recursive: true });
+  }
+} catch (e) {
+  // Read-only filesystem on serverless lambda
 }
 
 const DB_PATH = path.join(DB_DIR, 'portfolio.db');
@@ -13,10 +17,24 @@ let dbInstance: Database.Database | null = null;
 
 export function getDb(): Database.Database {
   if (!dbInstance) {
-    dbInstance = new Database(DB_PATH);
-    dbInstance.pragma('journal_mode = WAL');
-    dbInstance.pragma('foreign_keys = ON');
-    initSchema(dbInstance);
+    try {
+      dbInstance = new Database(DB_PATH);
+      try {
+        dbInstance.pragma('journal_mode = WAL');
+      } catch (e) {}
+      try {
+        dbInstance.pragma('foreign_keys = ON');
+      } catch (e) {}
+      try {
+        initSchema(dbInstance);
+      } catch (e) {}
+    } catch (err) {
+      console.warn('Database initialization warning, using fallback:', err);
+      dbInstance = new Database(':memory:');
+      try {
+        initSchema(dbInstance);
+      } catch (e) {}
+    }
   }
   return dbInstance;
 }
