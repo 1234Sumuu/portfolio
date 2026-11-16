@@ -13,6 +13,12 @@ build/
 *.tsbuildinfo
 next-env.d.ts
 
+# Research & Academic PDFs (Excluded from Git)
+public/assets/docs/Automated_Lung_Cancer_Detection_Paper.pdf
+public/assets/docs/LegalSupportAI_Paper.pdf
+public/assets/docs/Academic_Transcripts_and_Certificates.pdf
+*.pdf.bak
+
 # Misc
 .DS_Store
 *.pem
