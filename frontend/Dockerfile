@@ -1,7 +1,6 @@
-# Multi-stage Dockerfile for Next.js Production Build
+# Multi-stage Dockerfile for Next.js Frontend
 FROM node:20-alpine AS base
 
-# Install dependencies required for native modules
 RUN apk add --no-cache libc6-compat python3 make g++
 
 WORKDIR /app
@@ -17,12 +16,10 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Set environment
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV NEXT_PUBLIC_API_URL=http://backend:8063/api/v1
 
-# Seed the sqlite database during build to package static defaults
-RUN node scripts/seed.js
 RUN npm run build
 
 # Stage 3: Runner
@@ -30,26 +27,22 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
-ENV PORT=3000
+ENV PORT=3063
 ENV HOSTNAME="0.0.0.0"
 
-# Create non-root user
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copy built application & assets
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/data ./data
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/scripts ./scripts
 
-# Ensure correct permissions on database directory
 RUN chown -R nextjs:nodejs /app/data /app/public
 
 USER nextjs
 
-EXPOSE 3000
+EXPOSE 3063
 
 CMD ["npm", "run", "start"]

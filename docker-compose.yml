@@ -1,26 +1,53 @@
 version: '3.8'
 
 services:
-  web:
+  backend:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
-    container_name: sumaiya-portfolio
+    container_name: sumaiya-portfolio-backend
     restart: unless-stopped
     ports:
-      - "3000:3000"
+      - "8063:8063"
     environment:
-      - NODE_ENV=production
-      - PORT=3000
+      - PORT=8063
+      - HOST=0.0.0.0
+      - DATABASE_URL=sqlite:///./data/portfolio.db
       - JWT_SECRET=super_secure_jwt_secret_sumaiya_portfolio_2026_xyz987
       - ADMIN_EMAIL=sumaiya205.akter@gmail.com
       - ADMIN_INITIAL_PASSWORD=Sumaiya@AI2026!
+      - CORS_ORIGINS=["http://localhost:3063","http://127.0.0.1:3063"]
     volumes:
-      - portfolio_data:/app/data
-      - portfolio_uploads:/app/public/uploads
+      - backend_data:/app/data
+      - backend_uploads:/app/uploads
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: sumaiya-portfolio-frontend
+    restart: unless-stopped
+    ports:
+      - "3063:3063"
+    environment:
+      - NODE_ENV=production
+      - PORT=3063
+      - NEXT_PUBLIC_API_URL=http://localhost:8063/api/v1
+      - JWT_SECRET=super_secure_jwt_secret_sumaiya_portfolio_2026_xyz987
+      - ADMIN_EMAIL=sumaiya205.akter@gmail.com
+      - ADMIN_INITIAL_PASSWORD=Sumaiya@AI2026!
+    depends_on:
+      - backend
+    volumes:
+      - frontend_data:/app/data
+      - frontend_uploads:/app/public/uploads
 
 volumes:
-  portfolio_data:
+  backend_data:
     driver: local
-  portfolio_uploads:
+  backend_uploads:
+    driver: local
+  frontend_data:
+    driver: local
+  frontend_uploads:
     driver: local

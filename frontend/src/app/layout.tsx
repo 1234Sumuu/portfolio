@@ -4,6 +4,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3063'),
   title: 'Sumaiya Akter | AI Engineer, Software Architect & AI Researcher',
   description: 'Personal portfolio, research publications, production AI systems, and engineering case studies of Sumaiya Akter. Specializing in LLMs, multimodal computer vision, distributed backend systems, and healthcare AI.',
   keywords: [
