@@ -186,15 +186,15 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div className="md:col-span-7 relative h-72 sm:h-96 w-full bg-[#E5DFD4] overflow-hidden flex items-center justify-center">
+                <div className="md:col-span-7 relative h-80 sm:h-[440px] w-full bg-[#E5DFD4] overflow-hidden flex items-center justify-center">
                   <Image
                     src="/assets/images/sumaiya-portrait.jpg"
-                    alt="Sumaiya Akter"
+                    alt="Sumaiya Akter - Software Engineer & AI Researcher"
                     fill
                     className="object-cover object-top"
                     priority
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1C1917]/20 via-transparent to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1C1917]/25 via-transparent to-transparent"></div>
                 </div>
               </div>
             </div>
@@ -234,10 +234,10 @@ export default function HomePage() {
                   <div className="polaroid-frame transform rotate-1 hover:rotate-0 transition-transform duration-300 w-full max-w-[190px]">
                     <div className="relative aspect-square w-full rounded overflow-hidden bg-stone-100">
                       <Image
-                        src="/assets/images/sumaiya-profile.png"
+                        src="/assets/images/sumaiya-portrait.jpg"
                         alt="Sumaiya Akter Polaroid"
                         fill
-                        className="object-cover"
+                        className="object-cover object-top"
                       />
                     </div>
                     <p className="font-script text-center text-sm text-[#8C5035] mt-2 leading-tight">

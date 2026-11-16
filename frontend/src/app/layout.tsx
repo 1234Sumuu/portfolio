@@ -41,8 +41,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/assets/images/sumaiya-portrait.jpg',
-        width: 612,
-        height: 917,
+        width: 935,
+        height: 1024,
         alt: 'Sumaiya Akter',
       },
     ],
