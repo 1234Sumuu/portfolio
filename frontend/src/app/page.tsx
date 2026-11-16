@@ -31,6 +31,7 @@ import {
   Eye,
 } from 'lucide-react';
 import ResumeModal from '@/components/ResumeModal';
+import Footer from '@/components/Footer';
 
 export default function HomePage() {
   const [copiedEmail, setCopiedEmail] = useState(false);
@@ -1209,6 +1210,9 @@ export default function HomePage() {
         </div>
 
       </main>
+
+      {/* Dynamic Copyright Footer */}
+      <Footer />
 
       {/* Resume Preview Modal */}
       <ResumeModal
