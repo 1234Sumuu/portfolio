@@ -292,7 +292,7 @@ export default function HomePage() {
 
             <div className="mt-6 pt-4 border-t border-[#E2DCD2] flex items-center justify-between text-xs text-[#78716C]">
               <span>Location: Aftabnagar, Dhaka</span>
-              <span className="font-mono">+8801789531474</span>
+              <span className="text-[11px] font-medium text-[#8C5035]">Phone available on request</span>
             </div>
           </div>
 
@@ -1045,10 +1045,10 @@ export default function HomePage() {
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-[10px] uppercase tracking-wider text-stone-400 block">Phone / WhatsApp</span>
-                    <a href="tel:+8801789531474" className="text-stone-100 font-mono hover:text-[#E8DCC4] transition-colors">
-                      +8801789531474
-                    </a>
+                    <span className="text-[10px] uppercase tracking-wider text-stone-400 block">Direct Phone &amp; WhatsApp</span>
+                    <span className="text-stone-300 text-xs">
+                      Available on verified request
+                    </span>
                   </div>
                 </div>
 

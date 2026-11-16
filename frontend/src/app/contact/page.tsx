@@ -25,10 +25,10 @@ export default function ContactPage() {
     },
     {
       icon: <Phone className="w-5 h-5 text-teal-400" />,
-      label: 'Phone / WhatsApp',
-      value: '+880 1789-531474',
-      href: 'tel:+8801789531474',
-      sub: 'Professional calls & messages',
+      label: 'Phone & WhatsApp',
+      value: 'Available upon verified request',
+      href: '#inquiry-form',
+      sub: 'Shared upon initial collaboration contact',
     },
     {
       icon: <MapPin className="w-5 h-5 text-cyan-400" />,
