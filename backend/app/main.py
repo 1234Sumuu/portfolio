@@ -2,6 +2,7 @@ import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import HTMLResponse, FileResponse
 
 from app.core.config import settings
 from app.core.database import engine, Base
@@ -39,6 +40,17 @@ try:
 except Exception as e:
     print(f"Notice: Upload directory mount skipped: {e}")
 
+# Frontend static assets (pre-rendered Next.js pages, CSS/JS chunks & media)
+STATIC_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "static")
+if os.path.exists(STATIC_DIR):
+    next_static = os.path.join(STATIC_DIR, "_next")
+    if os.path.exists(next_static):
+        app.mount("/_next", StaticFiles(directory=next_static), name="next_static")
+
+    assets_static = os.path.join(STATIC_DIR, "assets")
+    if os.path.exists(assets_static):
+        app.mount("/assets", StaticFiles(directory=assets_static), name="assets_static")
+
 # Include API Router under both /api/v1 and /api for versatile routing
 app.include_router(api_router, prefix=settings.API_V1_STR)
 app.include_router(api_router, prefix="/api")
@@ -52,15 +64,56 @@ def healthcheck():
         "version": settings.VERSION,
     }
 
-@app.get("/", tags=["System"])
 @app.get("/api", tags=["System"])
-def root():
+def api_root():
     return {
         "service": settings.PROJECT_NAME,
         "version": settings.VERSION,
         "docs": "/docs",
         "api_v1": settings.API_V1_STR,
     }
+
+@app.get("/", response_class=HTMLResponse, tags=["Web"])
+def serve_home():
+    index_path = os.path.join(STATIC_DIR, "index.html")
+    if os.path.exists(index_path):
+        return FileResponse(index_path, media_type="text/html")
+    return {
+        "service": settings.PROJECT_NAME,
+        "version": settings.VERSION,
+        "docs": "/docs",
+        "api_v1": settings.API_V1_STR,
+    }
+
+@app.get("/projects", response_class=HTMLResponse, tags=["Web"])
+def serve_projects():
+    projects_path = os.path.join(STATIC_DIR, "projects.html")
+    if os.path.exists(projects_path):
+        return FileResponse(projects_path, media_type="text/html")
+    index_path = os.path.join(STATIC_DIR, "index.html")
+    if os.path.exists(index_path):
+        return FileResponse(index_path, media_type="text/html")
+    return {"detail": "Not Found"}
+
+@app.get("/research", response_class=HTMLResponse, tags=["Web"])
+def serve_research():
+    research_path = os.path.join(STATIC_DIR, "research.html")
+    if os.path.exists(research_path):
+        return FileResponse(research_path, media_type="text/html")
+    index_path = os.path.join(STATIC_DIR, "index.html")
+    if os.path.exists(index_path):
+        return FileResponse(index_path, media_type="text/html")
+    return {"detail": "Not Found"}
+
+@app.get("/contact", response_class=HTMLResponse, tags=["Web"])
+def serve_contact():
+    contact_path = os.path.join(STATIC_DIR, "contact.html")
+    if os.path.exists(contact_path):
+        return FileResponse(contact_path, media_type="text/html")
+    index_path = os.path.join(STATIC_DIR, "index.html")
+    if os.path.exists(index_path):
+        return FileResponse(index_path, media_type="text/html")
+    return {"detail": "Not Found"}
 
 if __name__ == "__main__":
     import uvicorn

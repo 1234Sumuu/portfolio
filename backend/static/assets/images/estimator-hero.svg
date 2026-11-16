@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#362415"/>
+      <stop offset="100%" stop-color="#1C1917"/>
+    </linearGradient>
+    <linearGradient id="grid" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FBBF24" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#FBBF24" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#bg)"/>
+  
+  <!-- Subtle Grid Lines -->
+  <g stroke="#FBBF24" stroke-width="1" opacity="0.12">
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="400" x2="800" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="500"/>
+    <line x1="400" y1="0" x2="400" y2="500"/>
+    <line x1="600" y1="0" x2="600" y2="500"/>
+  </g>
+  
+  <!-- Card Content -->
+  <g transform="translate(60, 80)">
+    <!-- Icon Circle -->
+    <rect x="0" y="0" width="72" height="72" rx="18" fill="#FBBF24" fill-opacity="0.15" stroke="#FBBF24" stroke-width="1.5" stroke-opacity="0.3"/>
+    <text x="36" y="46" font-size="32" text-anchor="middle" dominant-baseline="central">🏗️</text>
+    
+    <!-- Title -->
+    <text x="0" y="130" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="36" fill="#FFFFFF" letter-spacing="-0.5">AI Estimator</text>
+    
+    <!-- Subtitle -->
+    <text x="0" y="175" font-family="ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" fill="#CBD5E1" max-width="600">Automated Construction Takeoffs & Blueprint Estimates</text>
+    
+    <!-- Stack Pill -->
+    <rect x="0" y="230" width="420" height="36" rx="8" fill="#000000" fill-opacity="0.4" stroke="#FBBF24" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="16" y="253" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="13" font-weight="600" fill="#FBBF24">FastAPI • PDFMiner • Gemini • Next.js</text>
+  </g>
+  
+  <!-- Bottom Corner Tag -->
+  <rect x="610" y="435" width="130" height="28" rx="6" fill="#FBBF24" fill-opacity="0.15" stroke="#FBBF24" stroke-width="1" stroke-opacity="0.3"/>
+  <text x="675" y="453" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" font-weight="700" fill="#FBBF24" text-anchor="middle" letter-spacing="1">PRODUCTION</text>
+</svg>
