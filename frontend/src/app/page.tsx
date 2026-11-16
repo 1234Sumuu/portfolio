@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import {
   Github,
@@ -11,6 +12,7 @@ import {
   MapPin,
   Download,
   ArrowUpRight,
+  ArrowRight,
   ExternalLink,
   CheckCircle2,
   Send,
@@ -29,7 +31,9 @@ import {
   Building,
   Sparkles,
   Eye,
+  FolderKanban,
 } from 'lucide-react';
+import Header from '@/components/Header';
 import ResumeModal from '@/components/ResumeModal';
 import Footer from '@/components/Footer';
 
@@ -86,102 +90,8 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-[#F4EFE6] text-[#1C1917] flex flex-col justify-between">
-      {/* ========================================================= */}
-      {/* STICKY HEADER NAVIGATION BAR */}
-      {/* ========================================================= */}
-      <header className="sticky top-0 z-50 w-full bg-[#F4EFE6]/90 backdrop-blur-md border-b border-[#E2DCD2]/80 shadow-[0_2px_12px_rgba(28,25,23,0.03)] transition-all">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between py-3 sm:py-3.5 gap-4">
-            {/* Scrollable Navigation Tabs */}
-            <nav className="flex items-center gap-5 sm:gap-7 overflow-x-auto no-scrollbar py-1 scroll-smooth font-semibold text-xs uppercase tracking-widest text-[#57534E]">
-              <a
-                href="#projects"
-                className="hover:text-[#1C1917] transition-colors whitespace-nowrap py-1 border-b border-transparent hover:border-[#1C1917]"
-              >
-                My Work
-              </a>
-              <a
-                href="#experience"
-                className="hover:text-[#1C1917] transition-colors whitespace-nowrap py-1 border-b border-transparent hover:border-[#1C1917]"
-              >
-                Experience
-              </a>
-              <a
-                href="#research"
-                className="hover:text-[#1C1917] transition-colors whitespace-nowrap py-1 border-b border-transparent hover:border-[#1C1917]"
-              >
-                Research
-              </a>
-              <a
-                href="#about"
-                className="hover:text-[#1C1917] transition-colors whitespace-nowrap py-1 border-b border-transparent hover:border-[#1C1917]"
-              >
-                Who Am I
-              </a>
-              <a
-                href="#skills"
-                className="hover:text-[#1C1917] transition-colors whitespace-nowrap py-1 border-b border-transparent hover:border-[#1C1917]"
-              >
-                Skills
-              </a>
-              <a
-                href="#awards"
-                className="hover:text-[#1C1917] transition-colors whitespace-nowrap py-1 border-b border-transparent hover:border-[#1C1917]"
-              >
-                Honors
-              </a>
-              <a
-                href="#contact"
-                className="hover:text-[#1C1917] transition-colors whitespace-nowrap py-1 border-b border-transparent hover:border-[#1C1917]"
-              >
-                Contact
-              </a>
-            </nav>
-
-            {/* Social Icons */}
-            <div className="flex items-center gap-3.5 shrink-0">
-              <a
-                href="https://github.com/1234Sumuu"
-                target="_blank"
-                rel="noreferrer"
-                className="text-[#78716C] hover:text-[#1C1917] transition-colors"
-                aria-label="GitHub"
-                title="GitHub"
-              >
-                <Github className="w-4 h-4" />
-              </a>
-              <a
-                href="https://linkedin.com/in/sumaiya-akter"
-                target="_blank"
-                rel="noreferrer"
-                className="text-[#78716C] hover:text-[#1C1917] transition-colors"
-                aria-label="LinkedIn"
-                title="LinkedIn"
-              >
-                <Linkedin className="w-4 h-4" />
-              </a>
-              <a
-                href="https://scholar.google.com"
-                target="_blank"
-                rel="noreferrer"
-                className="text-[#78716C] hover:text-[#1C1917] transition-colors"
-                aria-label="Google Scholar"
-                title="Google Scholar"
-              >
-                <GraduationCap className="w-4 h-4" />
-              </a>
-              <a
-                href="mailto:sumaiya205.akter@gmail.com"
-                className="text-[#78716C] hover:text-[#1C1917] transition-colors"
-                aria-label="Email"
-                title="Email"
-              >
-                <Mail className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </header>
+      {/* Common Sticky Header Navigation */}
+      <Header />
 
       {/* ========================================================= */}
       {/* HERO SECTION (Editorial Magazine Aesthetic) */}
@@ -700,11 +610,16 @@ export default function HomePage() {
             {/* Project 5: RA Script */}
             <div className="bento-card p-4 sm:p-5 flex flex-col justify-between bg-white border border-[#E2DCD2]">
               <div>
-                <div className="w-10 h-10 rounded-xl bg-[#FAF8F5] border border-[#E2DCD2] flex items-center justify-center text-[#1C1917] mb-4">
-                  <FileText className="w-5 h-5" />
-                </div>
-                <div className="inline-block px-2.5 py-0.5 rounded-full bg-amber-600 text-white text-[10px] font-bold tracking-wider uppercase mb-2">
-                  Enterprise AI
+                <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-[#E2DCD2] mb-4 bg-stone-100">
+                  <Image
+                    src="/assets/images/ra-script-hero.png"
+                    alt="RA Script Pharmaceutical AI"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-amber-600 text-white text-[10px] font-bold tracking-wider uppercase">
+                    Enterprise AI
+                  </div>
                 </div>
                 <h3 className="text-base font-bold text-[#1C1917]">RA Script – Pharmaceutical AI</h3>
                 <p className="text-xs text-[#57534E] mt-1.5 leading-relaxed">
@@ -724,11 +639,16 @@ export default function HomePage() {
             {/* Project 6: Insta Hygiene & Meeting Interpreter */}
             <div className="bento-card p-4 sm:p-5 flex flex-col justify-between bg-white border border-[#E2DCD2]">
               <div>
-                <div className="w-10 h-10 rounded-xl bg-[#FAF8F5] border border-[#E2DCD2] flex items-center justify-center text-[#1C1917] mb-4">
-                  <Code2 className="w-5 h-5" />
-                </div>
-                <div className="inline-block px-2.5 py-0.5 rounded-full bg-stone-700 text-white text-[10px] font-bold tracking-wider uppercase mb-2">
-                  Production Systems
+                <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-[#E2DCD2] mb-4 bg-stone-100">
+                  <Image
+                    src="/assets/images/insta-hygiene-hero.png"
+                    alt="Insta Hygiene Platform"
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-stone-700 text-white text-[10px] font-bold tracking-wider uppercase">
+                    Production Systems
+                  </div>
                 </div>
                 <h3 className="text-base font-bold text-[#1C1917]">Insta Hygiene &amp; Meeting Interpreter</h3>
                 <p className="text-xs text-[#57534E] mt-1.5 leading-relaxed">
@@ -744,6 +664,34 @@ export default function HomePage() {
                 <span className="text-xs font-semibold text-[#8C5035]">Real-Time Streaming</span>
               </div>
             </div>
+          </div>
+
+          {/* VIEW ALL PROJECTS BANNER / CTA CARD */}
+          <div className="mt-8 p-6 sm:p-8 rounded-2xl bg-[#EBE5DB] border border-[#E2DCD2] flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
+            <div className="space-y-1.5 text-center sm:text-left">
+              <div className="flex items-center justify-center sm:justify-start gap-2">
+                <span className="px-2.5 py-0.5 rounded-full bg-[#1C1917] text-[#F4EFE6] text-[10px] font-mono uppercase tracking-wider font-semibold">
+                  Complete Engineering Archive
+                </span>
+                <span className="text-xs font-mono text-[#8C5035] font-semibold">
+                  27 Verified Systems
+                </span>
+              </div>
+              <h3 className="display-title text-2xl sm:text-3xl text-[#1C1917] tracking-tight">
+                VIEW ALL PROJECTS FROM REPOSITORY
+              </h3>
+              <p className="text-xs text-[#57534E] max-w-xl leading-relaxed">
+                Explore all 27 verified production systems, healthcare platforms, pharmaceutical tools, and AI prototypes with dedicated architecture breakdowns and live pagination.
+              </p>
+            </div>
+
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#1C1917] text-[#F4EFE6] text-xs font-semibold tracking-wider uppercase hover:bg-[#8C5035] transition-all shadow-md active:scale-95 shrink-0"
+            >
+              <span>View All Projects (27)</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
 

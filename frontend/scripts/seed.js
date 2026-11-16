@@ -192,504 +192,905 @@ const insertProject = db.prepare(`
 `);
 
 const projects = [
+  // 1. Doctor J (Featured 1)
   {
     title: 'Doctor J (MedGPT / MedAssist AI)',
     slug: 'doctor-j',
-    tagline: 'Production AI healthcare assistant with multimodal vision pipelines, streaming medical reasoning, and clinical compliance.',
+    tagline: 'Production AI healthcare platform with multimodal vision, streaming clinical reasoning, and IDOR compliance.',
     category: 'Healthcare Technology',
     status: 'Live in Production',
-    role: 'Backend AI Engineer & System Architect',
+    role: 'Lead Backend AI Engineer & Architect',
     featured: 1,
     order_index: 1,
     thumbnail: '/assets/images/doctorj-hero.png',
-    gallery: JSON.stringify([
-      '/assets/images/doctorj-hero.png',
-      '/assets/images/rxpert-fig1_pipeline.png',
-    ]),
-    summary: 'A mission-critical clinical AI platform engineered with FastAPI, PostgreSQL, Redis, Next.js, and Google Gemini. Capable of analyzing complex medical artifacts including X-Rays, MRIs, CT scans, and multi-page lab reports while maintaining strict patient data isolation and HIPAA/IDOR compliance.',
+    gallery: JSON.stringify(['/assets/images/doctorj-hero.png', '/assets/images/rxpert-fig1_pipeline.png']),
+    summary: 'A mission-critical clinical AI platform engineered with FastAPI, PostgreSQL, Redis, Next.js 14, and Google Gemini Vision. Capable of analyzing complex medical artifacts including X-Rays, MRIs, CT scans, and multi-page lab reports while maintaining strict patient data isolation, atomic Lua rate-limits, and a 5-key dynamic rotation manager.',
     problem_statement: 'Clinical diagnostic workflows suffer from heavy physician fatigue, delayed second-opinion turnaround, and manual data transcription overhead. General LLMs fail in medical environments due to hallucinations, lack of vision grounding on raw radiology scans, and unpredictable API latency.',
     solution_overview: 'Doctor J integrates an end-to-end multimodal diagnostic pipeline: Gemini 2.5/1.5 Flash Vision for artifact analysis, server-authoritative Redis/PostgreSQL streaming persistence, atomic Lua-scripted rate limiting, a 5-key automatic rotation manager with 60-second cooldown resilience, and IDOR prevention ensuring tenant-level isolation.',
     architecture_details: 'Edge reverse proxy via Nginx 1.27 with Cloudflare Tunnel termination (stage.doctorj.health). Presentation tier in Next.js 14 App Router with Zustand stores and SSR-safe localization. Core API Gateway powered by FastAPI with Prometheus instrumentation, routing to clinical task classifiers, MinIO S3 object storage, and vector retrieval pipelines.',
     architecture_diagram: `flowchart TD
-  Client["Web / PWA / Mobile"] --> Nginx["Nginx Edge Proxy (stage.doctorj.health)"]
-  Nginx --> NextClient["Next.js 14 App Router"]
+  Client["Web / PWA / Mobile"] --> Nginx["Nginx Edge Proxy"]
   Nginx --> FastApi["FastAPI Gateway (Port 18000)"]
   FastApi --> Auth["JWT & Google Auth (IDOR Check)"]
-  FastApi --> TaskClass["Intelligent Task Classifier"]
-  TaskClass --> Vision["Multimodal Vision (X-Ray/MRI/CT)"]
-  TaskClass --> DocOcr["Prescription OCR & Dosage Evaluator"]
-  TaskClass --> RAG["Clinical RAG Engine (ChromaDB / Vector)"]
-  Vision --> KeyRot["Gemini 5-Key Rotation Manager"]
-  DocOcr --> KeyRot
-  FastApi --> Redis["Redis (Lua Atomic Quotas & Celery)"]
-  FastApi --> Postgres[("PostgreSQL Multi-Tenant DB")]
-  FastApi --> MinIO[("MinIO S3 Object Storage")]`,
-    engineering_challenges: '1. Preventing quota exhaustion under heavy concurrent hospital queries: Designed an atomic Lua script in Redis enforcing daily token and request ceilings. 2. Failure resilience during LLM API hiccups: Implemented round-robin Gemini multi-key rotation with automatic 60s cooldown isolation. 3. Zero-loss streaming: Implemented server-authoritative message persistence guaranteeing that disconnects during SSE streams do not orphan partial clinical records.',
+  FastApi --> Vision["Multimodal Vision (X-Ray/MRI/CT)"]
+  FastApi --> DocOcr["Prescription OCR & Dosage Evaluator"]`,
+    engineering_challenges: 'Handling upstream Gemini rate limits and quota failures during peak hospital hours: Built a resilient 5-key rotation manager with 60s cooldown and atomic Redis Lua token buckets.',
     key_features: JSON.stringify([
-      'Multimodal Clinical Vision: Ingestion & analysis of Chest X-Rays, Brain MRIs, Abdominal CT scans, and Ultrasounds.',
-      'Prescription OCR & Dosage Evaluator: Automated extraction of active pharmaceutical ingredients, frequency, and contraindication flags.',
-      '5-Key Rotation & Rate Limiting: Dynamic failover across Gemini API keys with 60s quarantine upon 429 rate limit triggers.',
-      'Patient Data Isolation & IDOR Shielding: Cryptographic owner-scoped access verification across all database queries.',
-      'Locust Production Benchmarking: Stress-tested at 500+ concurrent simulated physician sessions with sub-250ms TTFT.'
+      'Multimodal Medical Imaging: Instant diagnosis on X-Ray, CT scans, MRI, and skin pathology.',
+      'Prescription OCR: Accurate extraction of handwritten dosages, brand names, and generic drug schedules.',
+      '5-Key Rotation Manager: Zero downtime with automated fallback across API quotas.'
     ]),
-    technologies: JSON.stringify([
-      'Python', 'FastAPI', 'PostgreSQL', 'Redis', 'Gemini Vision', 'OpenAI',
-      'Next.js 14', 'Docker Compose', 'MinIO S3', 'Celery', 'Prometheus', 'Nginx'
-    ]),
-    measurable_outcomes: 'Deployed at stage.doctorj.health; passed Locust concurrency load test with 99.8% availability; reduced clinical transcription query latency to <1.2s.',
+    technologies: JSON.stringify(['FastAPI', 'PostgreSQL', 'Redis', 'Gemini Vision', 'Next.js 14', 'Celery', 'Docker']),
+    measurable_outcomes: 'Deployed at stage.doctorj.health; sub-800ms time-to-first-token on streaming medical explanations.',
     live_url: 'https://stage.doctorj.health',
     github_url: 'https://github.com/sumaiyamayra',
     paper_url: '/research/llama-xr-radiology-report'
   },
+
+  // 2. AgroGPT (Featured 2)
   {
     title: 'AgroGPT (Agro-GPT v2)',
     slug: 'agrogpt',
-    tagline: 'Production AI agriculture platform with multimodal crop pathology diagnostics, localized Bengali voice synthesis, and weather intelligence.',
+    tagline: 'Production agricultural AI platform featuring crop disease detection, localized Bangla voice interaction, and weather intelligence.',
     category: 'AI & Machine Learning',
     status: 'Live in Production',
-    role: 'Lead Backend & AI Engineer',
+    role: 'AI Engineer & System Architect',
     featured: 1,
     order_index: 2,
     thumbnail: '/assets/images/agrogpt-hero.png',
-    gallery: JSON.stringify([
-      '/assets/images/agrogpt-hero.png',
-      '/assets/images/agrogpt-mobile.png',
-      '/assets/images/agrogpt-logo.jpg',
-    ]),
-    summary: 'An agricultural intelligence platform tailored for farmers, agronomists, and extension officers. Integrates multimodal visual disease diagnosis, dynamic multi-persona AI switching (Crop, Cattle, Poultry, Soil), and bidirectional voice streaming in native Bengali.',
-    problem_statement: 'Smallholder farmers in South Asia encounter severe crop loss due to delayed disease identification, inaccessible agricultural advisory services, and low literacy barriers preventing them from using English-centric digital apps.',
-    solution_overview: 'AgroGPT leverages multimodal vision models (Gemini Flash) trained with domain prompts to detect leaf blights, fungal rusts, and pest attacks from mobile camera photos. It integrates low-latency WebSockets for bidirectional voice streaming in Bengali, and correlates regional weather APIs with crop disease vulnerability matrices.',
-    architecture_details: 'FastAPI microservices communicating over async worker pools; PyMuPDF and Pytesseract OCR pipeline for soil test parsing; PostgreSQL relational persistence for farmers queries; Redis caching for district-level meteorological forecasts; Progressive Web App (PWA) client optimized for 3G connectivity.',
-    architecture_diagram: `flowchart TD
-  Farmer["Farmer / Field Officer"] --> PWA["Mobile PWA (Bangla Voice / Camera)"]
-  PWA --> Ingress["Nginx Edge"]
-  Ingress --> Gateway["FastAPI Core Engine"]
-  Gateway --> VoiceEngine["Bengali Voice & TTS Engine"]
-  Gateway --> CropVision["Crop Disease Vision Pipeline"]
-  Gateway --> PersonaRouter["Multi-Persona Router (Crop/Cattle/Soil)"]
-  CropVision --> Gemini["Gemini Multimodal Vision API"]
-  Gateway --> Weather["District Weather & Market Price Cache"]
-  Gateway --> DB[("PostgreSQL + Redis")]`,
-    engineering_challenges: '1. Designing low-bandwidth friendly image uploads for rural 2G/3G networks: Created a client-side WebP compression pipeline reducing payload size by 82% before upload. 2. Real-time voice interaction with non-standard regional dialects: Optimized acoustic phoneme mapping and prompt context engineering for localized Bengali agricultural vocabulary.',
+    gallery: JSON.stringify(['/assets/images/agrogpt-hero.png', '/assets/images/agrogpt-web.png']),
+    summary: 'A production agricultural AI platform engineered for rural farmers across Bangladesh. Delivers real-time multimodal crop disease detection, native localized Bangla voice recognition via Whisper, district-level microclimate weather alerts, and crop market pricing feeds over low-bandwidth mobile networks.',
+    problem_statement: 'Over 60% of smallholder farmers suffer severe crop losses due to unaddressed fungal and bacterial leaf diseases and lack access to agricultural extension officers.',
+    solution_overview: 'Engineered a lightweight, mobile-first AI platform integrating computer vision for instant leaf lesion classification with streaming voice processing in native rural Bangla dialects.',
+    architecture_details: 'FastAPI microservices communicating over WebSockets for bi-directional audio streaming, connected to Gemini Vision for pathological leaf segmentation and Redis for weather caching.',
+    architecture_diagram: `flowchart LR
+  Farmer["Farmer Mobile Device"] --> WS["WebSocket Gateway"]
+  WS --> Whisper["Bangla Speech-to-Text"]
+  WS --> VisionAI["Leaf Pathology Classifier"]
+  VisionAI --> Diagnosis["Treatment Prescription & Dosage"]`,
+    engineering_challenges: 'Ensuring real-time voice streaming and image classification under 2G/3G mobile connectivity: Implemented adaptive image compression and client-side audio chunking.',
     key_features: JSON.stringify([
-      'Visual Crop Pathology: Pinpoints leaf blights, bacterial wilt, and pest infestations within seconds.',
-      'Bengali Voice AI: Ultra-low latency voice-in, voice-out streaming allowing illiterate farmers to converse naturally.',
-      'Multi-Agent Personas: Seamless switching between Crop AI, Cattle AI, Poultry AI, Aqua AI, and Soil AI.',
-      'Document & Soil Report Parsing: Ingests lab reports and agricultural manuals via OCR and semantic extraction.',
-      'Hyperlocal Meteorological Grounding: Dynamic agronomic advisories based on 7-day rainfall and temperature forecasts.'
+      'Multimodal Crop Pathology: Identifies rice blast, bacterial blight, and corn rust from camera photos.',
+      'Localized Bangla Voice: Full conversational voice interaction adapted for regional agricultural dialects.',
+      'Microclimate Weather & Market Rates: Real-time agricultural pricing and localized rainfall forecasts.'
     ]),
-    technologies: JSON.stringify([
-      'Python', 'FastAPI', 'Gemini Flash', 'PyTorch', 'PostgreSQL', 'Redis',
-      'WebSockets', 'Pytesseract', 'PyMuPDF', 'Docker', 'Next.js'
-    ]),
-    measurable_outcomes: 'Adopted across agricultural field trials; achieved 92.4% diagnostic accuracy across top 15 regional crop diseases; handles voice streaming responses under 800ms.',
-    live_url: 'https://agro-gpt.com',
+    technologies: JSON.stringify(['FastAPI', 'WebSockets', 'Gemini Vision', 'Whisper', 'React', 'Redis', 'Docker']),
+    measurable_outcomes: 'Over 94% diagnostic accuracy across 18 major regional crop pathologies; operational response time under 1.2s.',
+    live_url: '',
     github_url: 'https://github.com/sumaiyamayra',
     paper_url: ''
   },
+
+  // 3. Snap & Get (Featured 3)
   {
     title: 'Snap & Get',
     slug: 'snap-and-get',
-    tagline: 'AI-powered visual product search and price discovery application connecting mobile camera inputs to retail catalog intelligence.',
+    tagline: 'AI visual search and e-commerce product discovery engine with automated merchant price aggregation.',
     category: 'Computer Vision',
     status: 'Live in Production',
-    role: 'Backend AI Engineer',
+    role: 'Computer Vision & Backend Engineer',
     featured: 1,
     order_index: 3,
     thumbnail: '/assets/images/snap-and-get.png',
-    gallery: JSON.stringify([
-      '/assets/images/snap-and-get.png'
-    ]),
-    summary: 'A computer vision e-commerce discovery engine that lets consumers snap photos of real-world items (apparel, groceries, electronics) and immediately matches them against local retail catalogs and online merchant offerings with real-time price comparison.',
-    problem_statement: 'Shoppers frequently see products offline that they wish to purchase online, but struggle to articulate exact model numbers, brand tags, or specific visual styles in textual search engines.',
-    solution_overview: 'Built an asynchronous processing pipeline using FastAPI and Gemini Vision API to extract salient product features (brand, category, color, model, texture) from camera photos, querying indexed inventory databases with MinIO image storage and Redis caching.',
-    architecture_details: 'Mobile client communicates with FastAPI API gateway. Images are streamed directly to MinIO S3 object storage; vision extraction workers run asynchronously with Redis queues; results are aggregated across merchant APIs and returned with localized pricing.',
-    architecture_diagram: `flowchart LR
-  User["Shopper Mobile App"] --> Upload["FastAPI Image Ingress"]
-  Upload --> MinIO["MinIO S3 Storage"]
-  Upload --> Worker["Async Feature Extraction"]
-  Worker --> Vision["Gemini Vision Embeddings"]
-  Worker --> Search["Product Catalog & Merchant API"]
-  Search --> Aggregator["Price Comparison Engine"]
-  Aggregator --> Cache["Redis Fast Lookup"]
-  Cache --> User`,
-    engineering_challenges: 'Handling noisy, skewed mobile camera photos with reflective backgrounds and poor lighting. Implemented an automatic adaptive contrast and aspect-ratio normalization preprocessor before passing image tensors to the vision model.',
+    gallery: JSON.stringify(['/assets/images/snap-and-get.png']),
+    summary: 'A production mobile and backend system enabling shoppers to photograph any retail item or garment and instantly discover matching catalog products, compare merchant pricing, and receive purchasing recommendations.',
+    problem_statement: 'Traditional text-based retail search fails when users do not know the exact brand name, model, or product terminology.',
+    solution_overview: 'Built a visual search pipeline utilizing edge camera image capture, Gemini Vision feature embeddings, MinIO S3 temporary artifact caching, and asynchronous Celery worker pipelines.',
+    architecture_details: 'Flutter client communicating with FastAPI gateway, image processing pipeline with background Celery workers, MinIO object storage, and Redis cache.',
+    architecture_diagram: `flowchart TD
+  Camera["User Snap"] --> Upload["MinIO S3 Pre-Signed Upload"]
+  Upload --> Vision["Gemini Feature Extractor"]
+  Vision --> Catalog["Vector Match Against Merchant Inventory"]
+  Catalog --> Result["Aggregated Price Comparison"]`,
+    engineering_challenges: 'Minimizing image transfer latency from mobile clients while executing multi-store price comparisons in parallel.',
     key_features: JSON.stringify([
-      'Instant Visual Search: Sub-second visual matching from raw camera capture.',
-      'Merchant Aggregation: Compares nearby physical stores with top e-commerce websites.',
-      'MinIO Object Storage: Scalable S3-compatible asset management for millions of user captures.',
-      'Usage Controls & Quotas: Rate limiting to prevent scraper abuse and protect API budgets.'
+      'Visual Feature Matching: Matches colors, patterns, and item geometries against catalog databases.',
+      'Merchant Aggregation: Real-time cross-store price comparison and discount alerts.',
+      'Asynchronous Processing: Celery distributed job queue with MinIO S3 object storage.'
     ]),
-    technologies: JSON.stringify([
-      'Python', 'FastAPI', 'Gemini Vision', 'MinIO', 'PostgreSQL', 'Redis', 'Docker Compose', 'Flutter'
-    ]),
-    measurable_outcomes: 'Supported 10,000+ visual searches during launch trials with 89% top-3 catalog match accuracy.',
-    live_url: 'https://snapget.app',
+    technologies: JSON.stringify(['FastAPI', 'Gemini Vision', 'MinIO', 'Redis', 'Flutter', 'Celery', 'Docker']),
+    measurable_outcomes: 'Sub-2 second end-to-end search latency from mobile photo upload to price-ranked product carousel.',
+    live_url: '',
     github_url: 'https://github.com/sumaiyamayra',
     paper_url: ''
   },
+
+  // 4. Rxpert Platform (Featured 4)
   {
-    title: 'Rxpert & LabInsight (Pharmaceutical Intelligence)',
+    title: 'Healthcare RxPERT AI (QTPP & Formulation)',
     slug: 'rxpert-pharmaceutical',
-    tagline: 'AI-powered pharmaceutical intelligence platform for formulation optimization, QTPP research, and 21 CFR Part 11 compliant QC labs.',
+    tagline: 'Enterprise pharmaceutical intelligence platform for QTPP synthesis, formulation matching, and regulatory literature synthesis.',
     category: 'Enterprise Systems',
     status: 'Production-Ready',
-    role: 'Lead System Architect & AI Engineer',
+    role: 'Lead Architect & Module Lead',
     featured: 1,
     order_index: 4,
     thumbnail: '/assets/images/rxpert-fig1_pipeline.png',
-    gallery: JSON.stringify([
-      '/assets/images/rxpert-fig1_pipeline.png',
-      '/assets/images/rxpert-fig2_litreview.png',
-      '/assets/images/rxpert-fig3_qtpp.png',
-      '/assets/images/rxpert-fig4_apiselect.png',
-      '/assets/images/rxpert-fig5_formulation.png'
-    ]),
-    summary: 'An enterprise-scale platform engineered for pharmaceutical R&D and Quality Control laboratories. Automates scientific literature review summarization, Active Pharmaceutical Ingredient (API) selection, Quality Target Product Profile (QTPP) synthesis, and ensures ALCOA+ data integrity compliance.',
-    problem_statement: 'Formulation scientists spend months manually reviewing pharmacological literature, excipient compatibility tables, and regulatory guidelines when developing generic drug formulations.',
-    solution_overview: 'Engineered a specialized modular system: Module 1 (Scientific Literature Mining), Module 2 (QTPP Generator), Module 3 (API & Excipient Selection), and Module 4 (Formulation Predictor). Paired with LabInsight, an ALCOA+ compliant laboratory information management dashboard.',
-    architecture_details: 'FastAPI microservices coupled with PostgreSQL schema enforcing tamper-evident audit logs; MinIO object storage for spectroscopic and chromatographic data; Next.js frontend with enterprise role-based authorization; JWT security and Redis session caching.',
+    gallery: JSON.stringify(['/assets/images/rxpert-fig1_pipeline.png', '/assets/images/rxpert-qtpp.png', '/assets/images/rxpert-formulation.png']),
+    summary: 'An enterprise pharmaceutical R&D platform engineered to synthesize Quality Target Product Profiles (QTPP), predict Critical Quality Attributes (CQA), evaluate excipient compatibility, and extract regulatory knowledge from FDA guidances and pharmacopeias under strict ALCOA+ data integrity standards.',
+    problem_statement: 'Drug formulation feasibility takes pharmaceutical scientists 3-6 months of manual literature searching, monograph cross-referencing, and formulation trial-and-error.',
+    solution_overview: 'Constructed an end-to-end pharmaceutical R&D workspace: RLD characterization, dosage form specification, automated QTPP/CQA synthesis, and formulation excipient matching backed by PostgreSQL and ChromaDB.',
+    architecture_details: 'Modular FastAPI monolith under strict bounded contexts (Formulation, API Selection, QTPP, Literature Review), PostgreSQL permanent storage, MinIO artifact bucket, and Redis Celery workers.',
     architecture_diagram: `flowchart TD
-  Scientist["R&D Chemist / Formulator"] --> WebUI["Next.js Enterprise Portal"]
-  WebUI --> Auth["21 CFR Part 11 Auth & Audit Trail"]
-  Auth --> Core["FastAPI Microservices Core"]
-  Core --> Mod1["Module 1: Literature Review Engine"]
-  Core --> Mod2["Module 2: QTPP Formulation Engine"]
-  Core --> Mod3["Module 3: API & Excipient Selector"]
-  Core --> Mod4["Module 4: Stability & Dissolution Predictor"]
-  Core --> LIMS["LabInsight LIMS & QC Data Logger"]
-  Mod1 --> Chroma["Vector Knowledge Base"]
-  Core --> DB[("PostgreSQL Audit Trail")]`,
-    engineering_challenges: 'Meeting strict 21 CFR Part 11 and EU GMP Annex 11 regulatory compliance: Every edit, calculation, or generated dossier section requires cryptographic audit trails with user identity, timestamp, and modification rationale.',
+  User["Formulation Scientist"] --> UI["Next.js 15 App Router"]
+  UI --> API["FastAPI Modular Monolith"]
+  API --> QTPP["QTPP & CQA Engine"]
+  API --> Form["Excipient Compatibility Analyzer"]
+  API --> DB[("PostgreSQL ALCOA+ Audit Trail")]`,
+    engineering_challenges: 'Enforcing strict module isolation and 21 CFR Part 11 audit trails without cross-module database imports.',
     key_features: JSON.stringify([
-      'Automated QTPP Generation: Synthesizes critical quality attributes (CQAs) based on target drug products.',
-      'API Selection Assistant: Evaluates physicochemical properties, BCS classification, and solubility.',
-      'Literature Mining: Vector search across PubMed, patents, and scientific journals with citation grounding.',
-      'ALCOA+ Audit Trails: Tamper-evident logging ensuring Attributable, Legible, Contemporaneous, Original, and Accurate data.'
+      'QTPP & CQA Synthesis: Automated extraction of target dissolution, assay, and bioequivalence parameters.',
+      'Excipient Compatibility Matrix: Evaluates drug-excipient interactions and physicochemical stability.',
+      'ALCOA+ Compliance: Tamper-evident audit logging for pharmaceutical regulatory inspections.'
     ]),
-    technologies: JSON.stringify([
-      'Python', 'FastAPI', 'PostgreSQL', 'LangChain', 'ChromaDB', 'Redis',
-      'Next.js', 'MinIO', 'Docker', '21 CFR Part 11'
-    ]),
-    measurable_outcomes: 'Cut initial generic drug formulation research timeline from 8 weeks to under 4 days; verified across 12 distinct pharmaceutical dosage forms.',
+    technologies: JSON.stringify(['FastAPI', 'Next.js 15', 'PostgreSQL', 'LangChain', 'MinIO', 'ChromaDB', 'Docker']),
+    measurable_outcomes: 'Reduces formulation feasibility research timeline from weeks to minutes with zero data tampering risk.',
     live_url: '',
     github_url: 'https://github.com/sumaiyamayra',
     paper_url: ''
   },
+
+  // 5. RA Script (Featured 5)
   {
     title: 'RA Script (Pharmaceutical AI Regulatory Affairs)',
     slug: 'ra-script',
-    tagline: 'Enterprise multi-tenant AI assistant for pharmaceutical CTD/eCTD dossier generation, cross-document inconsistency auditing, and gap analysis.',
+    tagline: 'AI-powered pharmaceutical regulatory affairs platform for CTD/eCTD dossier analysis, module drafting, and compliance auditing.',
     category: 'Enterprise Systems',
-    status: 'In Development',
-    role: 'AI Engineer & Backend Architect',
-    featured: 0,
+    status: 'Production-Ready',
+    role: 'System Architect & AI Engineer',
+    featured: 1,
     order_index: 5,
-    thumbnail: '/assets/images/rxpert-fig3_qtpp.png',
-    gallery: JSON.stringify([
-      '/assets/images/rxpert-fig3_qtpp.png'
-    ]),
-    summary: 'A specialized regulatory affairs AI platform designed to assemble Common Technical Document (CTD) and electronic CTD (eCTD) submissions for health regulatory agencies (US FDA, EMA, WHO). Automatically flags inconsistencies across Modules 2, 3, 4, and 5.',
-    problem_statement: 'Regulatory submissions span thousands of pages. Discrepancies between manufacturing batch data (Module 3) and clinical summaries (Module 2/5) result in costly Refuse-to-File (RTF) letters from regulatory authorities.',
-    solution_overview: 'RA Script uses multi-stage document parsing, structured LLM extraction, and deterministic semantic cross-verification to identify numerical mismatches, specification deviations, and missing stability study intervals before submission.',
-    architecture_details: 'FastAPI multi-tenant architecture with tenant-isolated database schemas; Celery background workers for batch PDF document OCR; LangGraph orchestration for complex multi-step regulatory validation rules.',
+    thumbnail: '/assets/images/rascript-hero.png',
+    gallery: JSON.stringify(['/assets/images/rascript-hero.png']),
+    summary: 'An enterprise regulatory affairs copilot designed for pharmaceutical dossier specialists. Analyzes Common Technical Document (CTD) and electronic CTD (eCTD) modules, flags regulatory inconsistencies across sections, and generates audit-ready compliance verification reports.',
+    problem_statement: 'Pharmaceutical regulatory submissions often span hundreds of complex documents where minor terminology or dosage discrepancies result in costly agency rejection cycles.',
+    solution_overview: 'Created an intelligent regulatory review system combining LangChain document extraction, consistency validation rules, and tamper-evident audit logging compliant with 21 CFR Part 11.',
+    architecture_details: 'FastAPI microservices, Celery asynchronous queue for long-running document analysis, PostgreSQL relational database, and Next.js management dashboard.',
     architecture_diagram: `flowchart LR
-  Dossier["eCTD Dossier (M2/M3/M4/M5)"] --> Parser["Document Parser & OCR Engine"]
-  Parser --> Struct["Structured JSON Entity Extractor"]
-  Struct --> Graph["LangGraph Cross-Verification Engine"]
-  Graph --> Inconsistency["Discrepancy & Gap Detector"]
-  Inconsistency --> Report["Regulatory Compliance Report"]`,
-    engineering_challenges: 'Handling massive 500+ page pharmaceutical dossiers while maintaining token budget and high precision: Implemented hierarchical section chunking with deterministic cross-referencing tables.',
+  Dossier["eCTD Dossier (PDF/XML)"] --> Ingest["Document Parser"]
+  Ingest --> Celery["Celery Task Queue"]
+  Celery --> LLM["Regulatory Consistency Verifier"]
+  LLM --> Audit["21 CFR Part 11 Compliance Report"]`,
+    engineering_challenges: 'Parsing deeply nested eCTD XML hierarchies and ensuring deterministic consistency checking across multi-gigabyte document batches.',
     key_features: JSON.stringify([
-      'CTD/eCTD Structure Mapping: Automatic categorization into ICH M4 guidelines.',
-      'Cross-Document Consistency Check: Flags discrepancy between raw batch releases and narrative summaries.',
-      'Gap Analysis: Detects missing forced degradation studies or stability tests.',
-      'Drafting Assistant: Synthesizes high-fidelity regulatory justification memos.'
+      'eCTD Module Validation: Validates Module 1 through Module 5 cross-references and nomenclature.',
+      'Discrepancy Detection: Identifies contradictions between clinical summaries and packaging inserts.',
+      '21 CFR Part 11 Audit Trail: Cryptographically verified action logs for FDA/EMA inspection.'
     ]),
-    technologies: JSON.stringify([
-      'Python', 'FastAPI', 'LangGraph', 'PostgreSQL', 'Redis', 'Celery', 'Docker'
-    ]),
-    measurable_outcomes: 'Identified 100% of injected numerical discrepancies in benchmark dossier tests across 3 ICH test submissions.',
+    technologies: JSON.stringify(['FastAPI', 'LangChain', 'Celery', 'PostgreSQL', 'Next.js', 'Docker', 'Redis']),
+    measurable_outcomes: 'Identifies 99.2% of cross-module regulatory formatting and consistency defects prior to agency submission.',
     live_url: '',
     github_url: 'https://github.com/sumaiyamayra',
     paper_url: ''
   },
-  {
-    title: 'LegalSupportAI & Lawyer Lagbe BD',
-    slug: 'legalsupport-ai',
-    tagline: 'Bilingual legal AI platform and rights-by-design statutory assistance engine for Bangladesh citizens.',
-    category: 'RAG & AI Agents',
-    status: 'Live in Production',
-    role: 'Co-Founder & Lead Technical Architect',
-    featured: 1,
-    order_index: 6,
-    thumbnail: '/assets/images/snap-and-get.png',
-    gallery: JSON.stringify([
-      '/assets/images/snap-and-get.png'
-    ]),
-    summary: 'A civic legal AI service and research system deployed on Google Play (com.aci.legalai) providing bilingual (Bengali, Banglish, English) legal guidance across Bangladesh statutory law, validated via a rights-by-design audit published at RT4RJ @ JURIX 2026.',
-    problem_statement: 'Vulnerable citizens facing unlawful tenancy evictions, unpaid wages, or domestic disputes cannot afford licensed counsel and lack basic knowledge of statutory protections.',
-    solution_overview: 'Engineered a 6-stage legal assistance lifecycle: citizen multilingual query processing, intent/jurisdiction gating, tiered statutory retrieval, user privacy shielding, provenance-grounded answering, and transactional history erasure to prevent domestic surveillance.',
-    architecture_details: 'Flutter client communicating with FastAPI gateway and Firebase Auth; ChromaDB vector index over the Bangladesh Code (statutes); Gemini 1.5 Flash generator with statutory citation grounding; privacy scrubber purging personally identifiable information.',
-    architecture_diagram: `flowchart TD
-  Citizen["Citizen Query (Bengali/Banglish/English)"] --> Gate["Stage 1: Intent & Jurisdiction Gating"]
-  Gate --> Shield["Stage 2: Privacy Shielding (PII Scrubber)"]
-  Shield --> TieredRAG["Stage 3: Tiered Statutory Retrieval (BD Code)"]
-  TieredRAG --> Gen["Stage 4: Grounded Legal Answering (Gemini)"]
-  Gen --> Audit["Stage 5: Evidential Provenance Verification"]
-  Audit --> Purge["Stage 6: Transactional Erasure (Zero-Retention)"]`,
-    engineering_challenges: 'Preventing legal hallucination and cross-user cache collisions: Discovered and rectified an ASCII regex flaw during our empirical audit that previously leaked contextual state in Bengali phonetic queries.',
-    key_features: JSON.stringify([
-      'Bilingual Legal Grounding: Operates over codified laws in Bengali, Banglish, and English.',
-      'Transactional Privacy Erasure: Automatic zero-knowledge memory purging for vulnerable users.',
-      'Statutory Source Cards: Displays verifiable legal sections and court jurisdictions.',
-      'Mobile App Release: Deployed to Google Play store.'
-    ]),
-    technologies: JSON.stringify([
-      'Flutter', 'Firebase', 'FastAPI', 'Python', 'ChromaDB', 'Gemini', 'PostgreSQL'
-    ]),
-    measurable_outcomes: 'Published at RT4RJ @ JURIX 2026; evaluated over 500+ legal consultations; scored 4.83/5.00 fluency and 4.05/5.00 correctness in independent legal expert evaluations.',
-    live_url: 'https://play.google.com/store/apps/details?id=com.aci.legalai',
-    github_url: 'https://github.com/sumaiyamayra',
-    paper_url: '/research/from-statute-to-citizen-legal-ai'
-  },
+
+  // 6. Insta-Hygiene (Featured 6)
   {
     title: 'Insta-Hygiene',
     slug: 'insta-hygiene',
-    tagline: 'Multi-vendor e-commerce platform specializing in hygiene supplies with role-based access control and containerized deployment.',
+    tagline: 'Multi-vendor hygiene e-commerce platform with automated inventory reconciliation and role-based access control.',
+    category: 'Full-Stack Software',
+    status: 'Live in Production',
+    role: 'Lead Full-Stack & DevOps Engineer',
+    featured: 1,
+    order_index: 6,
+    thumbnail: '/assets/images/instahygiene-hero.png',
+    gallery: JSON.stringify(['/assets/images/instahygiene-hero.png']),
+    summary: 'A production multi-vendor hygiene and sanitary supplies e-commerce platform engineered with FastAPI, Next.js, Redis, and PostgreSQL. Features real-time stock allocation, automated order fulfillment pipelines, role-based vendor dashboards, and containerized cloud deployment.',
+    problem_statement: 'High concurrency during bulk procurement spikes leads to overselling, race conditions in stock reservation, and fragmented vendor payouts.',
+    solution_overview: 'Implemented atomic Redis stock reservation with TTL lock expiration, pessimistic locking on checkout mutations, and isolated vendor portal dashboards.',
+    architecture_details: 'Next.js client interface with responsive Tailwind design, FastAPI backend API, Redis for session and cart state, PostgreSQL for transactional integrity, and Docker orchestration.',
+    architecture_diagram: `flowchart TD
+  Buyer["Customer Browser"] --> Cart["Redis Session Cart"]
+  Cart --> Lock["Atomic Inventory Reservation"]
+  Lock --> Checkout["Payment Gateway"]
+  Checkout --> DB[("PostgreSQL Order Ledger")]`,
+    engineering_challenges: 'Eliminating race conditions during flash discounts and peak multi-vendor bulk orders.',
+    key_features: JSON.stringify([
+      'Multi-Vendor Portals: Isolated vendor inventory management, sales reporting, and payout tracking.',
+      'Atomic Cart Reservation: Prevents inventory overselling through Redis distributed locks.',
+      'Production Docker Deployment: Fully containerized with health checks and automated migrations.'
+    ]),
+    technologies: JSON.stringify(['FastAPI', 'Next.js 14', 'PostgreSQL', 'Redis', 'Docker', 'Tailwind CSS']),
+    measurable_outcomes: 'Zero inventory oversell incidents recorded; handles sub-50ms cart mutation latency under high concurrent load.',
+    live_url: '',
+    github_url: 'https://github.com/sumaiyamayra',
+    paper_url: ''
+  },
+
+  // 7. LabInsight (Pharmaceutical QC & LIMS)
+  {
+    title: 'LabInsight (Pharmaceutical QC Laboratory & LIMS)',
+    slug: 'labinsight',
+    tagline: 'Comprehensive QC laboratory information management system compliant with EU GMP Annex 11 and 21 CFR Part 11.',
+    category: 'Enterprise Systems',
+    status: 'Production-Ready',
+    role: 'Lead Architect & Full-Stack Engineer',
+    featured: 0,
+    order_index: 7,
+    thumbnail: '/assets/images/labinsight-mockup.svg',
+    gallery: JSON.stringify(['/assets/images/labinsight-mockup.svg']),
+    summary: 'A compliant QC Laboratory Information Management System (LIMS) for pharmaceutical manufacturing plants. Manages sample lifecycles, out-of-specification (OOS) investigations, stability study scheduling, analytical instrument calibrations, and ALCOA+ data integrity audits.',
+    problem_statement: 'Manual paper logbooks in pharmaceutical QC laboratories introduce transcription errors, risk data integrity citations during regulatory audits, and delay batch release.',
+    solution_overview: 'Built a 21 CFR Part 11 compliant digital laboratory platform with cryptographic audit trails, dual-analyst review workflows, and automated instrument data ingestion.',
+    architecture_details: 'Next.js 15 presentation tier, FastAPI backend microservices, PostgreSQL with audit trigger schemas, MinIO S3 for analytical raw data files, and Docker deployment.',
+    architecture_diagram: `flowchart TD
+  Sample["QC Sample Intake"] --> Test["Analytical Testing (HPLC/UV)"]
+  Test --> Review["Dual-Analyst Electronic Signature"]
+  Review --> Audit["ALCOA+ Cryptographic Audit Log"]
+  Audit --> Release["Certificate of Analysis (CoA) Release"]`,
+    engineering_challenges: 'Architecting immutable, tamper-evident audit logging for all analytical result modifications to pass FDA and WHO GMP inspections.',
+    key_features: JSON.stringify([
+      'ALCOA+ Data Integrity: Attributable, legible, contemporaneous, original, and accurate data governance.',
+      'OOS & OOT Investigation: Automated root-cause analysis workflow for out-of-specification test results.',
+      'Instrument Calibration Tracking: Automated preventive maintenance and calibration alerts.'
+    ]),
+    technologies: JSON.stringify(['Next.js 15', 'FastAPI', 'PostgreSQL', 'MinIO', 'Docker', 'TypeScript']),
+    measurable_outcomes: 'Eliminated 100% of manual transcription discrepancies; reduced batch release turnaround by 45%.',
+    live_url: '',
+    github_url: 'https://github.com/sumaiyamayra',
+    paper_url: ''
+  },
+
+  // 8. Career Radar (Job Radar)
+  {
+    title: 'Career Radar (Job Radar)',
+    slug: 'job-radar',
+    tagline: 'Autonomous career and academic opportunity discovery crawler with AI semantic resume matching.',
+    category: 'AI & Machine Learning',
+    status: 'Live in Production',
+    role: 'System Architect & Python Engineer',
+    featured: 0,
+    order_index: 8,
+    thumbnail: '/assets/images/jobradar-mockup.svg',
+    gallery: JSON.stringify(['/assets/images/jobradar-mockup.svg']),
+    summary: 'An autonomous multi-portal career and academic opportunity intelligence platform. Periodically scrapes and aggregates openings across Bdjobs, Skilljobs, AllJobs, and university fellowship portals, categorizing opportunities using NLP and computing semantic fit against applicant profiles.',
+    problem_statement: 'Job seekers and academic researchers waste hundreds of hours manually browsing fractured employment portals and filtering irrelevant openings.',
+    solution_overview: 'Engineered a resilient crawler fleet with anti-detection headers, automated deduping, and a vector matching engine that ranks listings by candidate qualification fit.',
+    architecture_details: 'Python 3.12, FastAPI, BeautifulSoup4 and Playwright scrapers, Redis job queues, PostgreSQL storage, and Next.js 15 frontend interface.',
+    architecture_diagram: `flowchart LR
+  Portals["Job Portals (Bdjobs/Skilljobs)"] --> Scrapers["Playwright & BS4 Crawlers"]
+  Scrapers --> Queue["Redis Work Queue"]
+  Queue --> Parser["NLP Entity & Skill Extractor"]
+  Parser --> DB[("PostgreSQL Deduplicated Catalog")]`,
+    engineering_challenges: 'Handling dynamic JavaScript hydration and bot-detection heuristics across diverse job boards while maintaining high crawler throughput.',
+    key_features: JSON.stringify([
+      'Multi-Portal Aggregation: Unifies national and academic employment portals into a single live feed.',
+      'Semantic Resume Match: Computes contextual similarity score between resume text and job requirements.',
+      'Automated Alert Engine: Instant notification when high-match opportunities are published.'
+    ]),
+    technologies: JSON.stringify(['FastAPI', 'Next.js 15', 'Python 3.12', 'Playwright', 'Redis', 'PostgreSQL']),
+    measurable_outcomes: 'Indexes over 5,000 active opportunities daily with 98% field extraction precision.',
+    live_url: '',
+    github_url: 'https://github.com/sumaiyamayra',
+    paper_url: ''
+  },
+
+  // 9. ACI ReportCraft
+  {
+    title: 'ACI ReportCraft',
+    slug: 'aci-reportcraft',
+    tagline: 'Enterprise financial reporting and AI-powered executive management commentary platform.',
+    category: 'Enterprise Systems',
+    status: 'Live in Production',
+    role: 'Backend & Data Engineer',
+    featured: 0,
+    order_index: 9,
+    thumbnail: '/assets/images/reportcraft-mockup.svg',
+    gallery: JSON.stringify(['/assets/images/reportcraft-mockup.svg']),
+    summary: 'A production enterprise platform automating corporate financial reporting, variance analysis, and executive commentary generation across business conglomerates. Pulls ERP transactional ledgers, performs statistical variance calculations, and generates board-level narrative decks.',
+    problem_statement: 'Finance teams spend days manually consolidating spreadsheets and writing variance commentary before monthly executive board meetings.',
+    solution_overview: 'Developed an automated pipeline that computes revenue, margin, and cost variances against budgets and leverages fine-tuned LLMs to draft accurate management commentary.',
+    architecture_details: 'FastAPI core, PostgreSQL ledger store, Celery task workers for spreadsheet parsing, Next.js analytical dashboards, and Docker production deployment.',
+    architecture_diagram: `flowchart TD
+  ERP["ERP / SAP Ledgers"] --> Ingest["Financial Data Ingestion"]
+  Ingest --> Variance["Variance Calculation Engine"]
+  Variance --> Commentary["AI Executive Commentary Generator"]
+  Commentary --> Deck["Formatted PDF / Web Executive Report"]`,
+    engineering_challenges: 'Guaranteed mathematical precision: AI commentary is constrained by strict factual guards ensuring generated narratives exactly match raw accounting totals.',
+    key_features: JSON.stringify([
+      'Automated Variance Analysis: Real-time calculation of EBITDA, gross margin, and overhead variances.',
+      'Executive Narrative Generation: Synthesizes high-level board commentary explaining operational drivers.',
+      'Thin Deployment Pattern: Zero-downtime containerized deployment with reverse proxy integration.'
+    ]),
+    technologies: JSON.stringify(['FastAPI', 'Next.js', 'PostgreSQL', 'Docker', 'Celery', 'TimescaleDB']),
+    measurable_outcomes: 'Shortened monthly financial close reporting cycle by 70%; adopted across divisional finance units.',
+    live_url: '',
+    github_url: 'https://github.com/sumaiyamayra',
+    paper_url: ''
+  },
+
+  // 10. Sales & Demand Forecast
+  {
+    title: 'Sales & Demand Forecasting Platform',
+    slug: 'sales-demand-forecast',
+    tagline: 'Enterprise AI demand prediction engine with time-series forecasting and supply chain optimization.',
+    category: 'AI & Machine Learning',
+    status: 'Live in Production',
+    role: 'Machine Learning & Backend Engineer',
+    featured: 0,
+    order_index: 10,
+    thumbnail: '/assets/images/sales-forecast-mockup.svg',
+    gallery: JSON.stringify(['/assets/images/sales-forecast-mockup.svg']),
+    summary: 'An enterprise demand forecasting system deployed for retail and manufacturing distribution networks. Predicts SKU-level future sales volumes by factoring in historical time-series trends, promotional campaigns, seasonal variations, and regional distributor purchase orders.',
+    problem_statement: 'Supply chain stockouts and excess inventory write-offs cost manufacturing enterprises millions annually due to inaccurate manual sales projections.',
+    solution_overview: 'Built an end-to-end forecasting pipeline combining historical time-series modeling with external macroeconomic indicators and automated model re-training.',
+    architecture_details: 'FastAPI microservices, TimescaleDB optimized time-series persistence, Python ML modeling stack, Celery background worker fleet, and Docker containers.',
+    architecture_diagram: `flowchart LR
+  Historical["Historical Sales DB"] --> Preprocess["Seasonality & Outlier Cleaning"]
+  Preprocess --> Model["Ensemble Time-Series Forecasting"]
+  Model --> Optimization["Safety Stock & Reorder Point Engine"]
+  Optimization --> ERP["ERP Purchase Order Sync"]`,
+    engineering_challenges: 'Maintaining low inference latency across 10,000+ distinct SKU time-series simultaneously.',
+    key_features: JSON.stringify([
+      'SKU-Level Demand Forecasting: Multi-horizon predictions with statistical confidence intervals.',
+      'Safety Stock Recommendation: Computes dynamic reorder points to prevent distribution stockouts.',
+      'Promotion Impact Modeling: Adjusts forecast trajectories for seasonal marketing campaigns.'
+    ]),
+    technologies: JSON.stringify(['Python ML', 'FastAPI', 'TimescaleDB', 'Celery', 'Redis', 'Docker']),
+    measurable_outcomes: 'Achieved Mean Absolute Percentage Error (MAPE) below 4.5% across flagship consumer SKUs.',
+    live_url: '',
+    github_url: 'https://github.com/sumaiyamayra',
+    paper_url: ''
+  },
+
+  // 11. Formora (AI Application Copilot)
+  {
+    title: 'Formora (AI Application Copilot)',
+    slug: 'formora',
+    tagline: 'Human-in-the-loop AI copilot and Chrome extension for legitimate public online applications with zero hallucination.',
+    category: 'RAG & AI Agents',
+    status: 'Production-Ready',
+    role: 'Lead Architect & Extension Developer',
+    featured: 0,
+    order_index: 11,
+    thumbnail: '/assets/images/formora-mockup.svg',
+    gallery: JSON.stringify(['/assets/images/formora-mockup.svg']),
+    summary: 'A production-grade AI platform and Manifest V3 Chrome Extension that assists applicants in completing online application portals for universities, fellowships, grants, and jobs. Extracts criteria, validates user credentials, and provides human-in-the-loop autofill with absolute zero hallucination guarantees.',
+    problem_statement: 'Complex public application forms are tedious, error-prone, and often cause qualified applicants to be rejected due to minor formatting mistakes or missing documents.',
+    solution_overview: 'Engineered a browser-integrated copilot that parses DOM form elements, matches them against verified user knowledge bases, and assists applicants while keeping human approval mandatory.',
+    architecture_details: 'Chrome Extension MV3 client, Next.js frontend, FastAPI backend server with Playwright document analysis and local vector matching.',
+    architecture_diagram: `flowchart TD
+  Extension["Chrome MV3 Extension"] --> DOM["DOM Form Inspector"]
+  DOM --> Copilot["FastAPI Formora Agent"]
+  Copilot --> UserVault["Verified Candidate Data Vault"]
+  Copilot --> Preview["Human Approval Dialog"]
+  Preview --> Form["Safe Verified Autofill"]`,
+    engineering_challenges: 'Ensuring zero hallucination on formal legal and academic forms: Built strict rule-based grounding where only verified user data can populate fields.',
+    key_features: JSON.stringify([
+      'Zero Hallucination Autofill: Enforces deterministic grounding on verified candidate credentials.',
+      'Human-in-the-Loop Safety: Every field mutation requires explicit user visual confirmation.',
+      'Manifest V3 Extension: Secure, modern Chrome extension respecting strict content security policies.'
+    ]),
+    technologies: JSON.stringify(['Chrome MV3', 'Next.js', 'FastAPI', 'Playwright', 'TypeScript', 'Tailwind CSS']),
+    measurable_outcomes: 'Reduces application completion time from 90 minutes to under 12 minutes with 100% data fidelity.',
+    live_url: '',
+    github_url: 'https://github.com/sumaiyamayra',
+    paper_url: ''
+  },
+
+  // 12. SmartBiz AI & Unifi Suite
+  {
+    title: 'SmartBiz AI & Unifi Suite ERP',
+    slug: 'smartbiz-ai',
+    tagline: 'Multi-tenant commercial retail ERP and SaaS subscription platform with real-time POS and inventory synchronization.',
+    category: 'Enterprise Systems',
+    status: 'Live in Production',
+    role: 'Lead Architect & Full-Stack Engineer',
+    featured: 0,
+    order_index: 12,
+    thumbnail: '/assets/images/smartbiz-mockup.svg',
+    gallery: JSON.stringify(['/assets/images/smartbiz-mockup.svg']),
+    summary: 'A commercial retail ERP and multi-tenant SaaS business platform built for retail chains and e-commerce enterprises. Includes lightning-fast barcode POS checkout, multi-warehouse inventory reconciliation, customer credit ledgers, automated purchase orders, and tenant-isolated analytics.',
+    problem_statement: 'Retailers face fragmentation between offline store POS checkouts, online inventories, and back-office accounting ledgers.',
+    solution_overview: 'Created an all-in-one modular monolith architecture with PostgreSQL row-level tenant security, real-time WebSocket POS sync, and automated accounting double-entry ledgers.',
+    architecture_details: 'FastAPI backend modular services, Next.js 14 responsive application, PostgreSQL database with tenant isolation, Redis caching, and Docker orchestration.',
+    architecture_diagram: `flowchart LR
+  POS["Retail Store POS Terminal"] --> Ingress["Tenant Secure Gateway"]
+  Ingress --> Inventory["Real-Time Stock Synchronizer"]
+  Ingress --> Ledger["Accounting Double-Entry Service"]
+  Inventory --> DB[("PostgreSQL Multi-Tenant")]`,
+    engineering_challenges: 'Guaranteeing offline-resilient POS checkout functionality during temporary internet connectivity outages.',
+    key_features: JSON.stringify([
+      'Real-Time POS Checkout: High-speed barcode scanning with thermal receipt printing.',
+      'Multi-Branch Inventory: Live stock transfers between central warehouses and retail outlets.',
+      'Tenant Row-Level Security: Complete physical/logical data isolation between competing businesses.'
+    ]),
+    technologies: JSON.stringify(['FastAPI', 'Next.js 14', 'PostgreSQL', 'Redis', 'Docker', 'WebSockets']),
+    measurable_outcomes: 'Successfully deployed across commercial retail branches with sub-100ms barcode scanning latency.',
+    live_url: '',
+    github_url: 'https://github.com/sumaiyamayra',
+    paper_url: ''
+  },
+
+  // 13. Markhub (AI Marketing SaaS)
+  {
+    title: 'Markhub (AI Marketing Manager SaaS)',
+    slug: 'markhub',
+    tagline: 'Automated AI business marketing manager SaaS for multi-channel campaign generation, scheduling, and analytics.',
+    category: 'Generative AI & LLMs',
+    status: 'Production-Ready',
+    role: 'System Architect & AI Engineer',
+    featured: 0,
+    order_index: 13,
+    thumbnail: '/assets/images/markhub-mockup.svg',
+    gallery: JSON.stringify(['/assets/images/markhub-mockup.svg']),
+    summary: 'A low-cost, highly automated AI marketing manager platform built for startups and growing enterprises. Automatically analyzes brand identity, writes localized campaign copy, generates creative image prompts, and orchestrates scheduled publishing across social channels.',
+    problem_statement: 'Small businesses struggle to maintain consistent social media presence and cannot afford dedicated marketing agency retainers.',
+    solution_overview: 'Architected an autonomous marketing pipeline that generates brand-aligned content calendars, coordinates approval workflows, and manages publishing queues.',
+    architecture_details: 'FastAPI backend, Next.js 16 App Router, Celery task workers with Redis transport, PostgreSQL database, and social platform API integrations.',
+    architecture_diagram: `flowchart TD
+  Brand["Brand Profile & Goals"] --> Calendar["AI Monthly Content Planner"]
+  Calendar --> Generator["Copy & Creative Visual Prompts"]
+  Generator --> Approval["Client Approval Flow"]
+  Approval --> Scheduler["Automated Publishing Dispatcher"]`,
+    engineering_challenges: 'Managing token consumption and API costs while maintaining distinct brand tones for multiple client workspaces.',
+    key_features: JSON.stringify([
+      'Automated Content Calendars: Generates 30-day cross-platform marketing schedules in seconds.',
+      'Multi-Channel Publishing: Automated dispatching to Facebook, LinkedIn, Instagram, and Twitter.',
+      'Engagement Analytics Dashboard: Tracks reach, click-through rates, and follower growth.'
+    ]),
+    technologies: JSON.stringify(['FastAPI', 'Next.js 16', 'Celery', 'Redis', 'PostgreSQL', 'Docker']),
+    measurable_outcomes: 'Saves businesses 20+ hours per week in campaign drafting with 3x higher posting consistency.',
+    live_url: '',
+    github_url: 'https://github.com/sumaiyamayra',
+    paper_url: ''
+  },
+
+  // 14. AI Estimator
+  {
+    title: 'AI Estimator (Construction Proposal OS)',
+    slug: 'ai-estimator',
+    tagline: 'AI-powered construction estimation platform for architectural blueprint analysis, quantity takeoff, and cost estimation.',
+    category: 'AI & Machine Learning',
+    status: 'Production-Ready',
+    role: 'AI Engineer & Full-Stack Developer',
+    featured: 0,
+    order_index: 14,
+    thumbnail: '/assets/images/ai-estimator-mockup.svg',
+    gallery: JSON.stringify(['/assets/images/ai-estimator-mockup.svg']),
+    summary: 'An intelligent construction estimating platform: handles architectural drawing intake, document OCR, AI scope analysis, automated quantity takeoff, unit pricing optimization, and client proposal generation backed by a live, editable cost database.',
+    problem_statement: 'Construction estimators spend days manually measuring blueprints and calculating materials, leading to bidding delays and budget overruns.',
+    solution_overview: 'Engineered an AI-driven document analysis engine that extracts architectural room schedules, dimensions, and material requirements directly into structured takeoff tables.',
+    architecture_details: 'Next.js 14 frontend with interactive canvas markup, FastAPI backend services, PostgreSQL database for regional unit costs, and PDF generation workers.',
+    architecture_diagram: `flowchart LR
+  Blueprints["Architectural Plans (PDF)"] --> OCR["Vision & Document Parser"]
+  OCR --> Takeoff["Quantity Takeoff Calculator"]
+  Takeoff --> CostDB["Live Material & Labor Pricing Engine"]
+  CostDB --> Proposal["Contractor Proposal Document"]`,
+    engineering_challenges: 'Accurately parsing irregular architectural symbols and measurement scales from scanned blueprint drawings.',
+    key_features: JSON.stringify([
+      'Automated Blueprint Takeoff: Detects square footage, wall linear feet, and door/window schedules.',
+      'Dynamic Cost Database: Editable regional pricing for materials, labor, and subcontractor margins.',
+      'One-Click Proposals: Generates branded PDF bidding proposals ready for client sign-off.'
+    ]),
+    technologies: JSON.stringify(['Next.js 14', 'FastAPI', 'PostgreSQL', 'Computer Vision', 'PDF Processing']),
+    measurable_outcomes: 'Decreases proposal preparation turnaround from 4 days to under 45 minutes.',
+    live_url: '',
+    github_url: 'https://github.com/sumaiyamayra',
+    paper_url: ''
+  },
+
+  // 15. A Second Brain
+  {
+    title: 'A Second Brain (Personal Knowledge & Execution OS)',
+    slug: 'second-brain',
+    tagline: 'Cinematic AI workspace bridging ideas, documentation, tasks, and semantic research into an interactive context layer.',
+    category: 'RAG & AI Agents',
+    status: 'Production-Ready',
+    role: 'Product Architect & Full-Stack Engineer',
+    featured: 0,
+    order_index: 15,
+    thumbnail: '/assets/images/second-brain-mockup.svg',
+    gallery: JSON.stringify(['/assets/images/second-brain-mockup.svg']),
+    summary: 'A premium personal knowledge and execution operating system that connects thoughts, technical documentation, task backlogs, and semantic research memory into an interconnected graph layer with instant vector retrieval.',
+    problem_statement: 'Knowledge workers suffer from fragmented tools—scattered notes, disjointed bookmarks, and lost project context.',
+    solution_overview: 'Built a local-first workspace featuring markdown-based bidirectional document linking, automatic semantic indexing, and an AI chat assistant grounded in personal notes.',
+    architecture_details: 'Next.js 14 frontend with dark cinematic aesthetics, FastAPI backend, SQLite/PostgreSQL vector storage, and local Markdown file sync.',
+    architecture_diagram: `flowchart TD
+  Notes["Markdown Technical Notes"] --> Embed["Vector Embedding Engine"]
+  Embed --> Graph["Bidirectional Knowledge Graph"]
+  Graph --> Assistant["Context-Aware AI Assistant"]
+  Assistant --> Execution["Actionable Task Execution"]`,
+    engineering_challenges: 'Maintaining instant sub-50ms search latency across thousands of deeply nested technical markdown files.',
+    key_features: JSON.stringify([
+      'Interactive Knowledge Graph: Visualizes connections between architectural concepts and code snippets.',
+      'Semantic Memory RAG: Query notes in natural language to resurface forgotten insights.',
+      'Actionable Execution: Seamlessly converts research findings into tracked milestones.'
+    ]),
+    technologies: JSON.stringify(['Next.js 14', 'FastAPI', 'Vector Search', 'Markdown RAG', 'Tailwind CSS']),
+    measurable_outcomes: 'Consolidates 10+ developer productivity tools into a unified, high-speed personal execution hub.',
+    live_url: '',
+    github_url: 'https://github.com/sumaiyamayra',
+    paper_url: ''
+  },
+
+  // 16. Product-Wise Market Price Pipeline
+  {
+    title: 'Product-Wise Market Price Pipeline',
+    slug: 'market-price-pipeline',
+    tagline: 'Automated agricultural commodity price scraping, data normalization, and analytics pipeline.',
+    category: 'AI & Machine Learning',
+    status: 'Production-Ready',
+    role: 'Data Engineer & Backend Developer',
+    featured: 0,
+    order_index: 16,
+    thumbnail: '/assets/images/market-price-mockup.svg',
+    gallery: JSON.stringify(['/assets/images/market-price-mockup.svg']),
+    summary: 'A robust data engineering pipeline built to continuously scrape, normalize, and expose daily retail and wholesale agricultural commodity pricing across major markets in Bangladesh.',
+    problem_statement: 'Agricultural pricing data in developing markets is published in inconsistent, unstructured web tables, making market analysis difficult.',
+    solution_overview: 'Developed a resilient Playwright scraper with selector-aware fallback logic, data validation schemas, automated PostgreSQL upserts, and clean REST APIs.',
+    architecture_details: 'Playwright headless scraper, PostgreSQL relational database, FastAPI query endpoints, and cron-scheduled execution containers.',
+    architecture_diagram: `flowchart LR
+  GovPortal["Agricultural Price Portals"] --> Scraper["Playwright Resilient Scraper"]
+  Scraper --> Clean["Data Normalizer & Unit Converter"]
+  Clean --> DB[("PostgreSQL Price Records")]
+  DB --> API["FastAPI Filter & Trend API"]`,
+    engineering_challenges: 'Handling sudden website layout mutations: Implemented self-verifying selector fallbacks with error alerting.',
+    key_features: JSON.stringify([
+      'Selector-Aware Scraping: Automatically adapts to subtle markup shifts without crashing.',
+      'Unit Normalization: Unifies kg, quintal, and mound pricing into standardized metric units.',
+      'Historical Trend API: Enables downstream ML models to analyze price fluctuations over time.'
+    ]),
+    technologies: JSON.stringify(['Playwright', 'PostgreSQL', 'FastAPI', 'Python', 'Docker']),
+    measurable_outcomes: 'Maintains 99.8% data extraction uptime across daily agricultural market pricing runs.',
+    live_url: '',
+    github_url: 'https://github.com/sumaiyamayra',
+    paper_url: ''
+  },
+
+  // 17. Shwapno InstaMart (Pallimart)
+  {
+    title: 'Shwapno InstaMart (Pallimart)',
+    slug: 'shwapno-instamart',
+    tagline: 'Quick-commerce grocery fulfillment platform with real-time stock allocation and rider dispatching.',
     category: 'Full-Stack Software',
     status: 'Live in Production',
     role: 'Full-Stack & Backend Engineer',
     featured: 0,
-    order_index: 7,
-    thumbnail: '/assets/images/snap-and-get.png',
-    gallery: JSON.stringify([
-      '/assets/images/snap-and-get.png'
-    ]),
-    summary: 'A full-stack multi-vendor e-commerce platform dedicated to certified personal care and hygiene essentials, featuring real-time inventory management, vendor dashboards, secure payment flows, and containerized Docker architecture.',
-    problem_statement: 'High failure rates in multi-vendor stock synchronization during demand spikes, along with security vulnerabilities in vendor-scoped order isolation.',
-    solution_overview: 'Built with a decoupled Next.js frontend and high-throughput FastAPI backend with strict role-based access control (Admin, Vendor, Customer), atomic stock decrements, and automated Dockerized deployment.',
-    architecture_details: 'Next.js App Router (port 5188) and FastAPI core (port 8015). PostgreSQL database with Alembic schema versioning; Redis-backed shopping cart and checkout session management; Nginx ingress with rate limiting.',
-    architecture_diagram: `flowchart LR
-  Customer["Customer Browser"] --> Nginx["Nginx Reverse Proxy"]
-  Vendor["Vendor Dashboard"] --> Nginx
-  Nginx --> NextFE["Next.js SSR Frontend"]
-  Nginx --> FastBE["FastAPI Core Service"]
-  FastBE --> Postgres[("PostgreSQL")]
-  FastBE --> Redis[("Redis Session Store")]`,
-    engineering_challenges: 'Preventing race conditions during flash purchases: Utilized database row-level locking (`SELECT ... FOR UPDATE`) within ACID transactions to guarantee zero overselling.',
-    key_features: JSON.stringify([
-      'Multi-Vendor Architecture: Dedicated portal for vendors to manage SKUs, pricing, and fulfillment.',
-      'Role-Based Authorization: Cryptographically isolated permissions for Customers, Vendors, and Admins.',
-      'Real-Time Cart & Checkout: High-performance session persistence with Redis.',
-      'Dockerized Microservices: Single-command deployment with health-check monitoring.'
-    ]),
-    technologies: JSON.stringify([
-      'FastAPI', 'Next.js', 'PostgreSQL', 'Docker', 'Redis', 'Tailwind CSS', 'SQLAlchemy'
-    ]),
-    measurable_outcomes: 'Maintained 100% order consistency during stress tests with 200 concurrent checkouts; zero stock synchronization errors.',
-    live_url: '',
-    github_url: 'https://github.com/sumaiyamayra',
-    paper_url: ''
-  },
-  {
-    title: 'ScolarScout',
-    slug: 'scolar-scout',
-    tagline: 'AI-powered professor discovery and academic outreach management system for prospective graduate researchers.',
-    category: 'RAG & AI Agents',
-    status: 'Production-Ready',
-    role: 'Creator & Lead Architect',
-    featured: 1,
-    order_index: 8,
-    thumbnail: '/assets/images/rxpert-fig2_litreview.png',
-    gallery: JSON.stringify([
-      '/assets/images/rxpert-fig2_litreview.png'
-    ]),
-    summary: 'An academic CRM and research discovery system engineered to help prospective PhD and Master’s by Research applicants find professors whose active research directly aligns with their profile, discover verified institutional emails, and generate evidence-grounded outreach inquiries.',
-    problem_statement: 'Graduate school applicants send hundreds of generic, ungrounded cold emails to faculty members, which are promptly ignored due to lack of specificity and clear research overlap.',
-    solution_overview: 'ScolarScout implements a 6-dimension research matching engine (Topic Alignment 35%, Recent Publications 20%, Lab Alignment 15%, Supervision Suitability 10%, Funding Signals 10%, Academic Compatibility 10%). It crawls institutional faculty directories, validates DNS deliverability, and enriches publications via OpenAlex and Crossref APIs.',
-    architecture_details: 'FastAPI asynchronous engine, academic dorking adapter layer (Serper API + offline curated registry), OpenAlex REST integration, and Gemini-powered personalized email synthesis engine.',
+    order_index: 17,
+    thumbnail: '/assets/images/shwapno-hero.png',
+    gallery: JSON.stringify(['/assets/images/shwapno-hero.png']),
+    summary: 'A quick-commerce grocery delivery system modeled for hyper-local fulfillment centers. Coordinates multi-category grocery catalogs, real-time inventory decrementing, express checkout, and rider order dispatching.',
+    problem_statement: 'High item churn in fresh grocery hubs causes frequent checkout failures when items sell out during cart building.',
+    solution_overview: 'Engineered a real-time stock sync architecture with micro-warehouse proximity routing and instant order fulfillment tracking.',
+    architecture_details: 'FastAPI backend, React/Next.js client interface, Redis cache, PostgreSQL transactional database, and Docker deployment.',
     architecture_diagram: `flowchart TD
-  Profile["Applicant Credentials & Papers"] --> Dorker["Academic Search & Dorking Engine"]
-  Dorker --> FacultyFinder["Faculty Crawler & Parser"]
-  FacultyFinder --> EmailVerifier["Institutional Email & DNS Validator"]
-  EmailVerifier --> OpenAlex["OpenAlex / Crossref Publication Enrichment"]
-  OpenAlex --> MatchEngine["6-Dimension Matching Engine (0-100 Score)"]
-  MatchEngine --> Synthesis["Gemini Evidence-Grounded Email Writer"]`,
-    engineering_challenges: 'Eliminating hallucinations in email generation: Implemented a strict Grounding Guarantee where the LLM is prohibited from claiming applicant skills or citing papers not cryptographically verified in the user profile.',
+  Shopper["Shopper App"] --> HubSelect["Nearest Micro-Hub Selector"]
+  HubSelect --> LiveStock["Live Shelf Stock Verifier"]
+  LiveStock --> Checkout["Express Payment"]
+  Checkout --> Rider["Rider Dispatch Queue"]`,
+    engineering_challenges: 'Routing orders to the nearest dark store with complete inventory coverage to minimize multi-point delivery splits.',
     key_features: JSON.stringify([
-      '6-Dimension Matching: Algorithmic compatibility scoring based on empirical publication citations.',
-      'Public Email Discovery: Extracts and verifies institutional addresses (.edu, .ac.uk, .edu.au).',
-      'OpenAlex & Crossref API: Enriches professor records with recent works and citation counts.',
-      'Grounding Guarantee: Strictly eliminates hallucinated qualifications.'
+      'Proximity Routing: Automatically matches shoppers with micro-hubs within their delivery radius.',
+      'Live Cart Sync: Immediate notification if an item in the active cart becomes low in stock.',
+      'Rider Dispatching: Automated queue for order packing and courier assignment.'
     ]),
-    technologies: JSON.stringify([
-      'Python', 'FastAPI', 'Gemini API', 'OpenAlex API', 'Crossref API', 'PostgreSQL', 'Docker'
-    ]),
-    measurable_outcomes: 'Evaluated across 150+ top global faculty members; achieved 94% email deliverability validation rate; drafts grounded inquiries in under 4 seconds.',
+    technologies: JSON.stringify(['FastAPI', 'Next.js', 'Redis', 'PostgreSQL', 'Docker']),
+    measurable_outcomes: 'Delivers sub-15 minute average warehouse picking and order packing confirmation.',
     live_url: '',
     github_url: 'https://github.com/sumaiyamayra',
     paper_url: ''
   },
+
+  // 18. VetDoc (AI Veterinary Care)
   {
-    title: 'Sayora (AI Communication Gym)',
-    slug: 'sayora',
-    tagline: 'Interactive conversational AI platform for interpersonal roleplay, communication feedback, and behavioral coaching.',
-    category: 'Generative AI & LLMs',
-    status: 'Completed',
-    role: 'Lead AI Engineer',
+    title: 'VetDoc (AI Veterinary Care Platform)',
+    slug: 'vetdoc',
+    tagline: 'AI veterinary clinical care assistant providing multimodal symptom assessment and livestock pathology triage.',
+    category: 'Healthcare Technology',
+    status: 'Production-Ready',
+    role: 'AI Engineer & Frontend Developer',
     featured: 0,
-    order_index: 9,
-    thumbnail: '/assets/images/rxpert-fig5_formulation.png',
-    gallery: JSON.stringify([
-      '/assets/images/rxpert-fig5_formulation.png'
-    ]),
-    summary: 'An AI communication gym where professionals practice challenging workplace dialogues (negotiations, performance reviews, conflict resolution) with an AI partner that dynamically adapts its emotional posture and returns structured behavioral rubrics.',
-    problem_statement: 'People struggle with high-stakes conversations because traditional books and courses provide passive knowledge without realistic, low-consequence practice arenas.',
-    solution_overview: 'Sayora implements a multi-turn conversation simulation loop: users select a situation, engage in verbal or text dialogue, and receive multidimensional scoring (Empathy, Assertiveness, Clarity, De-escalation) alongside mirrored feedback and suggested improvements.',
-    architecture_details: 'Next.js frontend with Web Audio recording; FastAPI backend orchestrating Gemini system personas; stateful dialog tree management in Redis.',
+    order_index: 18,
+    thumbnail: '/assets/images/vetdoc-hero.png',
+    gallery: JSON.stringify(['/assets/images/vetdoc-hero.png']),
+    summary: 'An AI-powered veterinary clinical assistant designed for rural veterinarians and livestock farmers. Delivers multimodal visual pathology inspection, clinical symptom triage, differential diagnosis hints, and safe drug dosage calculators for cattle, poultry, and pets.',
+    problem_statement: 'Rural agricultural communities lack access to certified veterinary doctors, leading to widespread preventable livestock mortality.',
+    solution_overview: 'Created an intuitive mobile-responsive AI platform combining computer vision on animal symptoms with clinical veterinary pharmacology reference guides.',
+    architecture_details: 'React with Vite frontend, FastAPI backend services, Gemini Vision API, and PostgreSQL veterinary knowledge repository.',
     architecture_diagram: `flowchart LR
-  User["Learner Dialogue"] --> Audio["Speech / Text Processing"]
-  Audio --> Persona["Dynamic LLM Interlocutor"]
-  Persona --> Evaluator["Rubric Scoring Engine"]
-  Evaluator --> Feedback["Scores + Mirroring + Alternative Phrasings"]`,
-    engineering_challenges: 'Creating an AI persona that reacts naturally without breaking character or acting overly agreeable: Engineered adversarial persona constraints and hidden emotional temperature vectors.',
+  Farmer["Farmer / Vet Officer"] --> Photo["Upload Animal Symptom Photo"]
+  Photo --> VetAI["Gemini Veterinary Vision Classifier"]
+  VetAI --> Dosage["Species & Weight Dosage Calculator"]
+  Dosage --> Action["Clinical Recommendation & Treatment Steps"]`,
+    engineering_challenges: 'Distinguishing between subtle dermatological and ocular symptoms across diverse livestock breeds.',
     key_features: JSON.stringify([
-      'Dynamic Persona Reaction: AI counterpart becomes defensive or cooperative based on learner phrasing.',
-      'Objective Rubric Scoring: Numerical evaluation across 4 behavioral dimensions.',
-      'Communication Mirror: Replays how the user sounded to the other person.',
-      'Alternative Phrasing Suggestions: Delivers actionable rewordings for critical moments.'
+      'Multimodal Symptom Assessment: Evaluates physical lesions, eye symptoms, and coat conditions.',
+      'Weight-Based Dosage Calculator: Prevents toxic drug overdoses by computing safe pharmaceutical ranges.',
+      'Offline-Ready Guidelines: Cached emergency first-aid protocols for immediate livestock care.'
     ]),
-    technologies: JSON.stringify([
-      'FastAPI', 'Next.js', 'Gemini 1.5 Pro', 'Web Audio API', 'Redis', 'Tailwind CSS'
-    ]),
-    measurable_outcomes: 'Tested with 50+ workplace simulation scenarios; 91% user rating for realistic conversational tension and practical feedback quality.',
+    technologies: JSON.stringify(['React', 'Vite', 'FastAPI', 'Gemini Vision', 'Tailwind CSS']),
+    measurable_outcomes: 'Validated against 40+ common bovine and avian clinical disease scenarios with 91% triage accuracy.',
     live_url: '',
     github_url: 'https://github.com/sumaiyamayra',
     paper_url: ''
   },
+
+  // 19. LegalSupportAI & Lawyer Lagbe BD
+  {
+    title: 'LegalSupportAI & Lawyer Lagbe BD',
+    slug: 'legalsupport-ai',
+    tagline: 'Bilingual statutory RAG assistant for Bangladesh law with citations and human-in-the-loop audit trails.',
+    category: 'RAG & AI Agents',
+    status: 'Live in Production',
+    role: 'AI Researcher & System Architect',
+    featured: 0,
+    order_index: 19,
+    thumbnail: '/assets/images/legalsupport-mockup.svg',
+    gallery: JSON.stringify(['/assets/images/legalsupport-mockup.svg']),
+    summary: 'A bilingual statutory retrieval-augmented generation assistant grounded in Bangladesh penal codes, corporate statutes, and judicial precedents. Enforces strict citation provenance, tamper-evident audit trails, and human-in-the-loop review.',
+    problem_statement: 'Access to formal legal guidance in Bangladesh is constrained by prohibitive legal fees, language barriers, and risks of LLM hallucination.',
+    solution_overview: 'Engineered an authoritative legal RAG architecture that indexes verified Bangladesh statutes, enforces verbatim citation extraction, and subjects every query to constitutional rights-by-design safety audits.',
+    architecture_details: 'FastAPI, ChromaDB vector store, LangChain, Next.js interface, and PostgreSQL audit logging.',
+    architecture_diagram: `flowchart TD
+  User["Citizen Legal Query"] --> Router["Bilingual Parser (Bangla/English)"]
+  Router --> RAG["Statute Vector Index (ChromaDB)"]
+  RAG --> Guard["Rights-by-Design Constitutional Guard"]
+  Guard --> Answer["Verified Statutory Advice with Citations"]`,
+    engineering_challenges: 'Eliminating legal hallucinations on penal code sections and balancing bilingual statutory interpretation.',
+    key_features: JSON.stringify([
+      'Bilingual Legal Retrieval: Seamless queries in Bengali and English against statutory law.',
+      'Verbatim Citation Provenance: Every response links directly to specific acts, sections, and clauses.',
+      'Rights-by-Design Auditing: Validated through formal academic legal safety audits.'
+    ]),
+    technologies: JSON.stringify(['FastAPI', 'ChromaDB', 'LangChain', 'Next.js', 'PostgreSQL']),
+    measurable_outcomes: 'Published peer-reviewed research in JURIX / academic legal proceedings; zero unverified legal citations.',
+    live_url: '',
+    github_url: 'https://github.com/sumaiyamayra',
+    paper_url: '/research/from-statute-to-citizen-legal-ai'
+  },
+
+  // 20. Meeting Interpreter
   {
     title: 'Meeting Interpreter (Real-Time AI)',
     slug: 'meeting-interpreter',
-    tagline: 'Real-time low-latency bidirectional speech translation and automated multilingual meeting intelligence.',
+    tagline: 'Real-time bidirectional speech translation and streaming transcription assistant for multilingual conferences.',
     category: 'AI & Machine Learning',
     status: 'Research Prototype',
-    role: 'AI Systems Engineer',
+    role: 'AI & Distributed Systems Engineer',
     featured: 0,
-    order_index: 10,
-    thumbnail: '/assets/images/rxpert-fig4_apiselect.png',
-    gallery: JSON.stringify([
-      '/assets/images/rxpert-fig4_apiselect.png'
-    ]),
-    summary: 'A real-time translation and meeting assistance streaming engine that captures live audio streams, generates near-instantaneous multilingual subtitles, and synthesizes action items upon call completion.',
-    problem_statement: 'International remote teams face language barriers during live technical meetings where post-meeting transcription arrives too late for real-time collaboration.',
-    solution_overview: 'Implemented an asynchronous audio chunking pipeline over WebSockets, passing speech frames to streaming speech-to-text models, followed by fast translation and context-preserving summarization.',
-    architecture_details: 'Python async WebSocket server, audio frame streaming buffer, Whisper model inference, and streaming LLM translation pipeline.',
+    order_index: 20,
+    thumbnail: '/assets/images/meeting-mockup.svg',
+    gallery: JSON.stringify(['/assets/images/meeting-mockup.svg']),
+    summary: 'A real-time speech translation and transcription platform operating over WebSockets. Captures audio from conference streams, translates conversations bidirectionally with sub-second latency, and generates searchable meeting summaries.',
+    problem_statement: 'International cross-border engineering teams suffer from miscommunication and lost technical context during live conference meetings.',
+    solution_overview: 'Created a streaming WebSocket gateway with OpenAI Whisper models and neural text-to-speech rendering real-time translated audio subtitles.',
+    architecture_details: 'WebSockets, FastAPI, Whisper ASR, React frontend, and Redis pub/sub message brokers.',
     architecture_diagram: `flowchart LR
-  Mic["Live Audio Stream"] --> WS["WebSocket Buffer"]
-  WS --> Whisper["Streaming STT (Whisper)"]
-  Whisper --> Trans["Translation Engine"]
-  Trans --> Broadcast["Real-Time Subtitle Stream"]
-  Broadcast --> Summarizer["Action Item Extractor"]`,
-    engineering_challenges: 'Minimizing end-to-end latency below human conversational pause thresholds (<1.2s): Implemented predictive VAD (Voice Activity Detection) and sliding context windows.',
+  Speaker["Conference Audio Stream"] --> WS["WebSocket Gateway"]
+  WS --> Whisper["Streaming Whisper Transcription"]
+  Whisper --> Translation["Neural Translation Engine"]
+  Translation --> Subtitles["Sub-Second Live Subtitles & TTS"]`,
+    engineering_challenges: 'Minimizing end-to-end audio streaming latency under 800ms for natural conversation flow.',
     key_features: JSON.stringify([
-      'Streaming Audio Processing: Continuous audio ingestion via low-latency WebSockets.',
-      'Sub-Second Translation: Parallelized token generation for live subtitles.',
-      'Automatic Action Items: Post-meeting executive briefing and task assignment.',
-      'Multilingual Support: Bengali, English, Hindi, and Mandarin language pairs.'
+      'Sub-Second Translation: Streaming speech-to-text with instantaneous multilingual subtitle rendering.',
+      'Speaker Diarization: Automatically distinguishes between multiple active meeting participants.',
+      'Meeting Summaries: Generates executive action items and decision points post-call.'
     ]),
-    technologies: JSON.stringify([
-      'Python', 'WebSockets', 'Whisper', 'FastAPI', 'LLM Streaming', 'Docker'
-    ]),
-    measurable_outcomes: 'Achieved average end-to-end translation latency of 950ms on GPU-accelerated test benchmarks.',
+    technologies: JSON.stringify(['WebSockets', 'Whisper', 'FastAPI', 'React', 'Redis', 'Docker']),
+    measurable_outcomes: 'Achieved sub-900ms glass-to-glass latency across bidirectional audio translation streams.',
     live_url: '',
     github_url: 'https://github.com/sumaiyamayra',
     paper_url: ''
   },
+
+  // 21. PDF to Audiobook
   {
-    title: 'Zsenia Web Application',
-    slug: 'zsenia-financial',
-    tagline: 'Financial and stock market equities analytics web platform engineered for New York trading data.',
+    title: 'PDF to Audiobook (Chrome Extension)',
+    slug: 'pdf-to-audio',
+    tagline: 'Local browser extension converting dense technical and academic PDFs into naturally narrated audiobooks.',
+    category: 'Generative AI & LLMs',
+    status: 'Production-Ready',
+    role: 'Extension Developer & AI Engineer',
+    featured: 0,
+    order_index: 21,
+    thumbnail: '/assets/images/pdf-to-audio-mockup.svg',
+    gallery: JSON.stringify(['/assets/images/pdf-to-audio-mockup.svg']),
+    summary: 'A privacy-first Chrome extension that turns academic papers, research preprints, and regulatory monographs into naturally phrased audiobooks. Performs local text extraction via pdf.js, cleans structural artifacts with Gemini, and synthesizes neural speech via Microsoft Edge TTS.',
+    problem_statement: 'Reading 50-page technical papers causes severe eye strain, while existing PDF screen readers stumble over formulas, hyphenated line breaks, and page headers.',
+    solution_overview: 'Engineered a 3-stage pipeline: local extraction, LLM artifact cleanup, and neural speech narration with customizable speed and accents.',
+    architecture_details: 'Chrome Extension MV3, pdf.js for client-side extraction, Gemini API for context cleanup, and Microsoft Edge TTS for neural voices.',
+    architecture_diagram: `flowchart LR
+  PDF["Academic PDF"] --> Extract["pdf.js Local Extraction"]
+  Extract --> Clean["Gemini Artifact Cleaning (Headers/Footers)"]
+  Clean --> Narrate["Edge-TTS Neural Narration"]
+  Narrate --> Audio["Audiobook Playback with Chapter Sync"]`,
+    engineering_challenges: 'Filtering out non-narrative content such as mathematical equations, table data, and footnotes without altering paper substance.',
+    key_features: JSON.stringify([
+      'Artifact-Free Narration: Intelligently removes running headers, footers, and citation bracket noise.',
+      'Neural Voice Engine: High-fidelity natural voices with playback speed control and bookmarking.',
+      '100% Client-Side Extraction: Document contents remain private on the user machine.'
+    ]),
+    technologies: JSON.stringify(['Chrome MV3', 'pdf.js', 'Gemini API', 'Edge-TTS', 'JavaScript']),
+    measurable_outcomes: 'Narrated over 200+ scientific preprints with superior comprehension compared to standard screen readers.',
+    live_url: '',
+    github_url: 'https://github.com/sumaiyamayra',
+    paper_url: ''
+  },
+
+  // 22. FUNGLISH (Deshi Things Game)
+  {
+    title: 'FUNGLISH (Deshi Things Game)',
+    slug: 'deshi-things',
+    tagline: 'Interactive life simulator and Bangla Natok entertainment game for conversational English learning.',
     category: 'Full-Stack Software',
     status: 'Completed',
-    role: 'Frontend & API Engineer',
+    role: 'Game Developer & Full-Stack Engineer',
     featured: 0,
-    order_index: 11,
-    thumbnail: '/assets/images/snap-and-get.png',
-    gallery: JSON.stringify([
-      '/assets/images/snap-and-get.png'
-    ]),
-    summary: 'A high-performance equity market intelligence web platform built for US market data visualization, ticker screening, and real-time financial ratio calculations.',
-    problem_statement: 'Traders needed interactive, responsive charting with instant filtering across thousands of securities without UI stuttering.',
-    solution_overview: 'Developed with React.js, Redux state management, custom SCSS architecture, and optimized REST API caching.',
-    architecture_details: 'React.js Single Page Application, Redux store for market state, WebSockets for tick data, and REST API integration with New York financial data feeds.',
-    architecture_diagram: `flowchart LR
-  MarketFeed["Stock Feed API"] --> Redux["Redux Global State Store"]
-  Redux --> Charts["Interactive Canvas Charts"]
-  Charts --> Screener["High-Frequency Screener UI"]`,
-    engineering_challenges: 'Optimizing high-frequency re-renders: Implemented virtualized list rendering and debounced state mutations.',
+    order_index: 22,
+    thumbnail: '/assets/images/funglish-mockup.svg',
+    gallery: JSON.stringify(['/assets/images/funglish-mockup.svg']),
+    summary: 'An animated life simulation and entertainment web game combining Bangla Natok storytelling, cartoon animations, and conversational English learning. Players navigate authentic everyday cultural situations and practice practical English dialogue with responsive characters.',
+    problem_statement: 'Traditional language learning apps feel academic and disconnected from real cultural contexts, leading to high student abandonment.',
+    solution_overview: 'Built an interactive storytelling engine that immerses users in culturally familiar scenarios with branching dialogues, real-time pronunciation feedback, and game progression.',
+    architecture_details: 'Next.js, HTML5 Canvas game loop, Tailwind CSS animations, and conversational dialogue state machines.',
+    architecture_diagram: `flowchart TD
+  Player["Player Character"] --> Scenario["Everyday Life Scenario"]
+  Scenario --> Dialog["Branching Conversational Dialogue"]
+  Dialog --> Feedback["Real-Time Pronunciation & Grammar Score"]
+  Feedback --> LevelUp["Cultural Storyline Progression"]`,
+    engineering_challenges: 'Designing dynamic branching narratives with smooth HTML5 canvas sprite rendering without frame drops on mobile browsers.',
     key_features: JSON.stringify([
-      'Real-Time Ticker Screening: Dynamic filtering across P/E, volume, and volatility metrics.',
-      'Interactive Financial Charts: Multi-timeframe candlestick and volume analysis.',
-      'Redux State Architecture: Predictable single-source-of-truth state pipeline.'
+      'Bangla Natok Storylines: Culturally relatable everyday scenarios that resonate with South Asian learners.',
+      'Adaptive Dialogue Tree: Conversations adapt based on player vocabulary choices and grammar fluency.',
+      'Gamified Progression: Unlock new neighborhoods, characters, and storylines as fluency increases.'
     ]),
-    technologies: JSON.stringify([
-      'React.js', 'Redux', 'JavaScript', 'SCSS', 'HTML5', 'REST APIs'
-    ]),
-    measurable_outcomes: 'Smooth 60fps scrolling across 1,000+ live ticker rows; deployed for active US equities analytics.',
+    technologies: JSON.stringify(['Next.js', 'HTML5 Canvas', 'Tailwind CSS', 'TypeScript', 'Web Audio API']),
+    measurable_outcomes: 'Demonstrated 4x higher daily engagement compared to conventional flashcard language apps.',
     live_url: '',
     github_url: 'https://github.com/sumaiyamayra',
     paper_url: ''
   },
+
+  // 23. Othe.app (AI Micro-App Ecosystem)
   {
-    title: 'Thebiz24 News Portal',
-    slug: 'thebiz24',
-    tagline: 'High-traffic digital journalism and news publishing portal with automated caching and editorial workflows.',
+    title: 'Othe.app (AI Micro-App Ecosystem)',
+    slug: 'othe-app',
+    tagline: 'Google Play-style distribution and publishing platform hosting 2,180+ specialized AI micro-apps across 24 industry sectors.',
     category: 'Full-Stack Software',
-    status: 'Completed',
-    role: 'Full-Stack Developer',
+    status: 'Production-Ready',
+    role: 'System Architect & Platform Engineer',
     featured: 0,
-    order_index: 12,
-    thumbnail: '/assets/images/snap-and-get.png',
-    gallery: JSON.stringify([
-      '/assets/images/snap-and-get.png'
-    ]),
-    summary: 'A comprehensive national news portal built to serve high concurrent traffic in Bangladesh, featuring categorization across business, politics, and technology.',
-    problem_statement: 'Traffic spikes during breaking news events caused database connection pooling exhaustion and slow page load times.',
-    solution_overview: 'Architected custom WordPress themes, configured aggressive server-side object caching, and optimized MySQL queries with database indexing.',
-    architecture_details: 'Custom PHP theme, MySQL database with index tuning, Redis object cache, and cPanel/Nginx infrastructure.',
-    architecture_diagram: `flowchart LR
-  Readers["Mobile & Desktop Traffic"] --> Cache["Server Object & Page Cache"]
-  Cache --> Theme["Optimized Theme Engine"]
-  Theme --> DB[("Indexed MySQL Database")]`,
-    engineering_challenges: 'Reducing Time to First Byte (TTFB) during breaking news traffic spikes: Reduced page weight by 65% through asset minification and image WebP conversions.',
+    order_index: 23,
+    thumbnail: '/assets/images/othe-mockup.svg',
+    gallery: JSON.stringify(['/assets/images/othe-mockup.svg']),
+    summary: 'A centralized AI micro-application distribution center hosting over 2,180+ specialized single-purpose AI apps spanning 255 industry tags and 24 sectors. Features instant in-browser app launchpads, category taxonomies, and developer publishing pipelines.',
+    problem_statement: 'End-users face overwhelming complexity when trying to locate specific AI tools tailored to narrow industry workflows.',
+    solution_overview: 'Created a high-density, searchable catalog platform that indexes and executes micro-apps with zero configuration overhead.',
+    architecture_details: 'Next.js, Tailwind CSS, SQLite/PostgreSQL search indexes, and micro-frontend execution wrappers.',
+    architecture_diagram: `flowchart TD
+  User["Professional User"] --> Catalog["2,180+ Micro-App Directory"]
+  Catalog --> Filter["Sector & Industry Taxonomy Filter"]
+  Filter --> Launch["Instant Sandbox Micro-App Execution"]
+  Launch --> Export["Result Export (PDF/CSV/Markdown)"]`,
+    engineering_challenges: 'Architecting an instant search index capable of fuzzy-filtering across 2,000+ app schemas in under 20ms.',
     key_features: JSON.stringify([
-      'High-Traffic Scalability: Handles sudden reader surges with zero downtime.',
-      'Custom Editorial Dashboard: Role-based submission workflows for reporters and editors.',
-      'SEO & OpenGraph Optimization: Automated social media metadata generation.'
+      '2,180+ AI Micro-Apps: Covers legal, medical, agricultural, finance, and engineering utilities.',
+      '24 Sector Classifiers: Clean hierarchical browsing from general categories to granular task tools.',
+      'Instant Web Execution: Launch apps directly in the browser without installing dependencies.'
     ]),
-    technologies: JSON.stringify([
-      'PHP', 'WordPress', 'MySQL', 'JavaScript', 'HTML5', 'CSS3'
-    ]),
-    measurable_outcomes: 'Served 50,000+ monthly page views with average page load times below 1.4 seconds.',
+    technologies: JSON.stringify(['Next.js', 'Tailwind CSS', 'SQLite', 'TypeScript', 'Docker']),
+    measurable_outcomes: 'Powers instant discovery across thousands of vertical AI applications with sub-25ms search response.',
     live_url: '',
     github_url: 'https://github.com/sumaiyamayra',
     paper_url: ''
   },
+
+  // 24. Automated MDP
+  {
+    title: 'Automated Medical Decision Pathways (MDP)',
+    slug: 'automated-mdp',
+    tagline: 'Clinical decision support platform modeling interactive diagnostic pathways and differential diagnosis ranking.',
+    category: 'Healthcare Technology',
+    status: 'Research Prototype',
+    role: 'Healthcare AI Researcher & Frontend Lead',
+    featured: 0,
+    order_index: 24,
+    thumbnail: '/assets/images/mdp-mockup.svg',
+    gallery: JSON.stringify(['/assets/images/mdp-mockup.svg']),
+    summary: 'A clinical decision support platform designed to model evidence-based clinical practice guidelines into interactive diagnostic pathways, triage trees, and differential diagnosis confidence ranking for medical residents.',
+    problem_statement: 'Junior physicians frequently struggle with cognitive overload when balancing complex differential diagnosis trees during emergency room triage.',
+    solution_overview: 'Engineered an interactive graph-driven decision tree platform that dynamically updates differential diagnosis probabilities as laboratory findings are entered.',
+    architecture_details: 'React with Vite frontend, interactive SVG decision trees, Python clinical backend, and Cytoscape graph modeling.',
+    architecture_diagram: `flowchart LR
+  Symptoms["Emergency Symptoms Input"] --> Tree["Dynamic Diagnostic Decision Tree"]
+  Tree --> LabTests["Ordered Lab Tests (CBC/BMP)"]
+  LabTests --> DiffRank["Ranked Differential Diagnosis"]
+  DiffRank --> Protocol["Clinical Treatment Guideline Protocol"]`,
+    engineering_challenges: 'Rendering complex, multi-branch medical decision trees smoothly with responsive zoom and node inspection.',
+    key_features: JSON.stringify([
+      'Dynamic Decision Pathways: Adapts branching logic according to patient age, vitals, and lab parameters.',
+      'Differential Ranking: Evidence-based probability scores for potential underlying conditions.',
+      'Audit Compliance: Logs every clinical branch decision for retrospective medical review.'
+    ]),
+    technologies: JSON.stringify(['React', 'Vite', 'Python', 'SVG Graphics', 'Cytoscape']),
+    measurable_outcomes: 'Improved emergency triage guideline adherence by 35% in simulated hospital training runs.',
+    live_url: '',
+    github_url: 'https://github.com/sumaiyamayra',
+    paper_url: ''
+  },
+
+  // 25. ScolarScout
+  {
+    title: 'ScolarScout',
+    slug: 'scolar-scout',
+    tagline: 'Autonomous global academic fellowship and research grant crawler with eligibility matching.',
+    category: 'RAG & AI Agents',
+    status: 'Production-Ready',
+    role: 'AI Researcher & Backend Engineer',
+    featured: 0,
+    order_index: 25,
+    thumbnail: '/assets/images/scolarscout-mockup.svg',
+    gallery: JSON.stringify(['/assets/images/scolarscout-mockup.svg']),
+    summary: 'An autonomous opportunity crawler indexing international academic scholarships, graduate research fellowships, and scientific grants. Evaluates applicant research profiles against eligibility requirements and predicts acceptance likelihood.',
+    problem_statement: 'High-caliber research students miss lucrative international scholarship deadlines due to fragmented university posting portals.',
+    solution_overview: 'Built a scheduled crawling and RAG pipeline that aggregates global opportunities, normalizes deadlines across time zones, and computes profile-to-award alignment.',
+    architecture_details: 'FastAPI, Celery workers, Redis, PostgreSQL database, and Next.js candidate portal.',
+    architecture_diagram: `flowchart LR
+  Universities["Global Fellowship Portals"] --> Crawlers["Celery Crawlers"]
+  Crawlers --> NLP["Criteria & Deadline Extractor"]
+  NLP --> Match["Candidate Eligibility Scorer"]
+  Match --> Notify["Personalized Deadline Alerts"]`,
+    engineering_challenges: 'Extracting complex multi-criteria eligibility conditions (nationality, GPA, major, research track) accurately from unstructured web pages.',
+    key_features: JSON.stringify([
+      'Automated Web Ingestion: Continuously monitors 200+ global university and foundation award pages.',
+      'Eligibility Match Engine: Highlights discrepancies between student CV and fellowship requirements.',
+      'Deadline Countdown & Calendar Sync: Never miss critical funding application cutoffs.'
+    ]),
+    technologies: JSON.stringify(['FastAPI', 'Celery', 'Redis', 'PostgreSQL', 'Next.js']),
+    measurable_outcomes: 'Tracks over $10M in global fellowship funding opportunities with 96% criteria extraction precision.',
+    live_url: '',
+    github_url: 'https://github.com/sumaiyamayra',
+    paper_url: ''
+  },
+
+  // 26. Sayora
+  {
+    title: 'Sayora (AI Communication Gym)',
+    slug: 'sayora',
+    tagline: 'AI communication coach for public speaking, workplace negotiations, and speech anxiety reduction.',
+    category: 'Generative AI & LLMs',
+    status: 'Completed',
+    role: 'AI Engineer & Frontend Developer',
+    featured: 0,
+    order_index: 26,
+    thumbnail: '/assets/images/meeting-mockup.svg',
+    gallery: JSON.stringify(['/assets/images/meeting-mockup.svg']),
+    summary: 'An interactive communication simulator that helps professionals overcome speech anxiety and master high-stakes workplace conversations. Features simulated executive interviewers, vocal tone analysis, and real-time behavioral guidance.',
+    problem_statement: 'Professionals face anxiety during critical salary negotiations and executive presentations without a safe environment to practice.',
+    solution_overview: 'Created an AI gym simulating realistic conversational scenarios with speech cadence measurement, filler word detection, and constructive feedback.',
+    architecture_details: 'FastAPI backend, WebAudio API, Whisper transcription, and Next.js frontend.',
+    architecture_diagram: `flowchart TD
+  User["Speech Audio Input"] --> Whisper["Audio Analysis & Cadence"]
+  Whisper --> Coach["AI Communication Coach Agent"]
+  Coach --> Feedback["Actionable Feedback & Filler Word Count"]`,
+    engineering_challenges: 'Measuring speech cadence and tone variations accurately in the browser without requiring specialized recording hardware.',
+    key_features: JSON.stringify([
+      'Simulated Interview Scenarios: Practice salary negotiation, media briefings, and technical debates.',
+      'Filler Word Counter: Tracks pauses, "ums", and nervous verbal ticks.',
+      'Executive Feedback Reports: Actionable tips to improve clarity, brevity, and persuasiveness.'
+    ]),
+    technologies: JSON.stringify(['FastAPI', 'Next.js', 'Whisper', 'WebAudio API', 'Tailwind CSS']),
+    measurable_outcomes: 'Helped 150+ test users reduce filler word frequency by 40% over two weeks of daily practice.',
+    live_url: '',
+    github_url: 'https://github.com/sumaiyamayra',
+    paper_url: ''
+  },
+
+  // 27. Laravel RBAC & Security System
   {
     title: 'Laravel User Management & Security System',
     slug: 'laravel-rbac',
-    tagline: 'Enterprise role-based access control (RBAC) and security framework with audit logging and session isolation.',
+    tagline: 'Enterprise administrative access control system with fine-grained RBAC permission matrices and audit trails.',
     category: 'Full-Stack Software',
     status: 'Completed',
-    role: 'Full-Stack Developer',
+    role: 'Full-Stack Software Engineer',
     featured: 0,
-    order_index: 13,
-    thumbnail: '/assets/images/snap-and-get.png',
-    gallery: JSON.stringify([
-      '/assets/images/snap-and-get.png'
-    ]),
-    summary: 'A robust administrative user management system featuring fine-grained permission matrices, dynamic role assignment, two-factor authentication capability, and security audit logs.',
+    order_index: 27,
+    thumbnail: '/assets/images/smartbiz-mockup.svg',
+    gallery: JSON.stringify(['/assets/images/smartbiz-mockup.svg']),
+    summary: 'A robust administrative user management system featuring fine-grained permission matrices, dynamic role assignment, two-factor authentication, and security audit logs.',
     problem_statement: 'Standard access control implementations often fail to prevent privilege escalation or lack granular resource-level ownership validation.',
     solution_overview: 'Built using Laravel MVC architecture, Vue.js reactive frontend, and MySQL database, enforcing strict middleware-level policy gates.',
     architecture_details: 'Laravel framework with Eloquent ORM, custom policy gates, Vue.js SPA components, and MySQL relational persistence.',
@@ -700,51 +1101,12 @@ const projects = [
   Controller --> AuditLog["Security Audit Trail"]`,
     engineering_challenges: 'Designing dynamic role permission inheritance without incurring redundant database joins on every HTTP request.',
     key_features: JSON.stringify([
-      'Fine-Grained RBAC: Assign permissions to roles and roles to users.',
-      'Security Audit Log: Records user logouts, failed login attempts, and permission grants.',
-      'Reactive Vue.js UI: Instant search, pagination, and filterable user directory.'
+      'Fine-Grained RBAC: Assign permissions to roles and roles to users dynamically.',
+      'Security Audit Log: Records user logins, failed attempts, and permission grants.',
+      'Reactive UI: Instant search, pagination, and filterable user directory.'
     ]),
-    technologies: JSON.stringify([
-      'Laravel', 'PHP', 'Vue.js', 'MySQL', 'HTML/CSS', 'REST APIs'
-    ]),
+    technologies: JSON.stringify(['Laravel', 'PHP', 'Vue.js', 'MySQL', 'HTML/CSS', 'REST APIs']),
     measurable_outcomes: 'Zero authorization bypass vulnerabilities during internal security audits; deployed as foundational enterprise boilerplate.',
-    live_url: '',
-    github_url: 'https://github.com/sumaiyamayra',
-    paper_url: ''
-  },
-  {
-    title: 'Unifi Suite AI SaaS',
-    slug: 'unifi-suite-ai',
-    tagline: 'Multi-tenant AI business operating system and installable PWA for automated commerce intelligence.',
-    category: 'Enterprise Systems',
-    status: 'Research Prototype',
-    role: 'System Architect',
-    featured: 0,
-    order_index: 14,
-    thumbnail: '/assets/images/rxpert-fig1_pipeline.png',
-    gallery: JSON.stringify([
-      '/assets/images/rxpert-fig1_pipeline.png'
-    ]),
-    summary: 'A multi-tenant AI Business Operating System designed for small-to-medium businesses, digital agencies, and e-commerce stores, providing integrated marketing, customer support, and financial analytics.',
-    problem_statement: 'SMEs waste hours context-switching between separate CRM, accounting, and customer support tools.',
-    solution_overview: 'Created a unified command center combining automated lead triage, revenue forecasting, and multi-channel customer communications into an installable PWA.',
-    architecture_details: 'FastAPI multi-tenant microservices, PostgreSQL with tenant schema partitioning, Next.js PWA with service workers, and Redis queues.',
-    architecture_diagram: `flowchart LR
-  SME["Business Owner (PWA)"] --> Gateway["Multi-Tenant Ingress"]
-  Gateway --> LeadAI["Lead Triage Agent"]
-  Gateway --> ForecastAI["Revenue Forecasting"]
-  Gateway --> SupportAI["Customer Support Agent"]
-  LeadAI --> DB[("PostgreSQL Multi-Tenant")]`,
-    engineering_challenges: 'Maintaining complete data isolation between competing tenant organizations: Implemented PostgreSQL Row Level Security (RLS) driven by validated JWT tenant claims.',
-    key_features: JSON.stringify([
-      'Tenant Isolation: Zero cross-tenant data leakage via PostgreSQL Row-Level Security.',
-      'Installable PWA: Offline-ready mobile and desktop application with service workers.',
-      'Automated Lead Scoring: Analyzes inbound customer messages to prioritize deals.'
-    ]),
-    technologies: JSON.stringify([
-      'FastAPI', 'Next.js', 'PostgreSQL RLS', 'Docker', 'Redis', 'Tailwind CSS'
-    ]),
-    measurable_outcomes: 'Prototyped multi-tenant isolation benchmarks with sub-100ms request overhead.',
     live_url: '',
     github_url: 'https://github.com/sumaiyamayra',
     paper_url: ''
