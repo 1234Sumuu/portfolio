@@ -109,7 +109,6 @@ export default function Footer() {
             <a href="#work" className="hover:text-[#1C1917] transition-colors">Projects</a>
             <a href="#research" className="hover:text-[#1C1917] transition-colors">Research</a>
             <a href="#contact" className="hover:text-[#1C1917] transition-colors">Contact</a>
-            <Link href="/admin/login" className="hover:text-[#1C1917] transition-colors font-semibold text-[#8C5035]">Admin</Link>
           </div>
         </div>
       </div>

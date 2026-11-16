@@ -85,7 +85,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F4EFE6] text-[#1C1917] pb-24">
+    <div className="min-h-screen bg-[#F4EFE6] text-[#1C1917] flex flex-col justify-between">
       {/* ========================================================= */}
       {/* TOP HEADER / HERO (Editorial Magazine Aesthetic) */}
       {/* ========================================================= */}
