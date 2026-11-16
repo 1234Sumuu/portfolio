@@ -1,4 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "nextjs"
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://portfolio-adia.vercel.app/api/$1"
+    }
+  ]
 }
