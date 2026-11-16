@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sumaiya-portfolio
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - JWT_SECRET=super_secure_jwt_secret_sumaiya_portfolio_2026_xyz987
+      - ADMIN_EMAIL=sumaiya205.akter@gmail.com
+      - ADMIN_INITIAL_PASSWORD=Sumaiya@AI2026!
+    volumes:
+      - portfolio_data:/app/data
+      - portfolio_uploads:/app/public/uploads
+
+volumes:
+  portfolio_data:
+    driver: local
+  portfolio_uploads:
+    driver: local
