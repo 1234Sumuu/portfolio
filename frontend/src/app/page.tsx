@@ -163,38 +163,80 @@ export default function HomePage() {
             </div>
 
             {/* Featured Portrait Banner with Real Photograph */}
-            <div className="mt-10 relative max-w-4xl mx-auto rounded-3xl overflow-hidden border border-[#E2DCD2] bg-[#EBE5DB] shadow-md">
+            <div className="mt-10 relative max-w-5xl mx-auto rounded-3xl overflow-hidden border border-[#E2DCD2] bg-[#EBE5DB] shadow-md">
               <div className="grid grid-cols-1 md:grid-cols-12 items-center">
-                <div className="md:col-span-5 p-8 sm:p-10 space-y-4">
-                  <div className="inline-block px-3 py-1 rounded-full bg-white border border-[#E2DCD2] text-[11px] font-medium tracking-widest uppercase text-[#57534E]">
-                    Dhaka, Bangladesh
+                {/* Bigger Text Column (8 cols) */}
+                <div className="md:col-span-8 p-7 sm:p-10 lg:p-12 space-y-4">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="inline-block px-3 py-1 rounded-full bg-white border border-[#E2DCD2] text-[11px] font-medium tracking-widest uppercase text-[#57534E]">
+                      Dhaka, Bangladesh
+                    </span>
+                    <span className="inline-block px-3 py-1 rounded-full bg-[#8C5035]/10 text-[#8C5035] text-[11px] font-semibold tracking-wider uppercase">
+                      5+ Years Experience
+                    </span>
                   </div>
-                  <h2 className="display-title text-3xl sm:text-4xl text-[#1C1917] leading-tight">
-                    SUMAIYA AKTER
-                  </h2>
-                  <p className="text-xs text-[#57534E] leading-relaxed">
-                    Software Engineer (Backend & AI Team) @ <strong>ACI Limited</strong>. Taekwondo Black Belt & 2x National Champion. Medical AI Researcher with publications in MDPI Bioengineering and JURIX.
+
+                  <div>
+                    <h2 className="display-title text-4xl sm:text-5xl lg:text-6xl text-[#1C1917] leading-none tracking-tight">
+                      SUMAIYA AKTER
+                    </h2>
+                    <p className="font-display text-sm sm:text-base uppercase tracking-wider text-[#8C5035] font-semibold mt-2">
+                      Software Engineer – AI &amp; Backend @ ACI Limited
+                    </p>
+                  </div>
+
+                  <p className="text-xs sm:text-[13px] text-[#57534E] leading-relaxed max-w-2xl">
+                    Specializing in production AI systems, LLM workflows, and resilient backend architectures using <strong>Python, FastAPI, PostgreSQL, Redis, OpenAI, Gemini, RAG, and Docker</strong>. Medical AI Researcher with publications in <strong>MDPI Bioengineering</strong> and <strong>JURIX</strong>, and <strong>2x National Taekwondo Gold Medalist</strong> (Black Belt).
                   </p>
-                  <div className="pt-2 flex items-center gap-3">
+
+                  {/* Highlights Grid */}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-1 text-xs">
+                    <div className="p-2.5 rounded-xl bg-white/80 border border-[#E2DCD2] text-[#1C1917]">
+                      <div className="text-[10px] text-[#78716C] uppercase font-mono tracking-wider">Current Focus</div>
+                      <div className="font-bold text-xs mt-0.5">Production AI Systems</div>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-white/80 border border-[#E2DCD2] text-[#1C1917]">
+                      <div className="text-[10px] text-[#78716C] uppercase font-mono tracking-wider">Core Stack</div>
+                      <div className="font-bold text-xs mt-0.5">FastAPI • Redis • Celery</div>
+                    </div>
+                    <div className="p-2.5 rounded-xl bg-white/80 border border-[#E2DCD2] text-[#1C1917] col-span-2 sm:col-span-1">
+                      <div className="text-[10px] text-[#78716C] uppercase font-mono tracking-wider">Research / Honors</div>
+                      <div className="font-bold text-xs mt-0.5">Bioengineering • Black Belt</div>
+                    </div>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="pt-2 flex flex-wrap items-center gap-3">
                     <button
                       onClick={copyEmail}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white border border-[#E2DCD2] text-xs font-mono text-[#1C1917] hover:bg-[#F4EFE6] transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-white border border-[#E2DCD2] text-xs font-mono text-[#1C1917] hover:bg-[#F4EFE6] transition-colors shadow-sm"
                     >
                       {copiedEmail ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
                       <span>{copiedEmail ? 'Copied Email' : 'sumaiya205.akter@gmail.com'}</span>
                     </button>
+                    <a
+                      href="/assets/docs/Sumaiya_Akter_CV.pdf"
+                      download="Sumaiya_Akter_CV.pdf"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#1C1917] text-[#F4EFE6] text-xs font-medium tracking-wider uppercase hover:bg-[#292524] transition-all shadow-sm"
+                    >
+                      <Download className="w-3.5 h-3.5" />
+                      <span>Download CV</span>
+                    </a>
                   </div>
                 </div>
 
-                <div className="md:col-span-7 relative h-80 sm:h-[440px] w-full bg-[#E5DFD4] overflow-hidden flex items-center justify-center">
-                  <Image
-                    src="/assets/images/sumaiya-portrait.jpg"
-                    alt="Sumaiya Akter - Software Engineer & AI Researcher"
-                    fill
-                    className="object-cover object-top"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1C1917]/25 via-transparent to-transparent"></div>
+                {/* Smaller Picture Column (4 cols) */}
+                <div className="md:col-span-4 p-4 md:p-6 md:pl-0 flex items-center justify-center">
+                  <div className="relative h-72 sm:h-80 md:h-[380px] w-full max-w-[280px] md:max-w-none rounded-2xl overflow-hidden border border-[#E2DCD2] bg-[#E5DFD4] shadow-sm">
+                    <Image
+                      src="/assets/images/sumaiya-portrait.jpg"
+                      alt="Sumaiya Akter - Software Engineer & AI Researcher"
+                      fill
+                      className="object-cover object-top"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1C1917]/20 via-transparent to-transparent"></div>
+                  </div>
                 </div>
               </div>
             </div>
