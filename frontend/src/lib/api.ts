@@ -1,6 +1,11 @@
 /**
  * API Client for Sumaiya Akter Portfolio
  * Connects Frontend (Next.js) to Backend (FastAPI REST API)
+ *
+ * In Vercel Multi-Service deployments:
+ * - Server functions resolve internal service binding: process.env.BACKEND_URL
+ * - Client browser requests use relative public rewrites: /api/v1
+ * - Local development falls back to process.env.NEXT_PUBLIC_API_URL or http://localhost:8063/api/v1
  */
 
 import {
@@ -14,17 +19,34 @@ import {
   MediaAsset,
 } from './types';
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8063/api/v1';
-
 class ApiClient {
-  private base: string;
+  private customBase?: string;
 
-  constructor(base: string) {
-    this.base = base;
+  constructor(customBase?: string) {
+    this.customBase = customBase;
+  }
+
+  public getBaseUrl(): string {
+    if (this.customBase) {
+      return this.customBase;
+    }
+    // 1. Vercel internal service binding injected at runtime into the calling service
+    if (process.env.BACKEND_URL) {
+      const internalUrl = process.env.BACKEND_URL.replace(/\/$/, '');
+      return `${internalUrl}/api/v1`;
+    }
+    // 2. Client-side execution in browser (routed via Vercel public rewrite /api/(.*))
+    if (typeof window !== 'undefined') {
+      return '/api/v1';
+    }
+    // 3. Local development fallback
+    return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8063/api/v1';
   }
 
   private async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
-    const url = `${this.base}${endpoint}`;
+    const base = this.getBaseUrl();
+    const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+    const url = `${base}${cleanEndpoint}`;
     const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
 
     const headers: Record<string, string> = {
@@ -144,7 +166,8 @@ class ApiClient {
 
   // Auth
   async login(credentials: { email: string; password: string }): Promise<{ access_token: string; token_type: string; user: any }> {
-    const res = await fetch(`${this.base}/auth/login`, {
+    const base = this.getBaseUrl();
+    const res = await fetch(`${base}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(credentials),
@@ -161,5 +184,5 @@ class ApiClient {
   }
 }
 
-export const api = new ApiClient(API_BASE);
+export const api = new ApiClient();
 export default api;
