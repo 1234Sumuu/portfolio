@@ -17,7 +17,7 @@ export const revalidate = 0;
 export default function CertificatesPage() {
   const db = getDb();
   const certifications = db
-    .prepare('SELECT * FROM certifications ORDER BY id ASC')
+    .prepare("SELECT * FROM certifications WHERE title NOT LIKE '%Bachelor%' AND title NOT LIKE '%Transcript%' ORDER BY id ASC")
     .all() as Certification[];
 
   return (
@@ -33,19 +33,8 @@ export default function CertificatesPage() {
         </h1>
 
         <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
-          Authentic academic credentials, certified martial arts achievements (Taekwondo Black Belt & National Gold Medals), standardized testing results, and professional software certifications.
+          Authentic certifications, athletic achievements (Taekwondo Black Belt & National Gold Medals), standardized testing results, and professional software certifications.
         </p>
-
-        <div className="pt-2">
-          <a
-            href="/assets/docs/Academic_Transcripts_and_Certificates.pdf"
-            download
-            className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-semibold text-xs transition-all inline-flex items-center gap-2 shadow-sm shadow-emerald-500/20"
-          >
-            <Download className="w-3.5 h-3.5" />
-            <span>Download Complete Official Transcripts & Scans (PDF)</span>
-          </a>
-        </div>
       </div>
 
       {/* Gallery Grid */}
@@ -99,7 +88,7 @@ export default function CertificatesPage() {
                 </p>
               </div>
 
-              {cert.pdf_url && (
+              {cert.pdf_url && !cert.pdf_url.includes('Academic_Transcripts') && (
                 <div className="pt-4 border-t border-zinc-800/60">
                   <a
                     href={cert.pdf_url}

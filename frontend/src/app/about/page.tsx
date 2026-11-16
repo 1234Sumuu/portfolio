@@ -181,17 +181,6 @@ export default function AboutPage() {
             <p className="text-xs text-zinc-400 leading-relaxed pt-2">
               Core coursework: Data Structures, Algorithms, Discrete Mathematics, Operating Systems, Relational Database Management Systems (RDBMS), Software Engineering, Object-Oriented Programming (Java/C++), and Computer Vision.
             </p>
-
-            <div className="pt-2">
-              <a
-                href="/assets/docs/Academic_Transcripts_and_Certificates.pdf"
-                download
-                className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors inline-flex items-center gap-1"
-              >
-                <span>View Official Degree & Transcript PDF</span>
-                <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            </div>
           </div>
 
           {/* Standardized Test & Academic Certifications */}

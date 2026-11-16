@@ -928,16 +928,6 @@ export default function HomePage() {
                 <p>• Prof. Muhammad Golam Kibria, Ph.D., SMIEEE (Professor, Dept. of CSE)</p>
               </div>
             </div>
-            <div className="mt-4 pt-3 border-t border-[#E2DCD2]">
-              <a
-                href="/assets/docs/Academic_Transcripts_and_Certificates.pdf"
-                target="_blank"
-                className="text-xs font-semibold text-[#1C1917] hover:text-[#8C5035] inline-flex items-center gap-1"
-              >
-                <span>View Degree &amp; Transcripts</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
           </div>
 
           {/* Card 2: Martial Arts Honors (2x Gold, Black Belt) */}

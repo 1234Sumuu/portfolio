@@ -14,10 +14,11 @@ next-env.d.ts
 # Root build copy artifacts
 /public/
 
-# Research & Academic PDFs (Excluded from Git)
+# Research & Academic PDFs / Certificate scans (Excluded from Git)
 **/public/assets/docs/Automated_Lung_Cancer_Detection_Paper.pdf
 **/public/assets/docs/LegalSupportAI_Paper.pdf
 **/public/assets/docs/Academic_Transcripts_and_Certificates.pdf
+**/public/assets/images/certificate-page-*.png
 *.pdf.bak
 
 # SQLite Database Files

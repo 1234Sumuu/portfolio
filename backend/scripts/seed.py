@@ -811,9 +811,9 @@ certs_data = [
         "year": "2024",
         "type": "Martial Arts",
         "description": "Awarded 1st Place Gold Medal at the National Independence Day Taekwondo Championship 2024, demonstrating exceptional athletic excellence and tactical precision.",
-        "image_url": "/assets/images/certificate-page-1.png",
+        "image_url": "",
         "badge": "National Gold Medalist",
-        "pdf_url": "/assets/docs/Academic_Transcripts_and_Certificates.pdf"
+        "pdf_url": ""
     },
     {
         "title": "Gold Medal – 4th Federation Cup Taekwondo Competition",
@@ -821,9 +821,9 @@ certs_data = [
         "year": "2024",
         "type": "Martial Arts",
         "description": "Clinched Gold Medal at the prestigious 4th Federation Cup Taekwondo Championship, competing among elite martial artists nationwide.",
-        "image_url": "/assets/images/certificate-page-1.png",
+        "image_url": "",
         "badge": "National Champion",
-        "pdf_url": "/assets/docs/Academic_Transcripts_and_Certificates.pdf"
+        "pdf_url": ""
     },
     {
         "title": "Taekwondo Black Belt (1st Dan)",
@@ -831,9 +831,9 @@ certs_data = [
         "year": "2023",
         "type": "Martial Arts",
         "description": "Officially certified Black Belt holder in Taekwondo martial arts, representing over a decade of disciplined physical conditioning and mental resilience.",
-        "image_url": "/assets/images/certificate-page-1.png",
+        "image_url": "",
         "badge": "Black Belt Holder",
-        "pdf_url": "/assets/docs/Academic_Transcripts_and_Certificates.pdf"
+        "pdf_url": ""
     },
     {
         "title": "Bronze Medal – 22nd Victory Day Taekwondo Competition",
@@ -841,9 +841,9 @@ certs_data = [
         "year": "2023",
         "type": "Martial Arts",
         "description": "Secured Bronze Medal in senior division sparring at the 22nd Victory Day National Championship.",
-        "image_url": "/assets/images/certificate-page-1.png",
+        "image_url": "",
         "badge": "National Bronze",
-        "pdf_url": "/assets/docs/Academic_Transcripts_and_Certificates.pdf"
+        "pdf_url": ""
     },
     {
         "title": "2 Bronze Medals – 4th Bangladesh Wadokai Club Karate Competition",
@@ -851,9 +851,9 @@ certs_data = [
         "year": "2023",
         "type": "Martial Arts",
         "description": "Awarded two Bronze medals in Kata and Kumite divisions at the 4th National Wadokai Karate Championship 2023.",
-        "image_url": "/assets/images/certificate-page-1.png",
+        "image_url": "",
         "badge": "Karate Medalist",
-        "pdf_url": "/assets/docs/Academic_Transcripts_and_Certificates.pdf"
+        "pdf_url": ""
     },
     {
         "title": "IELTS Academic: Overall Band 6.5 / 9.0",
@@ -861,9 +861,9 @@ certs_data = [
         "year": "2023",
         "type": "Academic",
         "description": "Certified English language proficiency: Listening 7.5, Speaking 7.0, Reading 5.5, Writing 5.5. Overall Band 6.5.",
-        "image_url": "/assets/images/certificate-page-2.png",
+        "image_url": "",
         "badge": "Overall 6.5 / 9.0",
-        "pdf_url": "/assets/docs/Academic_Transcripts_and_Certificates.pdf"
+        "pdf_url": ""
     },
     {
         "title": "HackerRank: 5-Star SQL Proficiency Badge",
@@ -871,19 +871,9 @@ certs_data = [
         "year": "2023",
         "type": "Professional",
         "description": "Achieved the highest 5-Star proficiency rating on HackerRank for complex relational database queries, recursive CTEs, and window functions.",
-        "image_url": "/assets/images/certificate-page-3.png",
+        "image_url": "",
         "badge": "5-Star SQL",
         "pdf_url": ""
-    },
-    {
-        "title": "Bachelor of Science in Computer Science & Engineering Degree & Transcript",
-        "issuer": "University of Liberal Arts Bangladesh (ULAB)",
-        "year": "2021",
-        "type": "Academic",
-        "description": "Conferred BSc in CSE degree with CGPA 3.11 / 4.00, completing comprehensive coursework in Algorithms, Operating Systems, Database Management, and Artificial Intelligence.",
-        "image_url": "/assets/images/certificate-page-4.png",
-        "badge": "BSc in CSE (ULAB)",
-        "pdf_url": "/assets/docs/Academic_Transcripts_and_Certificates.pdf"
     },
     {
         "title": "Thesis Selection and Research Writing Certification",
@@ -891,9 +881,9 @@ certs_data = [
         "year": "2023",
         "type": "Academic",
         "description": "Completed rigorous professional training on academic thesis design, literature taxonomy, experimental methodology, and scientific manuscript submission.",
-        "image_url": "/assets/images/certificate-page-2.png",
+        "image_url": "",
         "badge": "Certified Researcher",
-        "pdf_url": "/assets/docs/Academic_Transcripts_and_Certificates.pdf"
+        "pdf_url": ""
     },
     {
         "title": "Professional Skills Development: Skills for Career",
@@ -901,9 +891,9 @@ certs_data = [
         "year": "2022",
         "type": "Professional",
         "description": "Completed comprehensive executive career readiness program focusing on technical leadership, agile project delivery, and cross-functional team dynamics.",
-        "image_url": "/assets/images/certificate-page-3.png",
+        "image_url": "",
         "badge": "Career Leadership",
-        "pdf_url": "/assets/docs/Academic_Transcripts_and_Certificates.pdf"
+        "pdf_url": ""
     },
     {
         "title": "1st Place – Independence Day Essay Writing Competition",
@@ -911,7 +901,7 @@ certs_data = [
         "year": "2016",
         "type": "Competition",
         "description": "Awarded First Place among college participants for outstanding analytical essay on national sovereignty and civic progress.",
-        "image_url": "/assets/images/certificate-page-3.png",
+        "image_url": "",
         "badge": "1st Place Winner",
         "pdf_url": ""
     }
