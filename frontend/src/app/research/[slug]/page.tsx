@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getDb } from '@/lib/db';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import {
   ArrowLeft,
   Download,
@@ -11,21 +13,27 @@ import {
   Cpu,
   Layers,
   Sparkles,
+  Bookmark
 } from 'lucide-react';
 import { Publication } from '@/lib/types';
 
 export const revalidate = 0;
 
 async function getPublication(slug: string): Promise<Publication | null> {
-  const db = getDb();
-  const row = db.prepare('SELECT * FROM publications WHERE slug = ?').get(slug) as any;
-  if (!row) return null;
+  try {
+    const db = getDb();
+    const row = db.prepare('SELECT * FROM publications WHERE slug = ?').get(slug) as any;
+    if (!row) return null;
 
-  return {
-    ...row,
-    featured: Boolean(row.featured),
-    key_findings: row.key_findings ? JSON.parse(row.key_findings) : [],
-  };
+    return {
+      ...row,
+      featured: Boolean(row.featured),
+      key_findings: row.key_findings ? JSON.parse(row.key_findings) : [],
+    };
+  } catch (err) {
+    console.error('Error fetching publication:', err);
+    return null;
+  }
 }
 
 export default async function PublicationDetailPage({
@@ -36,144 +44,182 @@ export default async function PublicationDetailPage({
   const pub = await getPublication(params.slug);
   if (!pub) notFound();
 
+  const getStatusBadge = (status: string) => {
+    switch (status) {
+      case 'Under Review':
+        return (
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-900 border border-amber-300">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-600 animate-pulse"></span>
+            Under Review
+          </span>
+        );
+      case 'Published':
+        return (
+          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-300">
+            Published
+          </span>
+        );
+      case 'Accepted':
+        return (
+          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-teal-100 text-teal-800 border border-teal-300">
+            Accepted
+          </span>
+        );
+      case 'Preprint (arXiv)':
+        return (
+          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-100 text-blue-800 border border-blue-300">
+            Preprint
+          </span>
+        );
+      default:
+        return (
+          <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-stone-100 text-stone-800 border border-stone-300">
+            {status}
+          </span>
+        );
+    }
+  };
+
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
-      {/* Back button */}
-      <Link
-        href="/research"
-        className="inline-flex items-center gap-2 text-xs font-mono text-zinc-400 hover:text-emerald-400 transition-colors"
-      >
-        <ArrowLeft className="w-3.5 h-3.5" />
-        <span>Back to Research & Publications</span>
-      </Link>
+    <div className="min-h-screen bg-[#F4EFE6] text-[#1C1917] flex flex-col font-sans selection:bg-[#1C1917] selection:text-[#F4EFE6]">
+      {/* Common Sticky Header */}
+      <Header />
 
-      {/* Header */}
-      <div className="space-y-4">
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="px-3 py-1 rounded-full text-xs font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-            {pub.status}
-          </span>
-          <span className="text-xs font-mono text-zinc-400 bg-zinc-900 px-3 py-1 rounded-full border border-zinc-800">
-            {pub.venue} • {pub.year}
-          </span>
-          <span className="text-xs font-mono text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20">
-            {pub.category}
-          </span>
+      <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+        {/* Back button */}
+        <div className="border-b border-[#E2DCD2] pb-4">
+          <Link
+            href="/research"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#78716C] hover:text-[#1C1917] transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Research &amp; Publications</span>
+          </Link>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
-          {pub.title}
-        </h1>
-
-        <p className="text-sm font-medium text-zinc-300">
-          Authors: {pub.authors}
-        </p>
-
-        {/* Action Buttons */}
-        <div className="pt-2 flex flex-wrap gap-3">
-          {pub.pdf_url && (
-            <a
-              href={pub.pdf_url}
-              download
-              className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-semibold text-xs transition-all inline-flex items-center gap-2 shadow-sm shadow-emerald-500/20"
-            >
-              <Download className="w-4 h-4" />
-              <span>Download Full Paper PDF</span>
-            </a>
-          )}
-          {pub.arxiv_url && (
-            <a
-              href={pub.arxiv_url}
-              target="_blank"
-              rel="noreferrer"
-              className="px-5 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 text-xs font-semibold transition-all inline-flex items-center gap-2"
-            >
-              <span>View on arXiv</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-          )}
-        </div>
-      </div>
-
-      {/* Abstract */}
-      <div className="p-8 rounded-2xl border border-zinc-800 bg-zinc-900/40 space-y-3">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold">
-          Abstract
-        </h2>
-        <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
-          {pub.abstract}
-        </p>
-      </div>
-
-      {/* Dataset & Benchmark Details */}
-      {pub.dataset_details && (
-        <div className="p-6 rounded-2xl border border-zinc-800 bg-zinc-900/30 flex items-start gap-4">
-          <div className="p-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-cyan-400 shrink-0">
-            <Database className="w-5 h-5" />
-          </div>
-          <div className="space-y-1">
-            <h3 className="text-xs font-mono uppercase tracking-wider text-zinc-400 font-semibold">
-              Experimental Dataset & Benchmark
-            </h3>
-            <p className="text-xs sm:text-sm text-zinc-200">{pub.dataset_details}</p>
-          </div>
-        </div>
-      )}
-
-      {/* Experimental Methodology */}
-      <div className="p-8 rounded-2xl border border-zinc-800 bg-zinc-900/40 space-y-4">
-        <h2 className="text-xl font-bold text-white flex items-center gap-2">
-          <Cpu className="w-5 h-5 text-emerald-400" />
-          <span>Research Methodology & Experimental Design</span>
-        </h2>
-        <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed whitespace-pre-line">
-          {pub.methodology}
-        </p>
-      </div>
-
-      {/* Key Findings */}
-      {pub.key_findings && pub.key_findings.length > 0 && (
-        <div className="p-8 rounded-2xl border border-zinc-800 bg-zinc-900/40 space-y-4">
-          <h2 className="text-xl font-bold text-white flex items-center gap-2">
-            <Layers className="w-5 h-5 text-cyan-400" />
-            <span>Key Empirical Results & Observations</span>
-          </h2>
-          <div className="space-y-3">
-            {pub.key_findings.map((f, i) => (
-              <div key={i} className="p-4 rounded-xl bg-zinc-950 border border-zinc-800 flex items-start gap-3">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0 mt-1.5"></span>
-                <p className="text-xs text-zinc-300 leading-relaxed">{f}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Metrics Badge */}
-      {pub.metrics && (
-        <div className="p-6 rounded-2xl border border-emerald-500/30 bg-emerald-950/20">
-          <div className="text-xs font-mono text-zinc-300">
-            <span className="text-emerald-400 font-semibold uppercase tracking-wider block mb-1">
-              Verified Quantitative Performance:
+        {/* Paper Header Card */}
+        <div className="bento-card p-6 sm:p-10 bg-white border border-[#E2DCD2] space-y-4 shadow-sm">
+          <div className="flex flex-wrap items-center gap-2">
+            {getStatusBadge(pub.status)}
+            <span className="text-xs font-mono text-[#57534E] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E2DCD2]">
+              {pub.venue} • {pub.year}
             </span>
-            {pub.metrics}
+            <span className="text-xs font-mono text-[#8C5035] bg-[#FAF8F5] px-3 py-1 rounded-full border border-[#E2DCD2] font-semibold">
+              {pub.category}
+            </span>
+          </div>
+
+          <h1 className="display-title text-2xl sm:text-3xl lg:text-4xl text-[#1C1917] tracking-tight leading-tight">
+            {pub.title}
+          </h1>
+
+          <p className="text-xs sm:text-sm font-medium text-[#78716C]">
+            <strong>Authors:</strong> {pub.authors}
+          </p>
+
+          {/* Action Buttons */}
+          <div className="pt-2 flex flex-wrap gap-3">
+            {pub.arxiv_url && (
+              <a
+                href={pub.arxiv_url}
+                target="_blank"
+                rel="noreferrer"
+                className="px-5 py-2.5 rounded-full bg-[#1C1917] hover:bg-[#8C5035] text-[#F4EFE6] text-xs font-semibold uppercase tracking-wider transition-all inline-flex items-center gap-2 shadow-sm"
+              >
+                <span>View on arXiv</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            )}
+            <a
+              href="mailto:sumaiya205.akter@gmail.com"
+              className="px-5 py-2.5 rounded-full bg-[#FAF8F5] hover:bg-[#EBE5DB] text-[#1C1917] border border-[#E2DCD2] text-xs font-semibold uppercase tracking-wider transition-all inline-flex items-center gap-2"
+            >
+              <span>Inquire / Request Preprint</span>
+            </a>
           </div>
         </div>
-      )}
 
-      {/* BibTeX Citation Box */}
-      {pub.bibtex && (
-        <div className="p-8 rounded-2xl border border-zinc-800 bg-zinc-900/40 space-y-3">
-          <div className="flex items-center justify-between">
-            <h3 className="text-xs font-mono uppercase tracking-wider text-zinc-400 font-semibold">
+        {/* Abstract */}
+        <div className="bento-card p-6 sm:p-8 bg-white border border-[#E2DCD2] space-y-3">
+          <h2 className="text-xs font-mono uppercase tracking-wider text-[#8C5035] font-semibold">
+            Abstract &amp; Problem Motivation
+          </h2>
+          <p className="text-xs sm:text-sm text-[#57534E] leading-relaxed">
+            {pub.abstract}
+          </p>
+        </div>
+
+        {/* Dataset & Benchmark Details */}
+        {pub.dataset_details && (
+          <div className="bento-card p-6 bg-white border border-[#E2DCD2] flex items-start gap-4">
+            <div className="p-2.5 rounded-xl bg-[#FAF8F5] border border-[#E2DCD2] text-[#8C5035] shrink-0">
+              <Database className="w-5 h-5" />
+            </div>
+            <div className="space-y-1">
+              <h3 className="text-xs font-mono uppercase tracking-wider text-[#8C5035] font-semibold">
+                Experimental Dataset &amp; Statutory Corpus
+              </h3>
+              <p className="text-xs sm:text-sm text-[#1C1917] font-medium">{pub.dataset_details}</p>
+            </div>
+          </div>
+        )}
+
+        {/* Experimental Methodology */}
+        <div className="bento-card p-6 sm:p-8 bg-white border border-[#E2DCD2] space-y-4">
+          <h2 className="display-title text-2xl text-[#1C1917] flex items-center gap-2">
+            <Cpu className="w-5 h-5 text-[#8C5035]" />
+            <span>Research Methodology &amp; Experimental Architecture</span>
+          </h2>
+          <p className="text-xs sm:text-sm text-[#57534E] leading-relaxed whitespace-pre-line">
+            {pub.methodology}
+          </p>
+        </div>
+
+        {/* Key Findings */}
+        {pub.key_findings && pub.key_findings.length > 0 && (
+          <div className="bento-card p-6 sm:p-8 bg-white border border-[#E2DCD2] space-y-4">
+            <h2 className="display-title text-2xl text-[#1C1917] flex items-center gap-2">
+              <Layers className="w-5 h-5 text-[#8C5035]" />
+              <span>Key Empirical Results &amp; Quantitative Audit</span>
+            </h2>
+            <div className="space-y-3">
+              {pub.key_findings.map((f, i) => (
+                <div key={i} className="p-4 rounded-xl bg-[#FAF8F5] border border-[#E2DCD2] flex items-start gap-3">
+                  <span className="w-2 h-2 rounded-full bg-[#8C5035] shrink-0 mt-1.5"></span>
+                  <p className="text-xs text-[#57534E] leading-relaxed">{f}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Metrics Badge */}
+        {pub.metrics && (
+          <div className="bento-card p-6 bg-emerald-50/70 border border-emerald-200">
+            <div className="text-xs font-mono text-emerald-950">
+              <span className="text-emerald-900 font-bold uppercase tracking-wider block mb-1">
+                Verified Quantitative Performance:
+              </span>
+              {pub.metrics}
+            </div>
+          </div>
+        )}
+
+        {/* BibTeX Citation Box */}
+        {pub.bibtex && (
+          <div className="bento-card p-6 sm:p-8 bg-white border border-[#E2DCD2] space-y-3">
+            <h3 className="text-xs font-mono uppercase tracking-wider text-[#8C5035] font-semibold">
               BibTeX Citation
             </h3>
+            <div className="p-4 rounded-xl bg-[#FAF8F5] border border-[#E2DCD2] overflow-x-auto font-mono text-xs text-[#1C1917]">
+              <pre>{pub.bibtex}</pre>
+            </div>
           </div>
-          <div className="p-4 rounded-xl bg-zinc-950 border border-zinc-800 overflow-x-auto font-mono text-xs text-zinc-300">
-            <pre>{pub.bibtex}</pre>
-          </div>
-        </div>
-      )}
+        )}
+      </main>
+
+      {/* Common Footer */}
+      <Footer />
     </div>
   );
 }

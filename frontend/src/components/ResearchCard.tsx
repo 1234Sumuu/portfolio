@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { FileText, Download, Copy, Check, ExternalLink, Bookmark } from 'lucide-react';
+import { FileText, Download, Copy, Check, ExternalLink, Bookmark, Sparkles } from 'lucide-react';
 import { Publication } from '@/lib/types';
 
 interface ResearchCardProps {
@@ -19,71 +19,98 @@ export default function ResearchCard({ publication }: ResearchCardProps) {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const getStatusColor = (status: string) => {
+  const getStatusBadge = (status: string) => {
     switch (status) {
+      case 'Under Review':
+        return (
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-900 border border-amber-300 shadow-sm">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-600 animate-pulse"></span>
+            Under Review
+          </span>
+        );
       case 'Published':
-        return 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30';
+        return (
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-300 shadow-sm">
+            Published
+          </span>
+        );
       case 'Accepted':
-        return 'bg-teal-500/10 text-teal-400 border-teal-500/30';
+        return (
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-teal-100 text-teal-800 border border-teal-300 shadow-sm">
+            Accepted
+          </span>
+        );
       case 'Preprint (arXiv)':
-        return 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30';
+        return (
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-blue-100 text-blue-800 border border-blue-300 shadow-sm">
+            Preprint
+          </span>
+        );
       case 'In Progress':
-        return 'bg-amber-500/10 text-amber-400 border-amber-500/30';
+        return (
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-purple-100 text-purple-800 border border-purple-300 shadow-sm">
+            In Progress
+          </span>
+        );
       default:
-        return 'bg-zinc-800 text-zinc-300 border-zinc-700';
+        return (
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-stone-100 text-stone-800 border border-stone-300 shadow-sm">
+            {status}
+          </span>
+        );
     }
   };
 
   return (
-    <article className="rounded-2xl border border-zinc-800/80 bg-zinc-900/40 backdrop-blur-sm p-6 sm:p-8 hover:border-zinc-700 hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+    <article className="bento-card p-6 sm:p-8 bg-white border border-[#E2DCD2] hover:border-[#1C1917] hover:shadow-md transition-all duration-300 flex flex-col justify-between">
       <div>
         {/* Meta Header */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
-          <div className="flex items-center gap-2">
-            <span className={`px-2.5 py-1 rounded-full text-[11px] font-mono font-medium border ${getStatusColor(publication.status)}`}>
-              {publication.status}
-            </span>
-            <span className="text-xs font-mono text-zinc-400 bg-zinc-800/60 px-2 py-0.5 rounded border border-zinc-700/40">
+          <div className="flex flex-wrap items-center gap-2">
+            {getStatusBadge(publication.status)}
+            <span className="text-xs font-mono text-[#57534E] bg-[#FAF8F5] px-2.5 py-0.5 rounded-full border border-[#E2DCD2]">
               {publication.venue} • {publication.year}
             </span>
           </div>
-          <span className="text-[11px] font-mono text-emerald-400">
+          <span className="text-[11px] font-mono text-[#8C5035] font-semibold uppercase tracking-wider">
             {publication.category}
           </span>
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-bold text-white leading-snug hover:text-emerald-400 transition-colors">
+        <h3 className="text-lg sm:text-xl font-bold text-[#1C1917] leading-snug hover:text-[#8C5035] transition-colors">
           <Link href={`/research/${publication.slug}`}>
             {publication.title}
           </Link>
         </h3>
 
         {/* Authors */}
-        <p className="mt-2 text-xs font-medium text-zinc-400">
+        <p className="mt-2 text-xs font-medium text-[#78716C]">
           {publication.authors}
         </p>
 
         {/* Abstract */}
-        <p className="mt-4 text-xs text-zinc-400 leading-relaxed line-clamp-4">
+        <p className="mt-4 text-xs text-[#57534E] leading-relaxed line-clamp-4">
           {publication.abstract}
         </p>
 
         {/* Dataset Details */}
         {publication.dataset_details && (
-          <div className="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-zinc-950/60 border border-zinc-800 text-[11px] font-mono text-zinc-400">
-            <span className="text-zinc-500">Benchmark:</span> {publication.dataset_details}
+          <div className="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#FAF8F5] border border-[#E2DCD2] text-[11px] font-mono text-[#57534E]">
+            <span className="text-[#8C827A] font-semibold">Benchmark Corpus:</span> {publication.dataset_details}
           </div>
         )}
 
         {/* Key Findings */}
         {publication.key_findings && publication.key_findings.length > 0 && (
           <div className="mt-4 space-y-1.5">
-            <p className="text-[11px] font-mono uppercase tracking-wider text-zinc-500">Key Empirical Findings:</p>
+            <p className="text-[11px] font-mono uppercase tracking-wider text-[#8C5035] font-semibold">
+              Key Empirical Findings:
+            </p>
             <ul className="space-y-1">
               {publication.key_findings.slice(0, 2).map((finding, idx) => (
-                <li key={idx} className="text-xs text-zinc-300 flex items-start gap-2">
-                  <span className="text-emerald-500 text-sm leading-none">•</span>
+                <li key={idx} className="text-xs text-[#57534E] flex items-start gap-2">
+                  <span className="text-[#8C5035] font-bold">•</span>
                   <span>{finding}</span>
                 </li>
               ))}
@@ -93,42 +120,31 @@ export default function ResearchCard({ publication }: ResearchCardProps) {
 
         {/* Quantitative Metrics Badge */}
         {publication.metrics && (
-          <div className="mt-4 p-3 rounded-xl bg-zinc-950 border border-zinc-800/80">
-            <div className="text-[11px] font-mono text-zinc-400">
-              <span className="text-emerald-400 font-semibold">Metrics:</span> {publication.metrics}
+          <div className="mt-4 p-3 rounded-xl bg-[#FAF8F5] border border-[#E2DCD2]">
+            <div className="text-[11px] font-mono text-[#57534E]">
+              <span className="text-[#8C5035] font-bold">Empirical Metrics:</span> {publication.metrics}
             </div>
           </div>
         )}
       </div>
 
       {/* Footer Actions */}
-      <div className="mt-6 pt-5 border-t border-zinc-800/60 flex flex-wrap items-center justify-between gap-3">
+      <div className="mt-6 pt-5 border-t border-[#E2DCD2] flex flex-wrap items-center justify-between gap-3">
         <Link
           href={`/research/${publication.slug}`}
-          className="text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors inline-flex items-center gap-1"
+          className="text-xs font-semibold text-[#1C1917] hover:text-[#8C5035] transition-colors inline-flex items-center gap-1"
         >
-          <span>Read Full Methodology</span>
+          <span>Methodology &amp; Abstract</span>
           <ExternalLink className="w-3.5 h-3.5" />
         </Link>
 
         <div className="flex items-center gap-2">
-          {publication.pdf_url && (
-            <a
-              href={publication.pdf_url}
-              download
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-200 hover:text-white transition-colors"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>PDF</span>
-            </a>
-          )}
-
           {publication.arxiv_url && (
             <a
               href={publication.arxiv_url}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-200 transition-colors"
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium bg-[#FAF8F5] hover:bg-[#EBE5DB] text-[#1C1917] border border-[#E2DCD2] transition-colors"
             >
               <span>arXiv</span>
               <ExternalLink className="w-3 h-3" />
@@ -138,10 +154,10 @@ export default function ResearchCard({ publication }: ResearchCardProps) {
           {publication.bibtex && (
             <button
               onClick={copyBibtex}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono text-zinc-300 bg-zinc-800/60 hover:bg-zinc-800 border border-zinc-700/60 transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono text-[#57534E] bg-[#FAF8F5] hover:bg-[#EBE5DB] border border-[#E2DCD2] transition-colors"
               title="Copy BibTeX Citation"
             >
-              {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+              {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
               <span>{copied ? 'Copied' : 'BibTeX'}</span>
             </button>
           )}

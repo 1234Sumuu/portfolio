@@ -1,31 +1,36 @@
 import Link from 'next/link';
 import { getDb } from '@/lib/db';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import ResearchCard from '@/components/ResearchCard';
-import SectionHeading from '@/components/SectionHeading';
 import {
   GraduationCap,
-  Download,
+  ArrowLeft,
+  Sparkles,
   BookOpen,
   Database,
   Cpu,
   Layers,
-  Sparkles,
-  ExternalLink,
-  Eye,
+  FileText
 } from 'lucide-react';
 import { Publication } from '@/lib/types';
 
 export const revalidate = 0;
 
 export default function ResearchPage() {
-  const db = getDb();
-  const rows = db.prepare('SELECT * FROM publications ORDER BY year DESC, id ASC').all() as any[];
+  let publications: Publication[] = [];
+  try {
+    const db = getDb();
+    const rows = db.prepare('SELECT * FROM publications ORDER BY year DESC, id ASC').all() as any[];
 
-  const publications: Publication[] = rows.map((r) => ({
-    ...r,
-    featured: Boolean(r.featured),
-    key_findings: r.key_findings ? JSON.parse(r.key_findings) : [],
-  }));
+    publications = rows.map((r) => ({
+      ...r,
+      featured: Boolean(r.featured),
+      key_findings: r.key_findings ? JSON.parse(r.key_findings) : [],
+    }));
+  } catch (err) {
+    console.error('Error loading publications:', err);
+  }
 
   const researchThemes = [
     {
@@ -33,12 +38,12 @@ export default function ResearchPage() {
       desc: 'Parameter-efficient fine-tuning (QLoRA) on vision-language models for automated radiology report generation; deep learning segmentation and tissue classification in chronic wound care.',
     },
     {
-      title: 'Empirical 3D Deep Learning & Uncertainty',
-      desc: 'Benchmarking 3D CNNs (ResNet3D, MSNet3D) vs. handcrafted radiomics; uncertainty-based selective abstention raising diagnostic accuracy; evaluating Grad-CAM++ and Integrated Gradients faithfulness.',
+      title: 'Rights-by-Design & Legal AI Safety',
+      desc: 'Bilingual retrieval-augmented legal assistants; empirical audits of fluency vs. statutory evidential grounding; evaluating privacy leakages, transactional memory erasure, and cache-collision vulnerabilities (RT4RJ @ JURIX 2026).',
     },
     {
-      title: 'Rights-by-Design & Legal AI Safety',
-      desc: 'Bilingual retrieval-augmented legal assistants; empirical audits of fluency vs. statutory evidential grounding; evaluating privacy leakages, transactional memory erasure, and cache-collision vulnerabilities.',
+      title: 'Empirical 3D Deep Learning & Uncertainty',
+      desc: 'Benchmarking 3D CNNs (ResNet3D, MSNet3D) vs. handcrafted radiomics; uncertainty-based selective abstention raising diagnostic accuracy; evaluating Grad-CAM++ and Integrated Gradients faithfulness.',
     },
     {
       title: 'Resource-Aware & Energy-Efficient LLMs',
@@ -47,102 +52,115 @@ export default function ResearchPage() {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
-      {/* Header */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-        <div className="lg:col-span-8 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-            <GraduationCap className="w-3.5 h-3.5" />
-            <span>Academic Research & Scholarly Publications</span>
-          </div>
+    <div className="min-h-screen bg-[#F4EFE6] text-[#1C1917] flex flex-col font-sans selection:bg-[#1C1917] selection:text-[#F4EFE6]">
+      {/* Common Sticky Header */}
+      <Header />
 
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Scientific Publications, Preprints & Working Manuscripts
-          </h1>
+      <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+        {/* Navigation Breadcrumb */}
+        <div className="flex items-center justify-between border-b border-[#E2DCD2] pb-4">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#78716C] hover:text-[#1C1917] transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Back to Main Portfolio</span>
+          </Link>
 
-          <p className="text-sm sm:text-base text-zinc-400 leading-relaxed">
-            My academic inquiry centers on clinical medical computer vision, parameter-efficient language model fine-tuning, uncertainty-based diagnostic abstention, and safe retrieval-augmented generation. Each paper represents empirical experiments with open datasets, ablation studies, and reproducible methodologies.
-          </p>
+          <span className="text-xs font-mono text-[#8C5035]">
+            Scholarly Contributions
+          </span>
         </div>
 
-        {/* Academic Profiles & CV Button */}
-        <div className="lg:col-span-4 flex flex-col gap-3">
-          <div className="p-4 rounded-2xl border border-zinc-800 bg-zinc-900/40 space-y-3">
-            <div className="text-xs font-mono uppercase tracking-wider text-zinc-400 font-semibold">
-              Academic Profiles & Identifiers
+        {/* Hero Section */}
+        <div className="bento-card p-6 sm:p-10 bg-[#EBE5DB] border border-[#E2DCD2]">
+          <div className="max-w-3xl space-y-4">
+            <div className="flex items-center gap-2">
+              <span className="px-3 py-1 rounded-full bg-white border border-[#E2DCD2] text-[11px] font-semibold tracking-widest uppercase text-[#8C5035] flex items-center gap-1.5">
+                <GraduationCap className="w-3.5 h-3.5" />
+                <span>Academic Research &amp; Scholarly Publications</span>
+              </span>
+              <span className="px-3 py-1 rounded-full bg-[#1C1917] text-[#F4EFE6] text-[11px] font-mono font-medium">
+                {publications.length} Manuscripts
+              </span>
             </div>
-            <div className="flex flex-wrap gap-2 text-xs">
+
+            <h1 className="display-title text-4xl sm:text-5xl lg:text-6xl text-[#1C1917] tracking-tight leading-none">
+              SCIENTIFIC PUBLICATIONS &amp; PREPRINTS
+            </h1>
+
+            <p className="text-xs sm:text-sm text-[#57534E] leading-relaxed max-w-2xl">
+              Academic research centered on clinical medical AI, parameter-efficient language model fine-tuning (PEFT/QLoRA), uncertainty-based diagnostic abstention, and safe retrieval-augmented generation (RAG audits). Each manuscript represents empirical experiments with reproducible benchmarks.
+            </p>
+
+            <div className="pt-2 flex flex-wrap gap-2.5">
               <a
                 href="https://scholar.google.com"
                 target="_blank"
                 rel="noreferrer"
-                className="px-3 py-1.5 rounded-lg bg-zinc-950 border border-zinc-800 text-zinc-300 hover:text-emerald-400 transition-colors inline-flex items-center gap-1.5"
+                className="px-4 py-2 rounded-full bg-white border border-[#E2DCD2] text-xs font-semibold uppercase tracking-wider text-[#1C1917] hover:bg-[#1C1917] hover:text-[#F4EFE6] transition-all inline-flex items-center gap-1.5 shadow-sm"
               >
-                <GraduationCap className="w-3.5 h-3.5 text-emerald-400" />
+                <GraduationCap className="w-3.5 h-3.5 text-[#8C5035]" />
                 <span>Google Scholar</span>
               </a>
               <a
                 href="https://orcid.org"
                 target="_blank"
                 rel="noreferrer"
-                className="px-3 py-1.5 rounded-lg bg-zinc-950 border border-zinc-800 text-zinc-300 hover:text-emerald-400 transition-colors inline-flex items-center gap-1.5"
+                className="px-4 py-2 rounded-full bg-white border border-[#E2DCD2] text-xs font-semibold uppercase tracking-wider text-[#1C1917] hover:bg-[#1C1917] hover:text-[#F4EFE6] transition-all inline-flex items-center gap-1.5 shadow-sm"
               >
                 <span>ORCID Profile</span>
               </a>
             </div>
-            <div className="pt-1">
-              <a
-                href="/assets/docs/Sumaiya_Akter_CV.pdf"
-                target="_blank"
-                rel="noreferrer"
-                className="w-full px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-semibold text-xs transition-all inline-flex items-center justify-center gap-1.5"
-              >
-                <Eye className="w-3.5 h-3.5" />
-                <span>Preview Academic CV (PDF)</span>
-              </a>
-            </div>
           </div>
         </div>
-      </div>
 
-      {/* Research Pillars */}
-      <section className="space-y-6">
-        <SectionHeading
-          kicker="Research Vectors"
-          title="Active Research Programs"
-          description="Areas of ongoing scholarly investigation targeted for graduate collaboration and funded PhD research."
-        />
+        {/* Research Programs Grid */}
+        <section className="space-y-4">
+          <div className="flex items-center justify-between pb-3 border-b border-[#E2DCD2]">
+            <h2 className="display-title text-2xl text-[#1C1917]">CORE RESEARCH VECTORS</h2>
+            <span className="font-script text-lg text-[#8C827A]">Empirical Methodology</span>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {researchThemes.map((theme, idx) => (
-            <div
-              key={idx}
-              className="p-6 rounded-2xl border border-zinc-800 bg-zinc-900/30 space-y-3"
-            >
-              <div className="w-8 h-8 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 font-mono text-xs font-bold">
-                0{idx + 1}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            {researchThemes.map((theme, idx) => (
+              <div
+                key={idx}
+                className="bento-card p-5 bg-white border border-[#E2DCD2] flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-7 h-7 rounded-lg bg-[#FAF8F5] border border-[#E2DCD2] flex items-center justify-center text-[#8C5035] font-mono text-xs font-bold mb-3">
+                    0{idx + 1}
+                  </div>
+                  <h3 className="font-bold text-[#1C1917] text-sm leading-snug mb-2">{theme.title}</h3>
+                  <p className="text-xs text-[#57534E] leading-relaxed">{theme.desc}</p>
+                </div>
               </div>
-              <h3 className="font-bold text-white text-base leading-snug">{theme.title}</h3>
-              <p className="text-xs text-zinc-400 leading-relaxed">{theme.desc}</p>
+            ))}
+          </div>
+        </section>
+
+        {/* All Publications Cards */}
+        <section className="space-y-6">
+          <div className="flex items-center justify-between pb-3 border-b border-[#E2DCD2]">
+            <div>
+              <h2 className="display-title text-2xl text-[#1C1917]">PEER-REVIEWED PAPERS &amp; WORKING MANUSCRIPTS</h2>
+              <p className="text-xs text-[#78716C] uppercase tracking-wider mt-0.5">
+                Detailed methodologies, statutory corpus benchmarks, and citation BibTeX
+              </p>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
 
-      {/* All Publications Cards */}
-      <section className="space-y-6">
-        <SectionHeading
-          kicker="Published Literature"
-          title="Papers, Preprints & Registered Monograph"
-          description="Detailed overview of research contributions with quantitative evaluation metrics, dataset benchmarks, and BibTeX citations."
-        />
+          <div className="space-y-6">
+            {publications.map((pub) => (
+              <ResearchCard key={pub.id} publication={pub} />
+            ))}
+          </div>
+        </section>
+      </main>
 
-        <div className="space-y-6">
-          {publications.map((pub) => (
-            <ResearchCard key={pub.id} publication={pub} />
-          ))}
-        </div>
-      </section>
+      {/* Common Footer */}
+      <Footer />
     </div>
   );
 }

@@ -799,14 +799,9 @@ export default function HomePage() {
                 </p>
               </div>
               <div className="shrink-0">
-                <a
-                  href="/assets/docs/Automated_Lung_Cancer_Detection_Paper.pdf"
-                  target="_blank"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#1C1917] text-xs font-semibold uppercase tracking-wider text-[#1C1917] hover:bg-[#1C1917] hover:text-[#F4EFE6] transition-all"
-                >
-                  <Download className="w-3.5 h-3.5" />
-                  <span>View Paper</span>
-                </a>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-900 border border-emerald-200 text-xs font-mono font-medium">
+                  MDPI Bioengineering
+                </span>
               </div>
             </div>
 
@@ -830,14 +825,36 @@ export default function HomePage() {
                 </p>
               </div>
               <div className="shrink-0">
-                <a
-                  href="/assets/docs/Automated_Lung_Cancer_Detection_Paper.pdf"
-                  target="_blank"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#1C1917] text-xs font-semibold uppercase tracking-wider text-[#1C1917] hover:bg-[#1C1917] hover:text-[#F4EFE6] transition-all"
-                >
-                  <Download className="w-3.5 h-3.5" />
-                  <span>Manuscript</span>
-                </a>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-blue-50 text-blue-900 border border-blue-200 text-xs font-mono font-medium">
+                  3D Deep Learning
+                </span>
+              </div>
+            </div>
+
+            {/* Paper 3: Legal AI (Under Review at RT4RJ) */}
+            <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-[#E2DCD2] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div className="space-y-1.5 max-w-3xl">
+                <div className="flex items-center gap-2">
+                  <span className="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-300 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-600 animate-pulse"></span>
+                    Under Review • Submitted to RT4RJ @ JURIX 2026
+                  </span>
+                  <span className="text-xs text-[#8C827A]">2026</span>
+                </div>
+                <h3 className="text-base font-bold text-[#1C1917]">
+                  From Statute to Citizen: A Rights-by-Design Audit of a Bilingual Retrieval-Augmented Legal Assistant for Bangladesh
+                </h3>
+                <p className="text-xs text-[#57534E] leading-relaxed">
+                  Comprehensive safety, privacy, and evidential grounding audit of LegalSupportAI (bilingual Bengali/Banglish/English RAG assistant spanning 1,200+ codified acts in The Bangladesh Code). Evaluates citizen query processing, intent gating, tiered statutory retrieval, user privacy shielding, phantom grounding mitigation, and cache-collision resilience.
+                </p>
+                <p className="text-[11px] text-[#78716C]">
+                  <strong>Authors:</strong> Sumaiya Akter, et al. • <strong>Venue:</strong> Submitted to RT4RJ: Regulatory Technology for Rights &amp; Justice (Workshop @ JURIX 2026, Toulouse, France)
+                </p>
+              </div>
+              <div className="shrink-0">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-amber-50 text-amber-900 border border-amber-300 text-xs font-mono font-semibold">
+                  Under Review @ RT4RJ
+                </span>
               </div>
             </div>
 
