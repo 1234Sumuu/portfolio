@@ -11,6 +11,7 @@ import {
   Layers,
   Sparkles,
   ExternalLink,
+  Eye,
 } from 'lucide-react';
 import { Publication } from '@/lib/types';
 
@@ -92,11 +93,12 @@ export default function ResearchPage() {
             <div className="pt-1">
               <a
                 href="/assets/docs/Sumaiya_Akter_CV.pdf"
-                download
+                target="_blank"
+                rel="noreferrer"
                 className="w-full px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-semibold text-xs transition-all inline-flex items-center justify-center gap-1.5"
               >
-                <Download className="w-3.5 h-3.5" />
-                <span>Download Academic CV (PDF)</span>
+                <Eye className="w-3.5 h-3.5" />
+                <span>Preview Academic CV (PDF)</span>
               </a>
             </div>
           </div>

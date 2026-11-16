@@ -12,6 +12,7 @@ import {
   ShieldCheck,
   Clock,
   Sparkles,
+  Eye,
 } from 'lucide-react';
 
 export default function ContactPage() {
@@ -147,11 +148,12 @@ export default function ContactPage() {
             </p>
             <a
               href="/assets/docs/Sumaiya_Akter_CV.pdf"
-              download
+              target="_blank"
+              rel="noreferrer"
               className="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-semibold text-xs transition-all inline-flex items-center justify-center gap-2"
             >
-              <span>Download PDF Resume</span>
-              <Download className="w-3.5 h-3.5" />
+              <Eye className="w-4 h-4" />
+              <span>Preview Official CV (PDF)</span>
             </a>
           </div>
         </div>

@@ -93,10 +93,11 @@ export default function AboutPage() {
             </Link>
             <a
               href="/assets/docs/Sumaiya_Akter_CV.pdf"
-              download
+              target="_blank"
+              rel="noreferrer"
               className="px-6 py-2.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-200 text-xs font-semibold transition-all inline-flex items-center gap-1.5"
             >
-              <span>Download Complete CV (PDF)</span>
+              <span>Preview Official CV (PDF)</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           </div>

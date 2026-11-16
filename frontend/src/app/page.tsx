@@ -28,10 +28,13 @@ import {
   Calendar,
   Building,
   Sparkles,
+  Eye,
 } from 'lucide-react';
+import ResumeModal from '@/components/ResumeModal';
 
 export default function HomePage() {
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const [showResumeModal, setShowResumeModal] = useState(false);
   const [inquiryForm, setInquiryForm] = useState({
     name: '',
     email: '',
@@ -151,13 +154,13 @@ export default function HomePage() {
                   >
                     Explore Systems
                   </a>
-                  <a
-                    href="/assets/docs/Sumaiya_Akter_CV.pdf"
-                    download="Sumaiya_Akter_CV.pdf"
-                    className="px-5 py-2.5 rounded-full border border-[#1C1917] text-[#1C1917] text-xs uppercase font-medium tracking-wider hover:bg-[#1C1917] hover:text-[#F4EFE6] transition-all"
+                  <button
+                    onClick={() => setShowResumeModal(true)}
+                    className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full border border-[#1C1917] text-[#1C1917] text-xs uppercase font-medium tracking-wider hover:bg-[#1C1917] hover:text-[#F4EFE6] transition-all"
                   >
-                    Download CV
-                  </a>
+                    <Eye className="w-3.5 h-3.5" />
+                    <span>Preview CV</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -214,14 +217,13 @@ export default function HomePage() {
                       {copiedEmail ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
                       <span>{copiedEmail ? 'Copied Email' : 'sumaiya205.akter@gmail.com'}</span>
                     </button>
-                    <a
-                      href="/assets/docs/Sumaiya_Akter_CV.pdf"
-                      download="Sumaiya_Akter_CV.pdf"
+                    <button
+                      onClick={() => setShowResumeModal(true)}
                       className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#1C1917] text-[#F4EFE6] text-xs font-medium tracking-wider uppercase hover:bg-[#292524] transition-all shadow-sm"
                     >
-                      <Download className="w-3.5 h-3.5" />
-                      <span>Download CV</span>
-                    </a>
+                      <Eye className="w-3.5 h-3.5" />
+                      <span>Preview CV</span>
+                    </button>
                   </div>
                 </div>
 
@@ -1064,14 +1066,13 @@ export default function HomePage() {
               </div>
 
               <div className="pt-2 flex items-center gap-4">
-                <a
-                  href="/assets/docs/Sumaiya_Akter_CV.pdf"
-                  download="Sumaiya_Akter_CV.pdf"
+                <button
+                  onClick={() => setShowResumeModal(true)}
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-[#181614] text-xs uppercase font-bold tracking-wider hover:bg-stone-200 transition-colors shadow-lg"
                 >
-                  <Download className="w-4 h-4" />
-                  <span>Download Full CV</span>
-                </a>
+                  <Eye className="w-4 h-4" />
+                  <span>Preview Full CV</span>
+                </button>
               </div>
             </div>
 
@@ -1218,6 +1219,12 @@ export default function HomePage() {
         </div>
 
       </main>
+
+      {/* Resume Preview Modal */}
+      <ResumeModal
+        isOpen={showResumeModal}
+        onClose={() => setShowResumeModal(false)}
+      />
     </div>
   );
 }

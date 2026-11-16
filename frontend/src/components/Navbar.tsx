@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X, Download, ArrowUpRight } from 'lucide-react';
+import { Menu, X, Eye, FileText } from 'lucide-react';
+import ResumeModal from './ResumeModal';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showResumeModal, setShowResumeModal] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,16 +61,15 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Right Action: Download CV */}
+          {/* Right Action: Preview CV */}
           <div className="hidden sm:flex items-center gap-3">
-            <a
-              href="/assets/docs/Sumaiya_Akter_CV.pdf"
-              download="Sumaiya_Akter_CV.pdf"
+            <button
+              onClick={() => setShowResumeModal(true)}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#1C1917] text-[#F4EFE6] text-xs font-medium tracking-wider uppercase hover:bg-[#292524] transition-all shadow-sm active:scale-95"
             >
-              <Download className="w-3.5 h-3.5" />
-              <span>Resume</span>
-            </a>
+              <Eye className="w-3.5 h-3.5" />
+              <span>Preview CV</span>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -95,18 +96,26 @@ export default function Navbar() {
               </a>
             ))}
             <div className="pt-2">
-              <a
-                href="/assets/docs/Sumaiya_Akter_CV.pdf"
-                download="Sumaiya_Akter_CV.pdf"
+              <button
+                onClick={() => {
+                  setShowResumeModal(true);
+                  setIsOpen(false);
+                }}
                 className="inline-flex w-full justify-center items-center gap-2 px-4 py-2.5 rounded-full bg-[#1C1917] text-[#F4EFE6] text-xs font-medium tracking-wider uppercase"
               >
-                <Download className="w-4 h-4" />
-                <span>Download Official CV</span>
-              </a>
+                <Eye className="w-4 h-4" />
+                <span>Preview Official CV</span>
+              </button>
             </div>
           </div>
         )}
       </div>
+
+      {/* Resume Preview Modal */}
+      <ResumeModal
+        isOpen={showResumeModal}
+        onClose={() => setShowResumeModal(false)}
+      />
     </header>
   );
 }
