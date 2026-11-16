@@ -1,18 +1,43 @@
 {
-  "name": "sumaiya-portfolio-monorepo",
+  "name": "sumaiya-portfolio",
   "version": "1.0.0",
   "private": true,
-  "description": "Portfolio of Sumaiya Akter - AI Engineer, Software Engineer & Researcher",
+  "description": "Portfolio of Sumaiya Akter - Senior AI Engineer & Researcher",
   "scripts": {
     "dev": "npm --prefix frontend run dev",
     "dev:frontend": "npm --prefix frontend run dev",
     "dev:backend": "cd backend && .venv/bin/uvicorn app.main:app --reload --port 8063",
+    "build": "cd frontend && npm install && npm run build && cd .. && rm -rf .next public && cp -r frontend/.next .next && cp -r frontend/public public",
     "build:frontend": "npm --prefix frontend run build",
     "seed:backend": "cd backend && .venv/bin/python scripts/seed.py",
     "seed:frontend": "npm --prefix frontend run db:seed",
+    "start": "npm --prefix frontend run start",
     "start:frontend": "npm --prefix frontend run start",
     "start:backend": "cd backend && .venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8063",
     "docker:up": "docker compose up --build",
     "docker:down": "docker compose down"
+  },
+  "dependencies": {
+    "next": "^14.2.18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "better-sqlite3": "^11.5.0",
+    "bcryptjs": "^2.4.3",
+    "clsx": "^2.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.460.0",
+    "tailwind-merge": "^2.5.4"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/better-sqlite3": "^7.6.11",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/node": "^20.17.6",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.6.3"
   }
 }
