@@ -87,14 +87,13 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#F4EFE6] text-[#1C1917] flex flex-col justify-between">
       {/* ========================================================= */}
-      {/* TOP HEADER / HERO (Editorial Magazine Aesthetic) */}
+      {/* STICKY HEADER NAVIGATION BAR */}
       {/* ========================================================= */}
-      <section className="pt-6 sm:pt-8 pb-12 px-4 sm:px-6 lg:px-8 border-b border-[#E2DCD2]">
-        <div className="max-w-6xl mx-auto">
-          {/* Top category label & social icons row */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#E2DCD2]/70 text-xs uppercase tracking-widest text-[#78716C]">
+      <header className="sticky top-0 z-50 w-full bg-[#F4EFE6]/90 backdrop-blur-md border-b border-[#E2DCD2]/80 shadow-[0_2px_12px_rgba(28,25,23,0.03)] transition-all">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between py-3 sm:py-3.5 gap-4">
             {/* Scrollable Navigation Tabs */}
-            <nav className="flex items-center gap-5 sm:gap-7 overflow-x-auto no-scrollbar py-1 scroll-smooth font-semibold text-[#57534E]">
+            <nav className="flex items-center gap-5 sm:gap-7 overflow-x-auto no-scrollbar py-1 scroll-smooth font-semibold text-xs uppercase tracking-widest text-[#57534E]">
               <a
                 href="#projects"
                 className="hover:text-[#1C1917] transition-colors whitespace-nowrap py-1 border-b border-transparent hover:border-[#1C1917]"
@@ -139,12 +138,13 @@ export default function HomePage() {
               </a>
             </nav>
 
-            <div className="flex items-center gap-4 self-end sm:self-auto shrink-0">
+            {/* Social Icons */}
+            <div className="flex items-center gap-3.5 shrink-0">
               <a
                 href="https://github.com/1234Sumuu"
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-[#1C1917] transition-colors"
+                className="text-[#78716C] hover:text-[#1C1917] transition-colors"
                 aria-label="GitHub"
                 title="GitHub"
               >
@@ -154,7 +154,7 @@ export default function HomePage() {
                 href="https://linkedin.com/in/sumaiya-akter"
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-[#1C1917] transition-colors"
+                className="text-[#78716C] hover:text-[#1C1917] transition-colors"
                 aria-label="LinkedIn"
                 title="LinkedIn"
               >
@@ -164,7 +164,7 @@ export default function HomePage() {
                 href="https://scholar.google.com"
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-[#1C1917] transition-colors"
+                className="text-[#78716C] hover:text-[#1C1917] transition-colors"
                 aria-label="Google Scholar"
                 title="Google Scholar"
               >
@@ -172,7 +172,7 @@ export default function HomePage() {
               </a>
               <a
                 href="mailto:sumaiya205.akter@gmail.com"
-                className="hover:text-[#1C1917] transition-colors"
+                className="text-[#78716C] hover:text-[#1C1917] transition-colors"
                 aria-label="Email"
                 title="Email"
               >
@@ -180,9 +180,16 @@ export default function HomePage() {
               </a>
             </div>
           </div>
+        </div>
+      </header>
 
+      {/* ========================================================= */}
+      {/* HERO SECTION (Editorial Magazine Aesthetic) */}
+      {/* ========================================================= */}
+      <section className="pt-8 sm:pt-12 pb-12 px-4 sm:px-6 lg:px-8 border-b border-[#E2DCD2]">
+        <div className="max-w-6xl mx-auto">
           {/* Hero Headline & Portrait Banner */}
-          <div className="pt-10 pb-6 relative">
+          <div className="pt-2 pb-6 relative">
             <div className="text-center relative">
               <span className="font-script text-4xl sm:text-5xl md:text-6xl text-[#8C5035] block -mb-4 sm:-mb-6 z-10 relative">
                 Sumaiya&apos;s
@@ -299,7 +306,7 @@ export default function HomePage() {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 space-y-8">
 
         {/* ROW 1: WHO AM I & QUALIFICATIONS */}
-        <div id="about" className="grid grid-cols-1 lg:grid-cols-12 gap-6 scroll-mt-8">
+        <div id="about" className="grid grid-cols-1 lg:grid-cols-12 gap-6 scroll-mt-20">
           {/* WHO AM I CARD */}
           <div className="lg:col-span-6 bento-card p-6 sm:p-8 flex flex-col justify-between">
             <div>
@@ -346,7 +353,7 @@ export default function HomePage() {
           </div>
 
           {/* QUALIFICATIONS / CORE TECH CARD */}
-          <div id="skills" className="lg:col-span-6 bento-card p-6 sm:p-8 flex flex-col justify-between scroll-mt-8">
+          <div id="skills" className="lg:col-span-6 bento-card p-6 sm:p-8 flex flex-col justify-between scroll-mt-20">
             <div>
               <div className="flex items-center justify-between pb-4 border-b border-[#E2DCD2]">
                 <h2 className="display-title text-3xl text-[#1C1917]">QUALIFICATIONS</h2>
@@ -430,7 +437,7 @@ export default function HomePage() {
         </div>
 
         {/* ROW 2: WORK EXPERIENCE (Full Width Bento Card) */}
-        <div id="experience" className="bento-card p-6 sm:p-8 scroll-mt-8">
+        <div id="experience" className="bento-card p-6 sm:p-8 scroll-mt-20">
           <div className="flex items-center justify-between pb-4 border-b border-[#E2DCD2]">
             <div>
               <h2 className="display-title text-3xl text-[#1C1917]">WORK EXPERIENCE</h2>
@@ -553,7 +560,7 @@ export default function HomePage() {
         </div>
 
         {/* ROW 3: SELECTED PRODUCTION PROJECTS (MY WORK INCLUDES) */}
-        <div id="projects" className="bento-card p-6 sm:p-8 scroll-mt-8">
+        <div id="projects" className="bento-card p-6 sm:p-8 scroll-mt-20">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 border-b border-[#E2DCD2] gap-2">
             <div>
               <h2 className="display-title text-3xl text-[#1C1917]">SELECTED PRODUCTION PROJECTS</h2>
@@ -814,7 +821,7 @@ export default function HomePage() {
         </div>
 
         {/* ROW 5: RESEARCH & PUBLICATIONS */}
-        <div id="research" className="bento-card p-6 sm:p-8 scroll-mt-8">
+        <div id="research" className="bento-card p-6 sm:p-8 scroll-mt-20">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-4 border-b border-[#E2DCD2] gap-2">
             <div>
               <h2 className="display-title text-3xl text-[#1C1917]">RESEARCH &amp; PUBLICATIONS</h2>
@@ -952,7 +959,7 @@ export default function HomePage() {
         </div>
 
         {/* ROW 6: EDUCATION, AWARDS & MARTIAL ARTS HONORS */}
-        <div id="awards" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 scroll-mt-8">
+        <div id="awards" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 scroll-mt-20">
           {/* Card 1: Education */}
           <div className="bento-card p-6 flex flex-col justify-between">
             <div>
@@ -1046,7 +1053,7 @@ export default function HomePage() {
         </div>
 
         {/* ROW 7: INVERTED DARK BENTO CARD (LET'S CONNECT like reference image) */}
-        <div id="contact" className="bento-card-dark p-8 sm:p-12 relative overflow-hidden scroll-mt-8">
+        <div id="contact" className="bento-card-dark p-8 sm:p-12 relative overflow-hidden scroll-mt-20">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             {/* Left info column */}
             <div className="lg:col-span-6 space-y-6">
