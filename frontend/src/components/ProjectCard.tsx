@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { ExternalLink, Github, ArrowRight, FileText, CheckCircle2 } from 'lucide-react';
 import { Project, ProjectStatus } from '@/lib/types';
 

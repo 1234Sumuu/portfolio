@@ -2,6 +2,9 @@ import os
 from typing import List
 from pydantic_settings import BaseSettings
 
+BACKEND_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+DEFAULT_DB_PATH = os.path.join(BACKEND_DIR, "data", "portfolio.db")
+
 class Settings(BaseSettings):
     PROJECT_NAME: str = "Sumaiya Akter — AI Engineering & Research Portfolio API"
     VERSION: str = "1.0.0"
@@ -10,7 +13,7 @@ class Settings(BaseSettings):
     HOST: str = os.getenv("HOST", "0.0.0.0")
     
     # Database
-    DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite:///./data/portfolio.db")
+    DATABASE_URL: str = os.getenv("DATABASE_URL", f"sqlite:///{DEFAULT_DB_PATH}")
     
     # Security
     JWT_SECRET: str = os.getenv("JWT_SECRET", "super_secure_jwt_secret_sumaiya_portfolio_2026_xyz987")

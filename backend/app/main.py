@@ -1,5 +1,6 @@
 import os
-from fastapi import FastAPI
+from urllib.parse import unquote
+from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, FileResponse
@@ -42,6 +43,28 @@ except Exception as e:
 
 # Frontend static assets (pre-rendered Next.js pages, CSS/JS chunks & media)
 STATIC_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "static")
+
+@app.get("/_next/image")
+def next_image_proxy(url: str = ""):
+    if not url:
+        return Response(status_code=400)
+    clean_url = unquote(url).lstrip("/")
+    target = os.path.join(STATIC_DIR, clean_url)
+    if os.path.exists(target) and os.path.isfile(target):
+        return FileResponse(target)
+    alt = os.path.join(STATIC_DIR, "assets", clean_url)
+    if os.path.exists(alt) and os.path.isfile(alt):
+        return FileResponse(alt)
+    return Response(status_code=404)
+
+@app.get("/assets/{file_path:path}")
+def serve_assets(file_path: str):
+    clean_path = unquote(file_path).lstrip("/")
+    target = os.path.join(STATIC_DIR, "assets", clean_path)
+    if os.path.exists(target) and os.path.isfile(target):
+        return FileResponse(target)
+    return Response(status_code=404)
+
 if os.path.exists(STATIC_DIR):
     next_static = os.path.join(STATIC_DIR, "_next")
     if os.path.exists(next_static):

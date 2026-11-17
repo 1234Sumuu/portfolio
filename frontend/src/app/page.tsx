@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import {
   Github,
   Linkedin,
@@ -194,12 +193,11 @@ export default function HomePage() {
                 {/* Smaller Picture Column (4 cols) */}
                 <div className="md:col-span-4 p-4 md:p-6 md:pl-0 flex items-center justify-center">
                   <div className="relative h-72 sm:h-80 md:h-[380px] w-full max-w-[280px] md:max-w-none rounded-2xl overflow-hidden border border-[#E2DCD2] bg-[#E5DFD4] shadow-sm">
-                    <Image
+                    <img
                       src="/assets/images/sumaiya-portrait.jpg"
                       alt="Sumaiya Akter - Software Engineer & AI Researcher"
-                      fill
-                      className="object-cover object-top"
-                      priority
+                      className="w-full h-full object-cover object-top"
+                      loading="eager"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1C1917]/20 via-transparent to-transparent"></div>
                   </div>
@@ -241,11 +239,11 @@ export default function HomePage() {
                 <div className="sm:col-span-5 flex flex-col items-center">
                   <div className="polaroid-frame transform rotate-1 hover:rotate-0 transition-transform duration-300 w-full max-w-[190px]">
                     <div className="relative aspect-square w-full rounded overflow-hidden bg-stone-100">
-                      <Image
+                      <img
                         src="/assets/images/sumaiya-portrait.jpg"
                         alt="Sumaiya Akter Polaroid"
-                        fill
-                        className="object-cover object-top"
+                        className="w-full h-full object-cover object-top"
+                        loading="lazy"
                       />
                     </div>
                     <p className="font-script text-center text-sm text-[#8C5035] mt-2 leading-tight">
@@ -484,11 +482,11 @@ export default function HomePage() {
             <div className="bento-card p-4 sm:p-5 flex flex-col justify-between bg-white border border-[#E2DCD2]">
               <div>
                 <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-[#E2DCD2] mb-4 bg-stone-100">
-                  <Image
+                  <img
                     src="/assets/images/doctorj-hero.png"
                     alt="Doctor J AI Healthcare Platform"
-                    fill
-                    className="object-cover"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                   <div className="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-emerald-600 text-white text-[10px] font-bold tracking-wider uppercase">
                     Live in Production
@@ -522,11 +520,11 @@ export default function HomePage() {
             <div className="bento-card p-4 sm:p-5 flex flex-col justify-between bg-white border border-[#E2DCD2]">
               <div>
                 <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-[#E2DCD2] mb-4 bg-stone-100">
-                  <Image
+                  <img
                     src="/assets/images/agrogpt-hero.png"
                     alt="AgroGPT Platform"
-                    fill
-                    className="object-cover"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                   <div className="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-emerald-600 text-white text-[10px] font-bold tracking-wider uppercase">
                     Live in Production
@@ -552,11 +550,11 @@ export default function HomePage() {
             <div className="bento-card p-4 sm:p-5 flex flex-col justify-between bg-white border border-[#E2DCD2]">
               <div>
                 <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-[#E2DCD2] mb-4 bg-stone-100">
-                  <Image
+                  <img
                     src="/assets/images/snap-and-get.png"
                     alt="Snap & Get Visual Product Discovery"
-                    fill
-                    className="object-cover"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                   <div className="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-blue-600 text-white text-[10px] font-bold tracking-wider uppercase">
                     Mobile &amp; Backend
@@ -582,11 +580,11 @@ export default function HomePage() {
             <div className="bento-card p-4 sm:p-5 flex flex-col justify-between bg-white border border-[#E2DCD2]">
               <div>
                 <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-[#E2DCD2] mb-4 bg-stone-100">
-                  <Image
+                  <img
                     src="/assets/images/rxpert-fig1_pipeline.png"
                     alt="Rxpert Pharmaceutical Intelligence"
-                    fill
-                    className="object-cover"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                   <div className="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-purple-600 text-white text-[10px] font-bold tracking-wider uppercase">
                     Enterprise
@@ -611,11 +609,11 @@ export default function HomePage() {
             <div className="bento-card p-4 sm:p-5 flex flex-col justify-between bg-white border border-[#E2DCD2]">
               <div>
                 <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-[#E2DCD2] mb-4 bg-stone-100">
-                  <Image
+                  <img
                     src="/assets/images/ra-script-hero.png"
                     alt="RA Script Pharmaceutical AI"
-                    fill
-                    className="object-cover"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                   <div className="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-amber-600 text-white text-[10px] font-bold tracking-wider uppercase">
                     Enterprise AI
@@ -640,11 +638,11 @@ export default function HomePage() {
             <div className="bento-card p-4 sm:p-5 flex flex-col justify-between bg-white border border-[#E2DCD2]">
               <div>
                 <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-[#E2DCD2] mb-4 bg-stone-100">
-                  <Image
+                  <img
                     src="/assets/images/insta-hygiene-hero.png"
                     alt="Insta Hygiene Platform"
-                    fill
-                    className="object-cover"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                   <div className="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-stone-700 text-white text-[10px] font-bold tracking-wider uppercase">
                     Production Systems
@@ -753,11 +751,11 @@ export default function HomePage() {
                   <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
                 </div>
                 <div className="relative aspect-[4/3] w-full">
-                  <Image
+                  <img
                     src="/assets/images/doctorj-hero.png"
                     alt="Doctor J Interface"
-                    fill
-                    className="object-cover"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
               </div>

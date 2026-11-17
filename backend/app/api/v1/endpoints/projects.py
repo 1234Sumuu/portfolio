@@ -1,3 +1,4 @@
+import os
 import json
 from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, Query, status
@@ -65,7 +66,26 @@ def get_projects(
             )
         )
     
-    projects = query.order_index_by(Project.order_index.asc(), Project.id.asc()) if hasattr(query, 'order_index_by') else query.order_by(Project.order_index.asc(), Project.id.asc()).all()
+    projects = query.order_by(Project.order_index.asc(), Project.id.asc()).all()
+    if not projects:
+        fallback_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))), "data", "default_projects.json")
+        if os.path.exists(fallback_path):
+            try:
+                with open(fallback_path, "r") as f:
+                    all_data = json.load(f)
+                filtered = all_data
+                if category and category != "All":
+                    filtered = [p for p in filtered if p.get("category") == category]
+                if status and status != "All":
+                    filtered = [p for p in filtered if p.get("status") == status]
+                if featured is not None:
+                    filtered = [p for p in filtered if bool(p.get("featured")) == featured]
+                if search:
+                    s = search.lower()
+                    filtered = [p for p in filtered if s in p.get("title", "").lower() or s in p.get("summary", "").lower() or any(s in t.lower() for t in p.get("technologies", []))]
+                return filtered
+            except Exception:
+                pass
     return [format_project(p) for p in projects]
 
 @router.get("/{slug_or_id}", response_model=ProjectResponse)
@@ -76,6 +96,16 @@ def get_project(slug_or_id: str, db: Session = Depends(get_db)):
         p = db.query(Project).filter(Project.slug == slug_or_id).first()
     
     if not p:
+        fallback_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))), "data", "default_projects.json")
+        if os.path.exists(fallback_path):
+            try:
+                with open(fallback_path, "r") as f:
+                    all_data = json.load(f)
+                for item in all_data:
+                    if str(item.get("id")) == slug_or_id or item.get("slug") == slug_or_id:
+                        return item
+            except Exception:
+                pass
         raise HTTPException(status_code=404, detail="Project not found")
     return format_project(p)
 

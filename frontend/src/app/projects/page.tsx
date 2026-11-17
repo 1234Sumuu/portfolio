@@ -7,12 +7,13 @@ import Footer from '@/components/Footer';
 import ProjectCard from '@/components/ProjectCard';
 import { Search, ChevronLeft, ChevronRight, Layers, ArrowLeft, Filter, Sparkles, FolderKanban } from 'lucide-react';
 import { Project } from '@/lib/types';
+import { ALL_PROJECTS } from '@/lib/projectsData';
 
 const ITEMS_PER_PAGE = 6;
 
 export default function ProjectsPage() {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [projects, setProjects] = useState<Project[]>(ALL_PROJECTS);
+  const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
@@ -31,12 +32,12 @@ export default function ProjectsPage() {
     fetch('/api/projects')
       .then((res) => res.json())
       .then((data) => {
-        if (data.projects && Array.isArray(data.projects)) {
-          setProjects(data.projects);
+        const list = Array.isArray(data) ? data : (data?.projects || []);
+        if (list.length > 0) {
+          setProjects(list);
         }
       })
-      .catch((err) => console.error('Error fetching projects:', err))
-      .finally(() => setLoading(false));
+      .catch((err) => console.log('Using pre-rendered project data:', err));
   }, []);
 
   // Filter projects by category and search
