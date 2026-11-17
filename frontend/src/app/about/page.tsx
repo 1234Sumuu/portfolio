@@ -108,7 +108,7 @@ export default function AboutPage() {
           <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-5 space-y-5 backdrop-blur-sm">
             <div className="aspect-square rounded-xl overflow-hidden bg-zinc-950 border border-zinc-800">
               <img
-                src="/assets/images/sumaiya-profile.png"
+                src="/assets/images/sumaiya-profile.webp"
                 alt="Sumaiya Akter"
                 className="w-full h-full object-cover"
               />

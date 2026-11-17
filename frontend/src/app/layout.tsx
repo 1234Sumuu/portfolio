@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: 'Sumaiya Akter Portfolio',
     images: [
       {
-        url: '/assets/images/sumaiya-portrait.jpg',
+        url: '/assets/images/sumaiya-portrait.webp',
         width: 935,
         height: 1024,
         alt: 'Sumaiya Akter',
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Sumaiya Akter | AI Engineer & Researcher',
     description: 'Production AI systems, multimodal computer vision, and academic research publications.',
-    images: ['/assets/images/sumaiya-portrait.jpg'],
+    images: ['/assets/images/sumaiya-portrait.webp'],
   },
   robots: {
     index: true,

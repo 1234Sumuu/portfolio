@@ -34,7 +34,7 @@ export default function AdminVideosPage() {
       category: 'AI Walkthrough',
       description: '',
       video_url: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      thumbnail_url: '/assets/images/doctorj-hero.png',
+      thumbnail_url: '/assets/images/doctorj-hero.webp',
       duration: '15:00',
       topics: ['AI', 'System Architecture'],
       related_project_slug: 'doctor-j',

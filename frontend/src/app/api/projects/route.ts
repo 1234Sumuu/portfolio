@@ -96,7 +96,7 @@ export async function POST(req: Request) {
       role || 'Software Engineer',
       featured ? 1 : 0,
       order_index || 0,
-      thumbnail || '/assets/images/doctorj-hero.png',
+      thumbnail || '/assets/images/doctorj-hero.webp',
       JSON.stringify(gallery || []),
       summary || '',
       problem_statement || '',

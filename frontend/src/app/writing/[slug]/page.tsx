@@ -94,7 +94,7 @@ export default async function ArticleDetailPage({
       <div className="p-8 rounded-2xl border border-zinc-800 bg-zinc-900/40 mt-12 flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-4">
           <img
-            src="/assets/images/sumaiya-profile.png"
+            src="/assets/images/sumaiya-profile.webp"
             alt="Sumaiya Akter"
             className="w-14 h-14 rounded-full object-cover border border-zinc-700"
           />

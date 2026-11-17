@@ -1,4 +1,5 @@
 import os
+import re
 from urllib.parse import unquote
 from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
@@ -51,10 +52,17 @@ def next_image_proxy(url: str = ""):
     clean_url = unquote(url).lstrip("/")
     target = os.path.join(STATIC_DIR, clean_url)
     if os.path.exists(target) and os.path.isfile(target):
-        return FileResponse(target)
+        return FileResponse(target, headers={"Cache-Control": "public, max-age=31536000, immutable"})
     alt = os.path.join(STATIC_DIR, "assets", clean_url)
     if os.path.exists(alt) and os.path.isfile(alt):
-        return FileResponse(alt)
+        return FileResponse(alt, headers={"Cache-Control": "public, max-age=31536000, immutable"})
+    # Automatic WebP fallback for legacy requests
+    webp_target = re.sub(r'\.(png|jpg|jpeg)$', '.webp', target)
+    if os.path.exists(webp_target) and os.path.isfile(webp_target):
+        return FileResponse(webp_target, media_type="image/webp", headers={"Cache-Control": "public, max-age=31536000, immutable"})
+    webp_alt = re.sub(r'\.(png|jpg|jpeg)$', '.webp', alt)
+    if os.path.exists(webp_alt) and os.path.isfile(webp_alt):
+        return FileResponse(webp_alt, media_type="image/webp", headers={"Cache-Control": "public, max-age=31536000, immutable"})
     return Response(status_code=404)
 
 @app.get("/assets/{file_path:path}")
@@ -62,7 +70,11 @@ def serve_assets(file_path: str):
     clean_path = unquote(file_path).lstrip("/")
     target = os.path.join(STATIC_DIR, "assets", clean_path)
     if os.path.exists(target) and os.path.isfile(target):
-        return FileResponse(target)
+        return FileResponse(target, headers={"Cache-Control": "public, max-age=31536000, immutable"})
+    # Automatic WebP fallback
+    webp_target = re.sub(r'\.(png|jpg|jpeg)$', '.webp', target)
+    if os.path.exists(webp_target) and os.path.isfile(webp_target):
+        return FileResponse(webp_target, media_type="image/webp", headers={"Cache-Control": "public, max-age=31536000, immutable"})
     return Response(status_code=404)
 
 if os.path.exists(STATIC_DIR):

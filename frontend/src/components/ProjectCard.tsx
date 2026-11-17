@@ -47,7 +47,7 @@ export function getStatusBadge(status: ProjectStatus | string) {
 }
 
 export default function ProjectCard({ project, featuredLayout = false }: ProjectCardProps) {
-  const fallbackThumb = '/assets/images/doctorj-hero.png';
+  const fallbackThumb = '/assets/images/doctorj-hero.webp';
   const thumbUrl = project.thumbnail || fallbackThumb;
 
   return (

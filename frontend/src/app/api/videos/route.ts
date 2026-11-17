@@ -40,7 +40,7 @@ export async function POST(req: Request) {
 
     const result = stmt.run(
       title, slug, category, description || '', video_url,
-      thumbnail_url || '/assets/images/rxpert-fig2_litreview.png',
+      thumbnail_url || '/assets/images/rxpert-fig2_litreview.webp',
       duration || '10:00', JSON.stringify(topics || []),
       related_project_slug || '', featured ? 1 : 0
     );

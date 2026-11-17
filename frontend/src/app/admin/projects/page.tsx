@@ -50,7 +50,7 @@ export default function AdminProjectsPage() {
       role: 'Software Engineer',
       featured: false,
       order_index: projects.length + 1,
-      thumbnail: '/assets/images/doctorj-hero.png',
+      thumbnail: '/assets/images/doctorj-hero.webp',
       summary: '',
       problem_statement: '',
       solution_overview: '',

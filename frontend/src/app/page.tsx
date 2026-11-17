@@ -194,7 +194,7 @@ export default function HomePage() {
                 <div className="md:col-span-4 p-4 md:p-6 md:pl-0 flex items-center justify-center">
                   <div className="relative h-72 sm:h-80 md:h-[380px] w-full max-w-[280px] md:max-w-none rounded-2xl overflow-hidden border border-[#E2DCD2] bg-[#E5DFD4] shadow-sm">
                     <img
-                      src="/assets/images/sumaiya-portrait.jpg"
+                      src="/assets/images/sumaiya-portrait.webp"
                       alt="Sumaiya Akter - Software Engineer & AI Researcher"
                       className="w-full h-full object-cover object-top"
                       loading="eager"
@@ -240,7 +240,7 @@ export default function HomePage() {
                   <div className="polaroid-frame transform rotate-1 hover:rotate-0 transition-transform duration-300 w-full max-w-[190px]">
                     <div className="relative aspect-square w-full rounded overflow-hidden bg-stone-100">
                       <img
-                        src="/assets/images/sumaiya-portrait.jpg"
+                        src="/assets/images/sumaiya-portrait.webp"
                         alt="Sumaiya Akter Polaroid"
                         className="w-full h-full object-cover object-top"
                         loading="lazy"
@@ -483,7 +483,7 @@ export default function HomePage() {
               <div>
                 <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-[#E2DCD2] mb-4 bg-stone-100">
                   <img
-                    src="/assets/images/doctorj-hero.png"
+                    src="/assets/images/doctorj-hero.webp"
                     alt="Doctor J AI Healthcare Platform"
                     className="w-full h-full object-cover"
                     loading="lazy"
@@ -521,7 +521,7 @@ export default function HomePage() {
               <div>
                 <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-[#E2DCD2] mb-4 bg-stone-100">
                   <img
-                    src="/assets/images/agrogpt-hero.png"
+                    src="/assets/images/agrogpt-hero.webp"
                     alt="AgroGPT Platform"
                     className="w-full h-full object-cover"
                     loading="lazy"
@@ -551,7 +551,7 @@ export default function HomePage() {
               <div>
                 <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-[#E2DCD2] mb-4 bg-stone-100">
                   <img
-                    src="/assets/images/snap-and-get.png"
+                    src="/assets/images/snap-and-get.webp"
                     alt="Snap & Get Visual Product Discovery"
                     className="w-full h-full object-cover"
                     loading="lazy"
@@ -581,7 +581,7 @@ export default function HomePage() {
               <div>
                 <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-[#E2DCD2] mb-4 bg-stone-100">
                   <img
-                    src="/assets/images/rxpert-fig1_pipeline.png"
+                    src="/assets/images/rxpert-fig1_pipeline.webp"
                     alt="Rxpert Pharmaceutical Intelligence"
                     className="w-full h-full object-cover"
                     loading="lazy"
@@ -610,7 +610,7 @@ export default function HomePage() {
               <div>
                 <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-[#E2DCD2] mb-4 bg-stone-100">
                   <img
-                    src="/assets/images/ra-script-hero.png"
+                    src="/assets/images/ra-script-hero.webp"
                     alt="RA Script Pharmaceutical AI"
                     className="w-full h-full object-cover"
                     loading="lazy"
@@ -639,7 +639,7 @@ export default function HomePage() {
               <div>
                 <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-[#E2DCD2] mb-4 bg-stone-100">
                   <img
-                    src="/assets/images/insta-hygiene-hero.png"
+                    src="/assets/images/insta-hygiene-hero.webp"
                     alt="Insta Hygiene Platform"
                     className="w-full h-full object-cover"
                     loading="lazy"
@@ -752,7 +752,7 @@ export default function HomePage() {
                 </div>
                 <div className="relative aspect-[4/3] w-full">
                   <img
-                    src="/assets/images/doctorj-hero.png"
+                    src="/assets/images/doctorj-hero.webp"
                     alt="Doctor J Interface"
                     className="w-full h-full object-cover"
                     loading="lazy"

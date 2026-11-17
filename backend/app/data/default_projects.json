@@ -9,10 +9,10 @@
     "role": "Lead Backend AI Engineer & Architect",
     "featured": true,
     "order_index": 1,
-    "thumbnail": "/assets/images/doctorj-hero.png",
+    "thumbnail": "/assets/images/doctorj-hero.webp",
     "gallery": [
-      "/assets/images/doctorj-hero.png",
-      "/assets/images/rxpert-fig1_pipeline.png"
+      "/assets/images/doctorj-hero.webp",
+      "/assets/images/rxpert-fig1_pipeline.webp"
     ],
     "summary": "A mission-critical clinical AI platform engineered with FastAPI, PostgreSQL, Redis, Next.js 14, and Google Gemini Vision. Capable of analyzing complex medical artifacts including X-Rays, MRIs, CT scans, and multi-page lab reports while maintaining strict patient data isolation, atomic Lua rate-limits, and a 5-key dynamic rotation manager.",
     "problem_statement": "Clinical diagnostic workflows suffer from heavy physician fatigue, delayed second-opinion turnaround, and manual data transcription overhead. General LLMs fail in medical environments due to hallucinations, lack of vision grounding on raw radiology scans, and unpredictable API latency.",
@@ -51,10 +51,10 @@
     "role": "AI Engineer & System Architect",
     "featured": true,
     "order_index": 2,
-    "thumbnail": "/assets/images/agrogpt-hero.png",
+    "thumbnail": "/assets/images/agrogpt-hero.webp",
     "gallery": [
-      "/assets/images/agrogpt-hero.png",
-      "/assets/images/agrogpt-web.png"
+      "/assets/images/agrogpt-hero.webp",
+      "/assets/images/agrogpt-web.webp"
     ],
     "summary": "A production agricultural AI platform engineered for rural farmers across Bangladesh. Delivers real-time multimodal crop disease detection, native localized Bangla voice recognition via Whisper, district-level microclimate weather alerts, and crop market pricing feeds over low-bandwidth mobile networks.",
     "problem_statement": "Over 60% of smallholder farmers suffer severe crop losses due to unaddressed fungal and bacterial leaf diseases and lack access to agricultural extension officers.",
@@ -93,9 +93,9 @@
     "role": "Computer Vision & Backend Engineer",
     "featured": true,
     "order_index": 3,
-    "thumbnail": "/assets/images/snap-and-get.png",
+    "thumbnail": "/assets/images/snap-and-get.webp",
     "gallery": [
-      "/assets/images/snap-and-get.png"
+      "/assets/images/snap-and-get.webp"
     ],
     "summary": "A production mobile and backend system enabling shoppers to photograph any retail item or garment and instantly discover matching catalog products, compare merchant pricing, and receive purchasing recommendations.",
     "problem_statement": "Traditional text-based retail search fails when users do not know the exact brand name, model, or product terminology.",
@@ -134,11 +134,11 @@
     "role": "Lead Architect & Module Lead",
     "featured": true,
     "order_index": 4,
-    "thumbnail": "/assets/images/rxpert-fig1_pipeline.png",
+    "thumbnail": "/assets/images/rxpert-fig1_pipeline.webp",
     "gallery": [
-      "/assets/images/rxpert-fig1_pipeline.png",
-      "/assets/images/rxpert-qtpp.png",
-      "/assets/images/rxpert-formulation.png"
+      "/assets/images/rxpert-fig1_pipeline.webp",
+      "/assets/images/rxpert-qtpp.webp",
+      "/assets/images/rxpert-formulation.webp"
     ],
     "summary": "An enterprise pharmaceutical R&D platform engineered to synthesize Quality Target Product Profiles (QTPP), predict Critical Quality Attributes (CQA), evaluate excipient compatibility, and extract regulatory knowledge from FDA guidances and pharmacopeias under strict ALCOA+ data integrity standards.",
     "problem_statement": "Drug formulation feasibility takes pharmaceutical scientists 3-6 months of manual literature searching, monograph cross-referencing, and formulation trial-and-error.",
@@ -177,9 +177,9 @@
     "role": "System Architect & AI Engineer",
     "featured": true,
     "order_index": 5,
-    "thumbnail": "/assets/images/rascript-hero.png",
+    "thumbnail": "/assets/images/rascript-hero.webp",
     "gallery": [
-      "/assets/images/rascript-hero.png"
+      "/assets/images/rascript-hero.webp"
     ],
     "summary": "An enterprise regulatory affairs copilot designed for pharmaceutical dossier specialists. Analyzes Common Technical Document (CTD) and electronic CTD (eCTD) modules, flags regulatory inconsistencies across sections, and generates audit-ready compliance verification reports.",
     "problem_statement": "Pharmaceutical regulatory submissions often span hundreds of complex documents where minor terminology or dosage discrepancies result in costly agency rejection cycles.",
@@ -218,9 +218,9 @@
     "role": "Lead Full-Stack & DevOps Engineer",
     "featured": true,
     "order_index": 6,
-    "thumbnail": "/assets/images/instahygiene-hero.png",
+    "thumbnail": "/assets/images/instahygiene-hero.webp",
     "gallery": [
-      "/assets/images/instahygiene-hero.png"
+      "/assets/images/instahygiene-hero.webp"
     ],
     "summary": "A production multi-vendor hygiene and sanitary supplies e-commerce platform engineered with FastAPI, Next.js, Redis, and PostgreSQL. Features real-time stock allocation, automated order fulfillment pipelines, role-based vendor dashboards, and containerized cloud deployment.",
     "problem_statement": "High concurrency during bulk procurement spikes leads to overselling, race conditions in stock reservation, and fragmented vendor payouts.",
@@ -655,9 +655,9 @@
     "role": "Full-Stack & Backend Engineer",
     "featured": false,
     "order_index": 17,
-    "thumbnail": "/assets/images/shwapno-hero.png",
+    "thumbnail": "/assets/images/shwapno-hero.webp",
     "gallery": [
-      "/assets/images/shwapno-hero.png"
+      "/assets/images/shwapno-hero.webp"
     ],
     "summary": "A quick-commerce grocery delivery system modeled for hyper-local fulfillment centers. Coordinates multi-category grocery catalogs, real-time inventory decrementing, express checkout, and rider order dispatching.",
     "problem_statement": "High item churn in fresh grocery hubs causes frequent checkout failures when items sell out during cart building.",
@@ -694,9 +694,9 @@
     "role": "AI Engineer & Frontend Developer",
     "featured": false,
     "order_index": 18,
-    "thumbnail": "/assets/images/vetdoc-hero.png",
+    "thumbnail": "/assets/images/vetdoc-hero.webp",
     "gallery": [
-      "/assets/images/vetdoc-hero.png"
+      "/assets/images/vetdoc-hero.webp"
     ],
     "summary": "An AI-powered veterinary clinical assistant designed for rural veterinarians and livestock farmers. Delivers multimodal visual pathology inspection, clinical symptom triage, differential diagnosis hints, and safe drug dosage calculators for cattle, poultry, and pets.",
     "problem_statement": "Rural agricultural communities lack access to certified veterinary doctors, leading to widespread preventable livestock mortality.",
