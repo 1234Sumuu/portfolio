@@ -2,7 +2,7 @@ import { Project } from "@/lib/types";
 
 export const ALL_PROJECTS: Project[] = [
   {
-    "id": 125,
+    "id": 98,
     "title": "Doctor J (MedGPT / MedAssist AI)",
     "slug": "doctor-j",
     "tagline": "Production AI healthcare platform with multimodal vision, streaming clinical reasoning, and IDOR compliance.",
@@ -40,11 +40,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "https://stage.doctorj.health",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "/research/llama-xr-radiology-report",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 126,
+    "id": 99,
     "title": "AgroGPT (Agro-GPT v2)",
     "slug": "agrogpt",
     "tagline": "Production agricultural AI platform featuring crop disease detection, localized Bangla voice interaction, and weather intelligence.",
@@ -82,11 +82,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 127,
+    "id": 100,
     "title": "Snap & Get",
     "slug": "snap-and-get",
     "tagline": "AI visual search and e-commerce product discovery engine with automated merchant price aggregation.",
@@ -123,11 +123,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 128,
+    "id": 101,
     "title": "Healthcare RxPERT AI (QTPP & Formulation)",
     "slug": "rxpert-pharmaceutical",
     "tagline": "Enterprise pharmaceutical intelligence platform for QTPP synthesis, formulation matching, and regulatory literature synthesis.",
@@ -166,11 +166,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 129,
+    "id": 102,
     "title": "RA Script (Pharmaceutical AI Regulatory Affairs)",
     "slug": "ra-script",
     "tagline": "AI-powered pharmaceutical regulatory affairs platform for CTD/eCTD dossier analysis, module drafting, and compliance auditing.",
@@ -207,11 +207,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 130,
+    "id": 103,
     "title": "Insta-Hygiene",
     "slug": "insta-hygiene",
     "tagline": "Multi-vendor hygiene e-commerce platform with automated inventory reconciliation and role-based access control.",
@@ -247,11 +247,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 131,
+    "id": 104,
     "title": "LabInsight (Pharmaceutical QC Laboratory & LIMS)",
     "slug": "labinsight",
     "tagline": "Comprehensive QC laboratory information management system compliant with EU GMP Annex 11 and 21 CFR Part 11.",
@@ -260,9 +260,9 @@ export const ALL_PROJECTS: Project[] = [
     "role": "Lead Architect & Full-Stack Engineer",
     "featured": false,
     "order_index": 7,
-    "thumbnail": "/assets/images/labinsight-mockup.svg",
+    "thumbnail": "/assets/images/labinsight-hero.webp",
     "gallery": [
-      "/assets/images/labinsight-mockup.svg"
+      "/assets/images/labinsight-hero.webp"
     ],
     "summary": "A compliant QC Laboratory Information Management System (LIMS) for pharmaceutical manufacturing plants. Manages sample lifecycles, out-of-specification (OOS) investigations, stability study scheduling, analytical instrument calibrations, and ALCOA+ data integrity audits.",
     "problem_statement": "Manual paper logbooks in pharmaceutical QC laboratories introduce transcription errors, risk data integrity citations during regulatory audits, and delay batch release.",
@@ -287,11 +287,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 132,
+    "id": 105,
     "title": "Career Radar (Job Radar)",
     "slug": "job-radar",
     "tagline": "Autonomous career and academic opportunity discovery crawler with AI semantic resume matching.",
@@ -300,9 +300,9 @@ export const ALL_PROJECTS: Project[] = [
     "role": "System Architect & Python Engineer",
     "featured": false,
     "order_index": 8,
-    "thumbnail": "/assets/images/jobradar-mockup.svg",
+    "thumbnail": "/assets/images/jobradar-hero.webp",
     "gallery": [
-      "/assets/images/jobradar-mockup.svg"
+      "/assets/images/jobradar-hero.webp"
     ],
     "summary": "An autonomous multi-portal career and academic opportunity intelligence platform. Periodically scrapes and aggregates openings across Bdjobs, Skilljobs, AllJobs, and university fellowship portals, categorizing opportunities using NLP and computing semantic fit against applicant profiles.",
     "problem_statement": "Job seekers and academic researchers waste hundreds of hours manually browsing fractured employment portals and filtering irrelevant openings.",
@@ -327,11 +327,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 133,
+    "id": 106,
     "title": "ACI ReportCraft",
     "slug": "aci-reportcraft",
     "tagline": "Enterprise financial reporting and AI-powered executive management commentary platform.",
@@ -340,9 +340,9 @@ export const ALL_PROJECTS: Project[] = [
     "role": "Backend & Data Engineer",
     "featured": false,
     "order_index": 9,
-    "thumbnail": "/assets/images/reportcraft-mockup.svg",
+    "thumbnail": "/assets/images/reportcraft-hero.webp",
     "gallery": [
-      "/assets/images/reportcraft-mockup.svg"
+      "/assets/images/reportcraft-hero.webp"
     ],
     "summary": "A production enterprise platform automating corporate financial reporting, variance analysis, and executive commentary generation across business conglomerates. Pulls ERP transactional ledgers, performs statistical variance calculations, and generates board-level narrative decks.",
     "problem_statement": "Finance teams spend days manually consolidating spreadsheets and writing variance commentary before monthly executive board meetings.",
@@ -367,11 +367,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 134,
+    "id": 107,
     "title": "Sales & Demand Forecasting Platform",
     "slug": "sales-demand-forecast",
     "tagline": "Enterprise AI demand prediction engine with time-series forecasting and supply chain optimization.",
@@ -380,9 +380,9 @@ export const ALL_PROJECTS: Project[] = [
     "role": "Machine Learning & Backend Engineer",
     "featured": false,
     "order_index": 10,
-    "thumbnail": "/assets/images/sales-forecast-mockup.svg",
+    "thumbnail": "/assets/images/sales-forecast-hero.webp",
     "gallery": [
-      "/assets/images/sales-forecast-mockup.svg"
+      "/assets/images/sales-forecast-hero.webp"
     ],
     "summary": "An enterprise demand forecasting system deployed for retail and manufacturing distribution networks. Predicts SKU-level future sales volumes by factoring in historical time-series trends, promotional campaigns, seasonal variations, and regional distributor purchase orders.",
     "problem_statement": "Supply chain stockouts and excess inventory write-offs cost manufacturing enterprises millions annually due to inaccurate manual sales projections.",
@@ -407,11 +407,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 135,
+    "id": 108,
     "title": "Formora (AI Application Copilot)",
     "slug": "formora",
     "tagline": "Human-in-the-loop AI copilot and Chrome extension for legitimate public online applications with zero hallucination.",
@@ -420,9 +420,9 @@ export const ALL_PROJECTS: Project[] = [
     "role": "Lead Architect & Extension Developer",
     "featured": false,
     "order_index": 11,
-    "thumbnail": "/assets/images/formora-mockup.svg",
+    "thumbnail": "/assets/images/formora-hero.webp",
     "gallery": [
-      "/assets/images/formora-mockup.svg"
+      "/assets/images/formora-hero.webp"
     ],
     "summary": "A production-grade AI platform and Manifest V3 Chrome Extension that assists applicants in completing online application portals for universities, fellowships, grants, and jobs. Extracts criteria, validates user credentials, and provides human-in-the-loop autofill with absolute zero hallucination guarantees.",
     "problem_statement": "Complex public application forms are tedious, error-prone, and often cause qualified applicants to be rejected due to minor formatting mistakes or missing documents.",
@@ -447,11 +447,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 136,
+    "id": 109,
     "title": "SmartBiz AI & Unifi Suite ERP",
     "slug": "smartbiz-ai",
     "tagline": "Multi-tenant commercial retail ERP and SaaS subscription platform with real-time POS and inventory synchronization.",
@@ -460,9 +460,9 @@ export const ALL_PROJECTS: Project[] = [
     "role": "Lead Architect & Full-Stack Engineer",
     "featured": false,
     "order_index": 12,
-    "thumbnail": "/assets/images/smartbiz-mockup.svg",
+    "thumbnail": "/assets/images/smartbiz-hero.webp",
     "gallery": [
-      "/assets/images/smartbiz-mockup.svg"
+      "/assets/images/smartbiz-hero.webp"
     ],
     "summary": "A commercial retail ERP and multi-tenant SaaS business platform built for retail chains and e-commerce enterprises. Includes lightning-fast barcode POS checkout, multi-warehouse inventory reconciliation, customer credit ledgers, automated purchase orders, and tenant-isolated analytics.",
     "problem_statement": "Retailers face fragmentation between offline store POS checkouts, online inventories, and back-office accounting ledgers.",
@@ -487,11 +487,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 137,
+    "id": 110,
     "title": "Markhub (AI Marketing Manager SaaS)",
     "slug": "markhub",
     "tagline": "Automated AI business marketing manager SaaS for multi-channel campaign generation, scheduling, and analytics.",
@@ -500,9 +500,9 @@ export const ALL_PROJECTS: Project[] = [
     "role": "System Architect & AI Engineer",
     "featured": false,
     "order_index": 13,
-    "thumbnail": "/assets/images/markhub-mockup.svg",
+    "thumbnail": "/assets/images/markhub-hero.webp",
     "gallery": [
-      "/assets/images/markhub-mockup.svg"
+      "/assets/images/markhub-hero.webp"
     ],
     "summary": "A low-cost, highly automated AI marketing manager platform built for startups and growing enterprises. Automatically analyzes brand identity, writes localized campaign copy, generates creative image prompts, and orchestrates scheduled publishing across social channels.",
     "problem_statement": "Small businesses struggle to maintain consistent social media presence and cannot afford dedicated marketing agency retainers.",
@@ -527,11 +527,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 138,
+    "id": 111,
     "title": "AI Estimator (Construction Proposal OS)",
     "slug": "ai-estimator",
     "tagline": "AI-powered construction estimation platform for architectural blueprint analysis, quantity takeoff, and cost estimation.",
@@ -540,9 +540,9 @@ export const ALL_PROJECTS: Project[] = [
     "role": "AI Engineer & Full-Stack Developer",
     "featured": false,
     "order_index": 14,
-    "thumbnail": "/assets/images/ai-estimator-mockup.svg",
+    "thumbnail": "/assets/images/ai-estimator-hero.webp",
     "gallery": [
-      "/assets/images/ai-estimator-mockup.svg"
+      "/assets/images/ai-estimator-hero.webp"
     ],
     "summary": "An intelligent construction estimating platform: handles architectural drawing intake, document OCR, AI scope analysis, automated quantity takeoff, unit pricing optimization, and client proposal generation backed by a live, editable cost database.",
     "problem_statement": "Construction estimators spend days manually measuring blueprints and calculating materials, leading to bidding delays and budget overruns.",
@@ -566,11 +566,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 139,
+    "id": 112,
     "title": "A Second Brain (Personal Knowledge & Execution OS)",
     "slug": "second-brain",
     "tagline": "Cinematic AI workspace bridging ideas, documentation, tasks, and semantic research into an interactive context layer.",
@@ -579,12 +579,12 @@ export const ALL_PROJECTS: Project[] = [
     "role": "Product Architect & Full-Stack Engineer",
     "featured": false,
     "order_index": 15,
-    "thumbnail": "/assets/images/second-brain-mockup.svg",
+    "thumbnail": "/assets/images/second-brain-hero.webp",
     "gallery": [
-      "/assets/images/second-brain-mockup.svg"
+      "/assets/images/second-brain-hero.webp"
     ],
     "summary": "A premium personal knowledge and execution operating system that connects thoughts, technical documentation, task backlogs, and semantic research memory into an interconnected graph layer with instant vector retrieval.",
-    "problem_statement": "Knowledge workers suffer from fragmented tools—scattered notes, disjointed bookmarks, and lost project context.",
+    "problem_statement": "Knowledge workers suffer from fragmented tools\u2014scattered notes, disjointed bookmarks, and lost project context.",
     "solution_overview": "Built a local-first workspace featuring markdown-based bidirectional document linking, automatic semantic indexing, and an AI chat assistant grounded in personal notes.",
     "architecture_details": "Next.js 14 frontend with dark cinematic aesthetics, FastAPI backend, SQLite/PostgreSQL vector storage, and local Markdown file sync.",
     "architecture_diagram": "flowchart TD\n  Notes[\"Markdown Technical Notes\"] --> Embed[\"Vector Embedding Engine\"]\n  Embed --> Graph[\"Bidirectional Knowledge Graph\"]\n  Graph --> Assistant[\"Context-Aware AI Assistant\"]\n  Assistant --> Execution[\"Actionable Task Execution\"]",
@@ -605,11 +605,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 140,
+    "id": 113,
     "title": "Product-Wise Market Price Pipeline",
     "slug": "market-price-pipeline",
     "tagline": "Automated agricultural commodity price scraping, data normalization, and analytics pipeline.",
@@ -618,9 +618,9 @@ export const ALL_PROJECTS: Project[] = [
     "role": "Data Engineer & Backend Developer",
     "featured": false,
     "order_index": 16,
-    "thumbnail": "/assets/images/market-price-mockup.svg",
+    "thumbnail": "/assets/images/market-price-hero.webp",
     "gallery": [
-      "/assets/images/market-price-mockup.svg"
+      "/assets/images/market-price-hero.webp"
     ],
     "summary": "A robust data engineering pipeline built to continuously scrape, normalize, and expose daily retail and wholesale agricultural commodity pricing across major markets in Bangladesh.",
     "problem_statement": "Agricultural pricing data in developing markets is published in inconsistent, unstructured web tables, making market analysis difficult.",
@@ -644,11 +644,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 141,
+    "id": 114,
     "title": "Shwapno InstaMart (Pallimart)",
     "slug": "shwapno-instamart",
     "tagline": "Quick-commerce grocery fulfillment platform with real-time stock allocation and rider dispatching.",
@@ -683,11 +683,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 142,
+    "id": 115,
     "title": "VetDoc (AI Veterinary Care Platform)",
     "slug": "vetdoc",
     "tagline": "AI veterinary clinical care assistant providing multimodal symptom assessment and livestock pathology triage.",
@@ -722,11 +722,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 143,
+    "id": 116,
     "title": "LegalSupportAI & Lawyer Lagbe BD",
     "slug": "legalsupport-ai",
     "tagline": "Bilingual statutory RAG assistant for Bangladesh law with citations and human-in-the-loop audit trails.",
@@ -735,9 +735,9 @@ export const ALL_PROJECTS: Project[] = [
     "role": "AI Researcher & System Architect",
     "featured": false,
     "order_index": 19,
-    "thumbnail": "/assets/images/legalsupport-mockup.svg",
+    "thumbnail": "/assets/images/legalsupport-hero.webp",
     "gallery": [
-      "/assets/images/legalsupport-mockup.svg"
+      "/assets/images/legalsupport-hero.webp"
     ],
     "summary": "A bilingual statutory retrieval-augmented generation assistant grounded in Bangladesh penal codes, corporate statutes, and judicial precedents. Enforces strict citation provenance, tamper-evident audit trails, and human-in-the-loop review.",
     "problem_statement": "Access to formal legal guidance in Bangladesh is constrained by prohibitive legal fees, language barriers, and risks of LLM hallucination.",
@@ -761,11 +761,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "/research/from-statute-to-citizen-legal-ai",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 144,
+    "id": 117,
     "title": "Meeting Interpreter (Real-Time AI)",
     "slug": "meeting-interpreter",
     "tagline": "Real-time bidirectional speech translation and streaming transcription assistant for multilingual conferences.",
@@ -774,9 +774,9 @@ export const ALL_PROJECTS: Project[] = [
     "role": "AI & Distributed Systems Engineer",
     "featured": false,
     "order_index": 20,
-    "thumbnail": "/assets/images/meeting-mockup.svg",
+    "thumbnail": "/assets/images/meeting-hero.webp",
     "gallery": [
-      "/assets/images/meeting-mockup.svg"
+      "/assets/images/meeting-hero.webp"
     ],
     "summary": "A real-time speech translation and transcription platform operating over WebSockets. Captures audio from conference streams, translates conversations bidirectionally with sub-second latency, and generates searchable meeting summaries.",
     "problem_statement": "International cross-border engineering teams suffer from miscommunication and lost technical context during live conference meetings.",
@@ -801,11 +801,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 145,
+    "id": 118,
     "title": "PDF to Audiobook (Chrome Extension)",
     "slug": "pdf-to-audio",
     "tagline": "Local browser extension converting dense technical and academic PDFs into naturally narrated audiobooks.",
@@ -814,9 +814,9 @@ export const ALL_PROJECTS: Project[] = [
     "role": "Extension Developer & AI Engineer",
     "featured": false,
     "order_index": 21,
-    "thumbnail": "/assets/images/pdf-to-audio-mockup.svg",
+    "thumbnail": "/assets/images/pdf-to-audio-hero.webp",
     "gallery": [
-      "/assets/images/pdf-to-audio-mockup.svg"
+      "/assets/images/pdf-to-audio-hero.webp"
     ],
     "summary": "A privacy-first Chrome extension that turns academic papers, research preprints, and regulatory monographs into naturally phrased audiobooks. Performs local text extraction via pdf.js, cleans structural artifacts with Gemini, and synthesizes neural speech via Microsoft Edge TTS.",
     "problem_statement": "Reading 50-page technical papers causes severe eye strain, while existing PDF screen readers stumble over formulas, hyphenated line breaks, and page headers.",
@@ -840,11 +840,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 146,
+    "id": 119,
     "title": "FUNGLISH (Deshi Things Game)",
     "slug": "deshi-things",
     "tagline": "Interactive life simulator and Bangla Natok entertainment game for conversational English learning.",
@@ -853,9 +853,9 @@ export const ALL_PROJECTS: Project[] = [
     "role": "Game Developer & Full-Stack Engineer",
     "featured": false,
     "order_index": 22,
-    "thumbnail": "/assets/images/funglish-mockup.svg",
+    "thumbnail": "/assets/images/funglish-hero.webp",
     "gallery": [
-      "/assets/images/funglish-mockup.svg"
+      "/assets/images/funglish-hero.webp"
     ],
     "summary": "An animated life simulation and entertainment web game combining Bangla Natok storytelling, cartoon animations, and conversational English learning. Players navigate authentic everyday cultural situations and practice practical English dialogue with responsive characters.",
     "problem_statement": "Traditional language learning apps feel academic and disconnected from real cultural contexts, leading to high student abandonment.",
@@ -879,11 +879,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 147,
+    "id": 120,
     "title": "Othe.app (AI Micro-App Ecosystem)",
     "slug": "othe-app",
     "tagline": "Google Play-style distribution and publishing platform hosting 2,180+ specialized AI micro-apps across 24 industry sectors.",
@@ -892,9 +892,9 @@ export const ALL_PROJECTS: Project[] = [
     "role": "System Architect & Platform Engineer",
     "featured": false,
     "order_index": 23,
-    "thumbnail": "/assets/images/othe-mockup.svg",
+    "thumbnail": "/assets/images/othe-hero.webp",
     "gallery": [
-      "/assets/images/othe-mockup.svg"
+      "/assets/images/othe-hero.webp"
     ],
     "summary": "A centralized AI micro-application distribution center hosting over 2,180+ specialized single-purpose AI apps spanning 255 industry tags and 24 sectors. Features instant in-browser app launchpads, category taxonomies, and developer publishing pipelines.",
     "problem_statement": "End-users face overwhelming complexity when trying to locate specific AI tools tailored to narrow industry workflows.",
@@ -918,11 +918,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 148,
+    "id": 121,
     "title": "Automated Medical Decision Pathways (MDP)",
     "slug": "automated-mdp",
     "tagline": "Clinical decision support platform modeling interactive diagnostic pathways and differential diagnosis ranking.",
@@ -931,9 +931,9 @@ export const ALL_PROJECTS: Project[] = [
     "role": "Healthcare AI Researcher & Frontend Lead",
     "featured": false,
     "order_index": 24,
-    "thumbnail": "/assets/images/mdp-mockup.svg",
+    "thumbnail": "/assets/images/mdp-hero.webp",
     "gallery": [
-      "/assets/images/mdp-mockup.svg"
+      "/assets/images/mdp-hero.webp"
     ],
     "summary": "A clinical decision support platform designed to model evidence-based clinical practice guidelines into interactive diagnostic pathways, triage trees, and differential diagnosis confidence ranking for medical residents.",
     "problem_statement": "Junior physicians frequently struggle with cognitive overload when balancing complex differential diagnosis trees during emergency room triage.",
@@ -957,11 +957,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 149,
+    "id": 122,
     "title": "ScolarScout",
     "slug": "scolar-scout",
     "tagline": "Autonomous global academic fellowship and research grant crawler with eligibility matching.",
@@ -970,9 +970,9 @@ export const ALL_PROJECTS: Project[] = [
     "role": "AI Researcher & Backend Engineer",
     "featured": false,
     "order_index": 25,
-    "thumbnail": "/assets/images/scolarscout-mockup.svg",
+    "thumbnail": "/assets/images/scolarscout-hero.webp",
     "gallery": [
-      "/assets/images/scolarscout-mockup.svg"
+      "/assets/images/scolarscout-hero.webp"
     ],
     "summary": "An autonomous opportunity crawler indexing international academic scholarships, graduate research fellowships, and scientific grants. Evaluates applicant research profiles against eligibility requirements and predicts acceptance likelihood.",
     "problem_statement": "High-caliber research students miss lucrative international scholarship deadlines due to fragmented university posting portals.",
@@ -996,11 +996,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 150,
+    "id": 123,
     "title": "Sayora (AI Communication Gym)",
     "slug": "sayora",
     "tagline": "AI communication coach for public speaking, workplace negotiations, and speech anxiety reduction.",
@@ -1009,9 +1009,9 @@ export const ALL_PROJECTS: Project[] = [
     "role": "AI Engineer & Frontend Developer",
     "featured": false,
     "order_index": 26,
-    "thumbnail": "/assets/images/meeting-mockup.svg",
+    "thumbnail": "/assets/images/sayora-hero.webp",
     "gallery": [
-      "/assets/images/meeting-mockup.svg"
+      "/assets/images/sayora-hero.webp"
     ],
     "summary": "An interactive communication simulator that helps professionals overcome speech anxiety and master high-stakes workplace conversations. Features simulated executive interviewers, vocal tone analysis, and real-time behavioral guidance.",
     "problem_statement": "Professionals face anxiety during critical salary negotiations and executive presentations without a safe environment to practice.",
@@ -1035,11 +1035,11 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   },
   {
-    "id": 151,
+    "id": 124,
     "title": "Laravel User Management & Security System",
     "slug": "laravel-rbac",
     "tagline": "Enterprise administrative access control system with fine-grained RBAC permission matrices and audit trails.",
@@ -1048,9 +1048,9 @@ export const ALL_PROJECTS: Project[] = [
     "role": "Full-Stack Software Engineer",
     "featured": false,
     "order_index": 27,
-    "thumbnail": "/assets/images/smartbiz-mockup.svg",
+    "thumbnail": "/assets/images/laravel-rbac-hero.webp",
     "gallery": [
-      "/assets/images/smartbiz-mockup.svg"
+      "/assets/images/laravel-rbac-hero.webp"
     ],
     "summary": "A robust administrative user management system featuring fine-grained permission matrices, dynamic role assignment, two-factor authentication, and security audit logs.",
     "problem_statement": "Standard access control implementations often fail to prevent privilege escalation or lack granular resource-level ownership validation.",
@@ -1075,7 +1075,7 @@ export const ALL_PROJECTS: Project[] = [
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
-    "created_at": "2026-11-16 21:24:18",
-    "updated_at": "2026-11-16 21:24:18"
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
   }
 ];
