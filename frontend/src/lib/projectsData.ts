@@ -251,6 +251,47 @@ export const ALL_PROJECTS: Project[] = [
     "updated_at": "2026-11-16 21:15:21"
   },
   {
+    "id": 120,
+    "title": "Othe.app \u2013 Professional OS & AI Micro-App Ecosystem",
+    "slug": "othe-app",
+    "tagline": "Global Professional OS hosting 1,012+ vertical AI apps, 200 industry suites, and a codified Professional Encyclopedia & SOP Index.",
+    "category": "Full-Stack Software",
+    "status": "Live in Production",
+    "role": "System Architect & Platform Engineer",
+    "featured": false,
+    "order_index": 7,
+    "thumbnail": "/assets/images/othe-hero.webp",
+    "gallery": [
+      "/assets/images/othe-hero.webp"
+    ],
+    "summary": "A production Professional OS and AI micro-application ecosystem hosting 1,012+ specialized apps across 200 industries alongside a Global Professional Encyclopedia & SOP Index. Integrates O*NET & BLS taxonomy standards, World Bank PPP parity compensation benchmarks, dual-stream labor telemetry, Marketplace, and Engineer Guide AI.",
+    "problem_statement": "End-users face overwhelming complexity when trying to locate specific AI tools tailored to narrow industry workflows.",
+    "solution_overview": "Created a high-density, searchable catalog platform that indexes and executes micro-apps with zero configuration overhead.",
+    "architecture_details": "Next.js, Tailwind CSS, SQLite/PostgreSQL search indexes, and micro-frontend execution wrappers.",
+    "architecture_diagram": "flowchart TD\n  User[\"Professional User\"] --> Catalog[\"2,180+ Micro-App Directory\"]\n  Catalog --> Filter[\"Sector & Industry Taxonomy Filter\"]\n  Filter --> Launch[\"Instant Sandbox Micro-App Execution\"]\n  Launch --> Export[\"Result Export (PDF/CSV/Markdown)\"]",
+    "engineering_challenges": "Architecting an instant search index capable of fuzzy-filtering across 2,000+ app schemas in under 20ms.",
+    "key_features": [
+      "1,012+ Apps for Professionals & 200 Industry Suites with Marketplace and Contingent Work modules.",
+      "Global Professional Encyclopedia & SOP Index built on O*NET & BLS taxonomy standards.",
+      "World Bank PPP Parity Model, multi-market compensation benchmarks, and Dual-Stream Telemetry Engine."
+    ],
+    "technologies": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "FastAPI",
+      "PostgreSQL",
+      "AI Agents",
+      "Docker"
+    ],
+    "measurable_outcomes": "Powers instant discovery across thousands of vertical AI applications with sub-25ms search response.",
+    "live_url": "https://stage.othe.app/",
+    "github_url": "https://github.com/sumaiyamayra",
+    "paper_url": "",
+    "created_at": "2026-11-16 21:15:21",
+    "updated_at": "2026-11-16 21:15:21"
+  },
+  {
     "id": 104,
     "title": "LabInsight (Pharmaceutical QC Laboratory & LIMS)",
     "slug": "labinsight",
@@ -259,7 +300,7 @@ export const ALL_PROJECTS: Project[] = [
     "status": "Production-Ready",
     "role": "Lead Architect & Full-Stack Engineer",
     "featured": false,
-    "order_index": 7,
+    "order_index": 8,
     "thumbnail": "/assets/images/labinsight-hero.webp",
     "gallery": [
       "/assets/images/labinsight-hero.webp"
@@ -299,7 +340,7 @@ export const ALL_PROJECTS: Project[] = [
     "status": "Live in Production",
     "role": "System Architect & Python Engineer",
     "featured": false,
-    "order_index": 8,
+    "order_index": 9,
     "thumbnail": "/assets/images/jobradar-hero.webp",
     "gallery": [
       "/assets/images/jobradar-hero.webp"
@@ -339,7 +380,7 @@ export const ALL_PROJECTS: Project[] = [
     "status": "Live in Production",
     "role": "Backend & Data Engineer",
     "featured": false,
-    "order_index": 9,
+    "order_index": 10,
     "thumbnail": "/assets/images/reportcraft-hero.webp",
     "gallery": [
       "/assets/images/reportcraft-hero.webp"
@@ -379,7 +420,7 @@ export const ALL_PROJECTS: Project[] = [
     "status": "Live in Production",
     "role": "Machine Learning & Backend Engineer",
     "featured": false,
-    "order_index": 10,
+    "order_index": 11,
     "thumbnail": "/assets/images/sales-forecast-hero.webp",
     "gallery": [
       "/assets/images/sales-forecast-hero.webp"
@@ -419,7 +460,7 @@ export const ALL_PROJECTS: Project[] = [
     "status": "Production-Ready",
     "role": "Lead Architect & Extension Developer",
     "featured": false,
-    "order_index": 11,
+    "order_index": 12,
     "thumbnail": "/assets/images/formora-hero.webp",
     "gallery": [
       "/assets/images/formora-hero.webp"
@@ -459,7 +500,7 @@ export const ALL_PROJECTS: Project[] = [
     "status": "Live in Production",
     "role": "Lead Architect & Full-Stack Engineer",
     "featured": false,
-    "order_index": 12,
+    "order_index": 13,
     "thumbnail": "/assets/images/smartbiz-hero.webp",
     "gallery": [
       "/assets/images/smartbiz-hero.webp"
@@ -499,7 +540,7 @@ export const ALL_PROJECTS: Project[] = [
     "status": "Production-Ready",
     "role": "System Architect & AI Engineer",
     "featured": false,
-    "order_index": 13,
+    "order_index": 14,
     "thumbnail": "/assets/images/markhub-hero.webp",
     "gallery": [
       "/assets/images/markhub-hero.webp"
@@ -539,7 +580,7 @@ export const ALL_PROJECTS: Project[] = [
     "status": "Production-Ready",
     "role": "AI Engineer & Full-Stack Developer",
     "featured": false,
-    "order_index": 14,
+    "order_index": 15,
     "thumbnail": "/assets/images/ai-estimator-hero.webp",
     "gallery": [
       "/assets/images/ai-estimator-hero.webp"
@@ -578,7 +619,7 @@ export const ALL_PROJECTS: Project[] = [
     "status": "Production-Ready",
     "role": "Product Architect & Full-Stack Engineer",
     "featured": false,
-    "order_index": 15,
+    "order_index": 16,
     "thumbnail": "/assets/images/second-brain-hero.webp",
     "gallery": [
       "/assets/images/second-brain-hero.webp"
@@ -617,7 +658,7 @@ export const ALL_PROJECTS: Project[] = [
     "status": "Production-Ready",
     "role": "Data Engineer & Backend Developer",
     "featured": false,
-    "order_index": 16,
+    "order_index": 17,
     "thumbnail": "/assets/images/market-price-hero.webp",
     "gallery": [
       "/assets/images/market-price-hero.webp"
@@ -656,7 +697,7 @@ export const ALL_PROJECTS: Project[] = [
     "status": "Live in Production",
     "role": "Full-Stack & Backend Engineer",
     "featured": false,
-    "order_index": 17,
+    "order_index": 18,
     "thumbnail": "/assets/images/shwapno-hero.webp",
     "gallery": [
       "/assets/images/shwapno-hero.webp"
@@ -695,7 +736,7 @@ export const ALL_PROJECTS: Project[] = [
     "status": "Production-Ready",
     "role": "AI Engineer & Frontend Developer",
     "featured": false,
-    "order_index": 18,
+    "order_index": 19,
     "thumbnail": "/assets/images/vetdoc-hero.webp",
     "gallery": [
       "/assets/images/vetdoc-hero.webp"
@@ -734,7 +775,7 @@ export const ALL_PROJECTS: Project[] = [
     "status": "Live in Production",
     "role": "AI Researcher & System Architect",
     "featured": false,
-    "order_index": 19,
+    "order_index": 20,
     "thumbnail": "/assets/images/legalsupport-hero.webp",
     "gallery": [
       "/assets/images/legalsupport-hero.webp"
@@ -773,7 +814,7 @@ export const ALL_PROJECTS: Project[] = [
     "status": "Research Prototype",
     "role": "AI & Distributed Systems Engineer",
     "featured": false,
-    "order_index": 20,
+    "order_index": 21,
     "thumbnail": "/assets/images/meeting-hero.webp",
     "gallery": [
       "/assets/images/meeting-hero.webp"
@@ -813,7 +854,7 @@ export const ALL_PROJECTS: Project[] = [
     "status": "Production-Ready",
     "role": "Extension Developer & AI Engineer",
     "featured": false,
-    "order_index": 21,
+    "order_index": 22,
     "thumbnail": "/assets/images/pdf-to-audio-hero.webp",
     "gallery": [
       "/assets/images/pdf-to-audio-hero.webp"
@@ -852,7 +893,7 @@ export const ALL_PROJECTS: Project[] = [
     "status": "Completed",
     "role": "Game Developer & Full-Stack Engineer",
     "featured": false,
-    "order_index": 22,
+    "order_index": 23,
     "thumbnail": "/assets/images/funglish-hero.webp",
     "gallery": [
       "/assets/images/funglish-hero.webp"
@@ -876,45 +917,6 @@ export const ALL_PROJECTS: Project[] = [
       "Web Audio API"
     ],
     "measurable_outcomes": "Demonstrated 4x higher daily engagement compared to conventional flashcard language apps.",
-    "live_url": "",
-    "github_url": "https://github.com/sumaiyamayra",
-    "paper_url": "",
-    "created_at": "2026-11-16 21:15:21",
-    "updated_at": "2026-11-16 21:15:21"
-  },
-  {
-    "id": 120,
-    "title": "Othe.app (AI Micro-App Ecosystem)",
-    "slug": "othe-app",
-    "tagline": "Google Play-style distribution and publishing platform hosting 2,180+ specialized AI micro-apps across 24 industry sectors.",
-    "category": "Full-Stack Software",
-    "status": "Production-Ready",
-    "role": "System Architect & Platform Engineer",
-    "featured": false,
-    "order_index": 23,
-    "thumbnail": "/assets/images/othe-hero.webp",
-    "gallery": [
-      "/assets/images/othe-hero.webp"
-    ],
-    "summary": "A centralized AI micro-application distribution center hosting over 2,180+ specialized single-purpose AI apps spanning 255 industry tags and 24 sectors. Features instant in-browser app launchpads, category taxonomies, and developer publishing pipelines.",
-    "problem_statement": "End-users face overwhelming complexity when trying to locate specific AI tools tailored to narrow industry workflows.",
-    "solution_overview": "Created a high-density, searchable catalog platform that indexes and executes micro-apps with zero configuration overhead.",
-    "architecture_details": "Next.js, Tailwind CSS, SQLite/PostgreSQL search indexes, and micro-frontend execution wrappers.",
-    "architecture_diagram": "flowchart TD\n  User[\"Professional User\"] --> Catalog[\"2,180+ Micro-App Directory\"]\n  Catalog --> Filter[\"Sector & Industry Taxonomy Filter\"]\n  Filter --> Launch[\"Instant Sandbox Micro-App Execution\"]\n  Launch --> Export[\"Result Export (PDF/CSV/Markdown)\"]",
-    "engineering_challenges": "Architecting an instant search index capable of fuzzy-filtering across 2,000+ app schemas in under 20ms.",
-    "key_features": [
-      "2,180+ AI Micro-Apps: Covers legal, medical, agricultural, finance, and engineering utilities.",
-      "24 Sector Classifiers: Clean hierarchical browsing from general categories to granular task tools.",
-      "Instant Web Execution: Launch apps directly in the browser without installing dependencies."
-    ],
-    "technologies": [
-      "Next.js",
-      "Tailwind CSS",
-      "SQLite",
-      "TypeScript",
-      "Docker"
-    ],
-    "measurable_outcomes": "Powers instant discovery across thousands of vertical AI applications with sub-25ms search response.",
     "live_url": "",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
