@@ -297,7 +297,7 @@ export const ALL_PROJECTS: Project[] = [
     "slug": "labinsight",
     "tagline": "Comprehensive QC laboratory information management system compliant with EU GMP Annex 11 and 21 CFR Part 11.",
     "category": "Enterprise Systems",
-    "status": "Production-Ready",
+    "status": "Live in Production",
     "role": "Lead Architect & Full-Stack Engineer",
     "featured": false,
     "order_index": 8,
@@ -325,7 +325,7 @@ export const ALL_PROJECTS: Project[] = [
       "TypeScript"
     ],
     "measurable_outcomes": "Eliminated 100% of manual transcription discrepancies; reduced batch release turnaround by 45%.",
-    "live_url": "",
+    "live_url": "https://labinsight.acimisai.com/",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
     "created_at": "2026-11-16 21:15:21",
