@@ -46,6 +46,13 @@ export default function ResearchCard({ publication }: ResearchCardProps) {
             Preprint
           </span>
         );
+      case 'Ongoing':
+        return (
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-sky-100 text-sky-900 border border-sky-300 shadow-sm">
+            <span className="w-1.5 h-1.5 rounded-full bg-sky-600 animate-pulse"></span>
+            Ongoing
+          </span>
+        );
       case 'In Progress':
         return (
           <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-purple-100 text-purple-800 border border-purple-300 shadow-sm">

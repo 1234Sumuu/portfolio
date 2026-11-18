@@ -880,6 +880,42 @@ export default function HomePage() {
               </div>
             </div>
 
+            {/* Paper 4: RAEE-LLM (Ongoing Research) */}
+            <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-[#E2DCD2] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div className="space-y-1.5 max-w-3xl">
+                <div className="flex items-center gap-2">
+                  <span className="px-2.5 py-0.5 rounded-full bg-sky-100 text-sky-900 border border-sky-300 text-[10px] font-bold uppercase tracking-wider flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-600 animate-pulse"></span>
+                    Ongoing Research
+                  </span>
+                  <span className="text-xs text-[#8C827A]">2026</span>
+                </div>
+                <h3 className="text-base font-bold text-[#1C1917]">
+                  The Jevons Paradox in Large Language Model Inference: A Workload-Aware, Causal, and Bayesian Framework for Rebound-Adjusted Energy Efficiency (RAEE-LLM)
+                </h3>
+                <p className="text-xs text-[#57534E] leading-relaxed">
+                  Introduces Rebound-Adjusted Energy Efficiency (RAEE = 1 &minus; rg) combining per-task energy ratio with task-volume rebound, causal demand-elasticity identification, and closed-form Bayesian backfire uncertainty. Empirical vLLM benchmarking across Qwen2.5-7B and Mistral-7B on dual NVIDIA RTX PRO 6000 Blackwell GPUs (N = 252 windows) reveals 65–68% single-request INT4 savings, INT8 computational backfire under high-concurrency RAG (r = 1.115), and native FP8 dominance (r = 0.603).
+                </p>
+                <p className="text-[11px] text-[#78716C]">
+                  <strong>Authors:</strong> Sumaiya Akter, et al. • <strong>Focus:</strong> Sustainable AI, Causal Econometrics, Bayesian UQ &amp; GPU Energy Telemetry
+                </p>
+              </div>
+              <div className="shrink-0 flex flex-col items-start md:items-end gap-1.5">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-sky-50 text-sky-900 border border-sky-200 text-xs font-mono font-semibold">
+                  Ongoing • RAEE-LLM
+                </span>
+                <a
+                  href="https://github.com/1234Sumuu/RAEE-Jovan-paradox-Research"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#1C1917] hover:text-[#8C5035]"
+                >
+                  <span>Code Repository</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+
             {/* Paper 3: Wound Analysis */}
             <div className="p-5 rounded-2xl bg-[#FAF8F5] border border-[#E2DCD2] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
               <div className="space-y-1.5 max-w-3xl">
