@@ -77,7 +77,7 @@
       "Docker"
     ],
     "measurable_outcomes": "Over 94% diagnostic accuracy across 18 major regional crop pathologies; operational response time under 1.2s.",
-    "live_url": "",
+    "live_url": "https://www.agrogpt.app",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
     "created_at": "2026-11-16 21:15:21",
@@ -161,7 +161,7 @@
       "Docker"
     ],
     "measurable_outcomes": "Reduces formulation feasibility research timeline from weeks to minutes with zero data tampering risk.",
-    "live_url": "",
+    "live_url": "https://rxpert.acimisai.com/login",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
     "created_at": "2026-11-16 21:15:21",
@@ -210,7 +210,7 @@
   },
   {
     "id": 103,
-    "title": "Insta-Hygiene",
+    "title": "Her Hygiene (Insta Hygiene)",
     "slug": "insta-hygiene",
     "tagline": "Multi-vendor hygiene e-commerce platform with automated inventory reconciliation and role-based access control.",
     "category": "Full-Stack Software",
@@ -242,7 +242,7 @@
       "Tailwind CSS"
     ],
     "measurable_outcomes": "Zero inventory oversell incidents recorded; handles sub-50ms cart mutation latency under high concurrent load.",
-    "live_url": "",
+    "live_url": "https://hygieneher.acimisai.com/",
     "github_url": "https://github.com/sumaiyamayra",
     "paper_url": "",
     "created_at": "2026-11-16 21:15:21",
@@ -1075,5 +1075,87 @@
     "paper_url": "",
     "created_at": "2026-11-16 21:15:21",
     "updated_at": "2026-11-16 21:15:21"
+  },
+  {
+    "id": 125,
+    "title": "TheBiz24 \u2013 Business & Capital Markets Portal",
+    "slug": "thebiz24",
+    "tagline": "Production online business, finance, and Dhaka Stock Exchange (DSE) news & market intelligence portal.",
+    "category": "Full-Stack Software",
+    "status": "Live in Production",
+    "role": "Full-Stack Web Developer",
+    "featured": false,
+    "order_index": 28,
+    "thumbnail": "/assets/images/thebiz24-hero.webp",
+    "gallery": [
+      "/assets/images/thebiz24-hero.webp"
+    ],
+    "summary": "A live Bangladesh business, corporate finance, and capital markets digital media portal delivering real-time coverage of the Dhaka Stock Exchange (DSE), BSEC policy updates, banking developments, and macroeconomic news.",
+    "problem_statement": "Financial readers and investors in Bangladesh needed a fast, structured, mobile-optimized digital business news platform capable of handling breaking corporate announcements and high concurrent market-hours traffic.",
+    "solution_overview": "Engineered a high-availability publishing portal featuring editorial category pipelines, responsive market coverage layouts, SEO-optimized article delivery, and aggressive edge caching for fast page loads.",
+    "architecture_details": "CMS-backed editorial publishing workflow with structured category taxonomy (Markets, Economy, Banking, Corporate, Tech), automated sitemap indexing, CDN caching, and responsive mobile-first layouts.",
+    "architecture_diagram": "",
+    "engineering_challenges": "Ensuring sub-second article loads and strong SEO performance during breaking financial news spikes on mobile networks.",
+    "key_features": [
+      "Real-time business, banking, and capital market journalism portal.",
+      "Structured editorial categories covering DSE, BSEC, Economy, and Corporate sectors.",
+      "SEO-optimized publishing pipeline with fast mobile-first rendering."
+    ],
+    "technologies": [
+      "WordPress",
+      "PHP",
+      "MySQL",
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "SEO"
+    ],
+    "measurable_outcomes": "Live production media platform serving nationwide business and capital market readers in Bangladesh.",
+    "live_url": "https://thebiz24.com/",
+    "github_url": "",
+    "paper_url": "",
+    "created_at": "2026-11-18 04:24:12",
+    "updated_at": "2026-11-18 04:24:12"
+  },
+  {
+    "id": 126,
+    "title": "Apple Studio BD \u2013 E-Commerce Storefront",
+    "slug": "apple-studio-bd",
+    "tagline": "Production WordPress & WooCommerce retail storefront for Apple devices, accessories, and multi-branch servicing in Bangladesh.",
+    "category": "Full-Stack Software",
+    "status": "Live in Production",
+    "role": "WordPress & WooCommerce Developer",
+    "featured": false,
+    "order_index": 29,
+    "thumbnail": "/assets/images/apple-studio-bd-hero.webp",
+    "gallery": [
+      "/assets/images/apple-studio-bd-hero.webp"
+    ],
+    "summary": "A production WordPress & WooCommerce e-commerce platform for Apple Studio BD\u2014one of Dhaka's dedicated retail & servicing stores for brand-new and certified pre-owned MacBooks, iMacs, iPads, AirPods, and Apple ecosystem accessories.",
+    "problem_statement": "Tech retail customers comparing high-value Apple hardware specifications, storage tiers, warranty options, and live pricing needed a trustworthy, fast-loading online storefront synchronized with Dhaka retail branches.",
+    "solution_overview": "Built and customized a responsive WordPress + WooCommerce storefront featuring structured Apple product variations (chipset, RAM, storage, color), live price catalog filtering, cart & checkout workflows, and branch servicing info.",
+    "architecture_details": "WordPress CMS powered by WooCommerce product variation engine, custom responsive storefront styling, MySQL catalog database, caching optimization, and mobile checkout flows.",
+    "architecture_diagram": "",
+    "engineering_challenges": "Managing complex multi-attribute Apple product catalogs (M-series chips, memory, storage, condition grades) with fast search filtering and clean mobile UX.",
+    "key_features": [
+      "Full WordPress & WooCommerce e-commerce catalog for MacBooks, iPads, iPhones & accessories.",
+      "Multi-attribute product variations with live BDT pricing and stock indicators.",
+      "Responsive mobile-first storefront with Dhaka branch & service lab integration."
+    ],
+    "technologies": [
+      "WordPress",
+      "WooCommerce",
+      "PHP",
+      "MySQL",
+      "CSS3",
+      "JavaScript",
+      "E-Commerce"
+    ],
+    "measurable_outcomes": "Live production e-commerce storefront powering online product discovery and sales for Apple Studio BD across Dhaka.",
+    "live_url": "https://www.applestudiobd.com/",
+    "github_url": "",
+    "paper_url": "",
+    "created_at": "2026-11-18 04:24:12",
+    "updated_at": "2026-11-18 04:24:12"
   }
 ]

@@ -133,10 +133,11 @@ export default function ProjectCard({ project, featuredLayout = false }: Project
                 href={project.live_url}
                 target="_blank"
                 rel="noreferrer"
-                title="Live Application Demo"
-                className="p-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition-colors"
+                title="Open Live Website"
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-[11px] font-semibold transition-colors"
               >
-                <ExternalLink className="w-3.5 h-3.5" />
+                <span>Live</span>
+                <ExternalLink className="w-3 h-3" />
               </a>
             )}
             {project.github_url && (

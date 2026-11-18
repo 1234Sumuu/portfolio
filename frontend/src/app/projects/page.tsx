@@ -106,7 +106,7 @@ export default function ProjectsPage() {
                 Engineering Archives
               </span>
               <span className="px-3 py-1 rounded-full bg-[#1C1917] text-[#F4EFE6] text-[11px] font-mono font-medium">
-                {projects.length || 27} Verified Systems
+                {projects.length || 29} Verified Systems
               </span>
             </div>
 

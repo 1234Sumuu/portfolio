@@ -542,7 +542,15 @@ export default function HomePage() {
               </div>
               <div className="mt-4 pt-3 border-t border-[#E2DCD2] flex items-center justify-between">
                 <span className="text-[11px] font-mono text-[#8C827A]">FastAPI • WebSockets • Vision</span>
-                <span className="text-xs font-semibold text-[#8C5035]">Production System</span>
+                <a
+                  href="https://www.agrogpt.app"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-[#1C1917] hover:text-[#8C5035]"
+                >
+                  <span>Live App</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
             </div>
 
@@ -601,7 +609,15 @@ export default function HomePage() {
               </div>
               <div className="mt-4 pt-3 border-t border-[#E2DCD2] flex items-center justify-between">
                 <span className="text-[11px] font-mono text-[#8C827A]">LangChain • MinIO • PostgreSQL</span>
-                <span className="text-xs font-semibold text-[#8C5035]">QTPP Synthesis</span>
+                <a
+                  href="https://rxpert.acimisai.com/login"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-[#1C1917] hover:text-[#8C5035]"
+                >
+                  <span>Live App</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
             </div>
 
@@ -634,32 +650,40 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Project 6: Insta Hygiene & Meeting Interpreter */}
+            {/* Project 6: Her Hygiene (Insta Hygiene) */}
             <div className="bento-card p-4 sm:p-5 flex flex-col justify-between bg-white border border-[#E2DCD2]">
               <div>
                 <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden border border-[#E2DCD2] mb-4 bg-stone-100">
                   <img
                     src="/assets/images/insta-hygiene-hero.webp"
-                    alt="Insta Hygiene Platform"
+                    alt="Her Hygiene Platform"
                     className="w-full h-full object-cover"
                     loading="lazy"
                   />
-                  <div className="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-stone-700 text-white text-[10px] font-bold tracking-wider uppercase">
-                    Production Systems
+                  <div className="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-emerald-600 text-white text-[10px] font-bold tracking-wider uppercase">
+                    Live in Production
                   </div>
                 </div>
-                <h3 className="text-base font-bold text-[#1C1917]">Insta Hygiene &amp; Meeting Interpreter</h3>
+                <h3 className="text-base font-bold text-[#1C1917]">Her Hygiene (Insta Hygiene)</h3>
                 <p className="text-xs text-[#57534E] mt-1.5 leading-relaxed">
-                  Production multi-vendor hygiene e-commerce backend and real-time speech translation meeting assistant.
+                  Production women&apos;s hygiene &amp; wellness e-commerce platform with smart cart persistence, catalog management, and containerized backend.
                 </p>
                 <ul className="text-xs text-[#78716C] space-y-1 mt-3 list-disc list-inside">
-                  <li>Role-based access control, cart persistence, Docker deployment.</li>
-                  <li>Real-time bidirectional speech translation via WebSockets &amp; Whisper.</li>
+                  <li>Role-based access control, inventory catalog &amp; checkout workflows.</li>
+                  <li>Persistent cart state, order lifecycle APIs &amp; Docker deployment.</li>
                 </ul>
               </div>
               <div className="mt-4 pt-3 border-t border-[#E2DCD2] flex items-center justify-between">
-                <span className="text-[11px] font-mono text-[#8C827A]">WebSockets • Whisper • Docker</span>
-                <span className="text-xs font-semibold text-[#8C5035]">Real-Time Streaming</span>
+                <span className="text-[11px] font-mono text-[#8C827A]">FastAPI • Next.js • Docker</span>
+                <a
+                  href="https://hygieneher.acimisai.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-[#1C1917] hover:text-[#8C5035]"
+                >
+                  <span>Live App</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
             </div>
           </div>
@@ -672,14 +696,14 @@ export default function HomePage() {
                   Complete Engineering Archive
                 </span>
                 <span className="text-xs font-mono text-[#8C5035] font-semibold">
-                  27 Verified Systems
+                  29 Verified Systems
                 </span>
               </div>
               <h3 className="display-title text-2xl sm:text-3xl text-[#1C1917] tracking-tight">
                 VIEW ALL PROJECTS FROM REPOSITORY
               </h3>
               <p className="text-xs text-[#57534E] max-w-xl leading-relaxed">
-                Explore all 27 verified production systems, healthcare platforms, pharmaceutical tools, and AI prototypes with dedicated architecture breakdowns and live pagination.
+                Explore all 29 verified production systems, healthcare platforms, pharmaceutical tools, e-commerce websites, and AI prototypes with dedicated architecture breakdowns and live pagination.
               </p>
             </div>
 
@@ -687,7 +711,7 @@ export default function HomePage() {
               href="/projects"
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#1C1917] text-[#F4EFE6] text-xs font-semibold tracking-wider uppercase hover:bg-[#8C5035] transition-all shadow-md active:scale-95 shrink-0"
             >
-              <span>View All Projects (27)</span>
+              <span>View All Projects (29)</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
