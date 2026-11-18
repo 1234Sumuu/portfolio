@@ -9,7 +9,7 @@ import { Search, ChevronLeft, ChevronRight, Layers, ArrowLeft, Filter, Sparkles,
 import { Project } from '@/lib/types';
 import { ALL_PROJECTS } from '@/lib/projectsData';
 
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 12;
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>(ALL_PROJECTS);
@@ -190,7 +190,7 @@ export default function ProjectsPage() {
         {/* Projects Grid */}
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
+            {Array.from({ length: ITEMS_PER_PAGE }, (_, i) => i + 1).map((i) => (
               <div key={i} className="h-96 rounded-2xl bg-[#EBE5DB]/60 animate-pulse border border-[#E2DCD2]"></div>
             ))}
           </div>
