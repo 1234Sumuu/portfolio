@@ -580,7 +580,15 @@ export default function HomePage() {
               </div>
               <div className="mt-4 pt-3 border-t border-[#E2DCD2] flex items-center justify-between">
                 <span className="text-[11px] font-mono text-[#8C827A]">Gemini Vision • MinIO • Flutter</span>
-                <span className="text-xs font-semibold text-[#8C5035]">Production Tool</span>
+                <a
+                  href="https://play.google.com/store/apps/details?id=org.aibrigade.snap_get"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-[#1C1917] hover:text-[#8C5035]"
+                >
+                  <span>Live App</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
               </div>
             </div>
 

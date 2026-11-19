@@ -290,7 +290,7 @@ const projects = [
     ]),
     technologies: JSON.stringify(['FastAPI', 'Gemini Vision', 'MinIO', 'Redis', 'Flutter', 'Celery', 'Docker']),
     measurable_outcomes: 'Sub-2 second end-to-end search latency from mobile photo upload to price-ranked product carousel.',
-    live_url: '',
+    live_url: 'https://play.google.com/store/apps/details?id=org.aibrigade.snap_get',
     github_url: 'https://github.com/sumaiyamayra',
     paper_url: ''
   },

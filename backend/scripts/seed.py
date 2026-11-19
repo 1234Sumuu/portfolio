@@ -126,7 +126,7 @@ projects_data = [
         ],
         "technologies": ["Python", "FastAPI", "Gemini Vision", "MinIO", "PostgreSQL", "Redis", "Docker Compose", "Flutter"],
         "measurable_outcomes": "Supported 10,000+ visual searches during launch trials with 89% top-3 catalog match accuracy.",
-        "live_url": "https://snapget.app",
+        "live_url": "https://play.google.com/store/apps/details?id=org.aibrigade.snap_get",
         "github_url": "https://github.com/sumaiyamayra",
         "paper_url": ""
     },
